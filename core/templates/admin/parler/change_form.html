@@ -1,0 +1,6 @@
+{% extends default_change_form_template|default:"admin/change_form.html" %}
+
+{% block field_sets %}
+{% comment %} {% if language_tabs %}{% include "admin/parler/language_tabs.html" %}{% endif %} {% endcomment %}
+{{ block.super }}
+{% endblock %}

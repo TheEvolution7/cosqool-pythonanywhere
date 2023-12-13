@@ -1,0 +1,54 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block content %}
+<div class="body d-flex align-items-start courses-detail">
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <h2>{{object}}</h2>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="row row-detail">
+            <div class="col-12">
+                <!-- Quiz section -->
+                <div class="quiz">
+                    <div class="quiz__heading">
+                        <h2 class="quiz__heading-text">
+                            Your are <span class="result"></span> right.
+                        </h2>
+                    </div>
+
+                    <form class="quiz-form row" action="" method="post">
+                        {% csrf_token %}
+                        <div class="quiz-form__quiz col-md-12">
+                            <p class="quiz-form__question">
+                                {{object}}
+                            </p>
+                            {% for answer in object.answers %}
+                            <label class="quiz-form__ans" for="{{answer.id}}">
+                                <input type="radio" name="q1" id="{{answer.id}}" value="{{answer}}" />
+                                <span class="design"></span>
+                                <span class="text">{{answer}}</span>
+                            </label>
+                            {% endfor %}
+                            
+                        </div>
+
+                        
+                        <div class="col-12 text-center">
+                            <input class="submit" type="submit" value="Submit" />
+                        </div>
+
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

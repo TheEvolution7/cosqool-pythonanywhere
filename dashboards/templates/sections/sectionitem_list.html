@@ -1,0 +1,26 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n frontend_extras%}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="title">
+            <h1>{{object}}</h1>
+            <ul>
+                {% for item in object.get_items %}
+                    <li><a href="{% url "dashboards:lessonitem"%}">{{item}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row row-detail">
+    <ul>
+    {% for article in object_list %}
+        <li>{{ article.pub_date|date }} - {{ article.title }}</li>
+    {% empty %}
+        <li>No articles yet.</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

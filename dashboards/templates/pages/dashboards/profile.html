@@ -1,0 +1,268 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n frontend_extras dashboard %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="title">
+            <div class="d-md-flex justify-content-between align-items-center">
+                <h2>{% trans "My Profile" %}</h2>
+                <div class="balance-box">
+                    <div class="balance-title me-2">
+                        {% translate "Balance" %}
+                    </div>
+                    <div class="balance-cost me-2">
+                        SR 0.00
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+        </div>
+        
+    </div>
+    <div class="col-12">
+        <div class="card info-card">
+            <div class="card-body p-4 d-flex align-items-center">
+                <div class="d-flex align-items-center flex-column flex-md-row flex-fill">
+                    <div class="avt">
+                        <img src="{{user.student.avatar.image|user_img_url}}" alt="" class="rounded-circle">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#edit-avatar"><img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/8_1.svg" alt=""></button>
+                    </div>
+
+                    <div class="media-body ms-md-5 m-0 mt-4 mt-md-0 text-md-start text-center">
+                        <h5 class="font-weight-bold mb-3 ">{{user.get_full_name}}</h5>
+                        <div class="mb-2">
+                            {% trans "Email" %}: {{user.email}}<br>
+                            {% trans "Birth" %}: {{user.date_of_birth}}
+                        </div>
+                        <div class="color-blue-text mb-2">Grade 1</div>
+                        <div class="btn-group mt-2">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#edit-info" class="btn btn-outline-primary me-2">Edit Info</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#change-pass" class="btn btn-outline-primary me-2">Change Password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="box-purcharge">
+            <h3>My Package</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="package-item">
+                        <div class="title">
+                            <div class="content">
+                                <h4>Plan 1</h4>
+                                <p>Student pack</p>
+                            </div>
+                            <div class="price">
+                                <sup>$</sup>
+                                <span>20.00</span>
+                            </div>
+
+                        </div>
+                        <div class="content-package">
+                            <div class="content">
+                                <p><b>Grade level:</b> Grade 1</p>
+                                <p><b>Billing subscription:</b> Monthly</p>
+                                <p><b>Start Date:</b> 20/07/2023</p>
+                                <p><b>End date:</b> 28/07/2023</p>
+                            </div>
+                            <div class="btn-group">
+                                <a href="#" class="btn--link" data-bs-toggle="modal" data-bs-target="#change-grade">Change Grade</a>
+                                <a href="#" class="btn--link" data-bs-toggle="modal" data-bs-target="#upgrade-class">Change Subscription</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="package-item">
+                        <div class="title">
+                            <div class="content">
+                                <h4>Plan 2</h4>
+                                <p>Test-prep pack</p>
+                            </div>
+                            <div class="price">
+                                <sup>$</sup>
+                                <span>25.00</span>
+                            </div>
+
+                        </div>
+
+                        <div class="content-package">
+                            <div class="content">
+                                <p><b>Test-prep:</b> Qudrat</p>
+                                <p><b>Billing subscription:</b> 6 Month</p>
+                                <p><b>Start Date:</b> 20/07/2023</p>
+                                <p><b>End date:</b> 28/07/2023</p>
+                            </div>
+                            <div class="btn-group">
+                                <a href="#" class="btn--link" data-bs-toggle="modal" data-bs-target="#change-grade-2">Change Grade</a>
+                                <a href="#" class="btn--link" data-bs-toggle="modal" data-bs-target="#upgrade-class-2">Change Subscription</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="package-item">
+                        <div class="title">
+                            <div class="content">
+                                <h4>Plan 3</h4>
+                                <p>Have it all!</p>
+                            </div>
+                            <div class="price">
+                                <sup>$</sup>
+                                <span>30.00</span>
+                            </div>
+
+                        </div>
+
+                        <div class="content-package">
+                            <div class="content">
+                                <p><b>Grade level:</b> Grade 1</p>
+                                <p><b>Test-prep:</b> Qudrat</p>
+                                <p><b>Billing subscription:</b> 1 Year</p>
+                                <p><b>Start Date:</b> 20/07/2023</p>
+                                <p><b>End date:</b> 28/07/2023</p>
+                            </div>
+                            <div class="btn-group">
+                                <a href="#" class="btn--link" data-bs-toggle="modal" data-bs-target="#change-grade-3">Change Grade and Test-prep</a>
+                                <a href="#" class="btn--link" data-bs-toggle="modal" data-bs-target="#upgrade-class-3">Change Subscription</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %} <div class="col-12">
+        <div class="box-purcharge">
+            <div class="row">
+                {% for subscription in subscriptions %}
+                    {% if subscription.paypal_data %}
+                    {% show_subscription_details subscription.paypal_data %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div> {% endcomment %}
+</div>
+{% endblock %}
+
+
+{% block modal %}
+<div class="modal fade" id="edit-info" tabindex="-1" aria-labelledby="edit-infoTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="{% url 'dashboards:accounts:user_change' %}">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-infoTitle">Edit info</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% csrf_token %}
+                    {{user_change_form}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary" id="user_change_submit">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="change-pass" tabindex="-1" aria-labelledby="change-passTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form method="post" action="{% url 'dashboards:accounts:password_change_dashboard' %}">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="change-passTitle">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{password_change_form}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline-primary" id="password_change_submit">Save changes</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="edit-avatar" tabindex="-1" aria-labelledby="edit-avatarTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="avatars">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-avatarTitle">Change Avatar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-1 p-0" id="form">
+                    <div class="col-12">
+                        <div class="mb-2">
+                            <div class="avatar-wrapper" id="list">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline-primary" id="submit">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    avatar_url = '{% url "dashboards:avatar-list" %}';
+    update_avatar_url = '{% url "dashboards:student-detail" user.student.pk %}'
+    student_id = '{{user.student.pk}}'
+</script>
+<script src="{%get_static_prefix%}dashboards/avatar.js"></script>
+{% comment %} <script>
+    
+    $(document).ready(function() {
+        
+
+        $("#cancelSubscriptionBtn").click(function() {
+            $("#cancelSubscriptionForm").toggle();
+        });
+
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        
+        $('#cancelSubscriptionSubmit').click(function()
+        {
+            $.ajax({
+                method: "POST",
+                url: "{% url 'dashboards:subscription-cancel-subscription' %}",
+                data: $("#cancelSubscriptionForm").serialize(),
+                headers: {'X-CSRFToken': csrftoken},
+            }).done(function (msg) {
+                window.location.href = '{% url "dashboards:profile" %}';
+            });
+        })
+
+        $.ajax({
+            method: "GET",
+            url: "{% url 'dashboards:getListTransactionsForSubscription' %}",
+            data: {},
+            headers: {'X-CSRFToken': csrftoken},
+        }).done(function (data) {
+            $('#getListTransactionsForSubscription').html(data)
+        });
+    });
+</script> {% endcomment %}
+{% endblock js %}

@@ -1,0 +1,99 @@
+{% extends "./base.html" %}
+{% load static %}
+{% load i18n %}  
+{% block layout %}
+<div class="row g-4">
+    <div class="col-12">
+        <h1>{% trans "Profile" %}</h1>
+        <hr>
+    </div>
+    
+    <div class="col-md-9">
+        <div class="card rounded-5">
+            <div class="card-body p-4">
+                <div class="card-header">
+                    <h4>{% trans "Personal information" %}</h4>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ profile_form.first_name.label }}</label>
+                                    {{ profile_form.first_name }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">{{ profile_form.last_name.label }}</label>
+                                    {{ profile_form.last_name }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">{{ profile_form.headline.label }}</label>
+                                    {{ profile_form.headline }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">{{ profile_form.biography.label }}</label>
+                                    {{ profile_form.biography }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">{{ profile_form.language.label }}</label>
+                                    {{ profile_form.language }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ profile_form.website.label }}</label>
+                                    {{ profile_form.website }}
+                                </div>
+                                <label class="form-label">{{profile_form.twitter_url.label}}</label>
+                                    <div class="input-group mb-3">
+                                    <span class="input-group-text">http://www.twitter.com/</span>
+                                    {{profile_form.twitter_url}}
+                                </div>
+                                <label class="form-label">{{profile_form.facebook_url.label}}</label>
+                                    <div class="input-group mb-3">
+                                    <span class="input-group-text">http://www.facebook.com/</span>
+                                    {{profile_form.facebook_url}}
+                                </div>
+                                <label class="form-label">{{profile_form.linkedin_url.label}}</label>
+                                    <div class="input-group mb-3">
+                                    <span class="input-group-text">http://www.linkedin.com/</span>
+                                    {{profile_form.linkedin_url}}
+                                </div>
+                                <label class="form-label">{{profile_form.youtube_url.label}}</label>
+                                    <div class="input-group mb-3">
+                                    <span class="input-group-text">http://www.youtube.com/</span>
+                                    {{profile_form.youtube_url}}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card rounded-5">
+            <div class="card-body">
+                <div class="card-header">
+                    <h4>{% trans "Personal avatar" %}</h4>
+                </div>
+                <div class="card-body">
+                {{profile_form.avatar}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="card rounded-5">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-end align-items-center">
+                    <button type="reset" class="btn--link me-2">{% trans "Cancel" %}</button>
+                    <button type="submit" class="btn--link _yellow me-2">{% trans "Save Changes" %}</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock layout %}

@@ -1,0 +1,145 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+
+{% block extrahead %}
+    {{ block.super }}
+    <script src="{% url 'admin:jsi18n' %}"></script>
+    {{ media }}
+{% endblock %}
+
+{% comment %} {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">{% endblock %} {% endcomment %}
+
+{% if not is_popup %}
+    {% block breadcrumbs %}
+        <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 pt-1">
+            <li class="breadcrumb-item text-muted">
+                <a href="{% url 'admin:index' %}" class="text-muted text-hover-primary">{% translate 'Home' %}</a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <span class="bullet bg-gray-200 w-5px h-2px"></span>
+            </li>
+            <li class="breadcrumb-item text-muted">
+                <a href="{% url 'admin:app_list' app_label=opts.app_label %}"
+                   class="text-muted text-hover-primary">{{ opts.app_config.verbose_name }}</a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <span class="bullet bg-gray-200 w-5px h-2px"></span>
+            </li>
+            <li class="breadcrumb-item text-muted">
+                {% if has_view_permission %}<a href="{% url opts|admin_urlname:'changelist' %}"
+                                               class="text-muted text-hover-primary">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}
+                    {{ opts.verbose_name_plural|capfirst }}{% endif %}
+            </li>
+
+            <li class="breadcrumb-item">
+                <span class="bullet bg-gray-200 w-5px h-2px"></span>
+            </li>
+            <li class="breadcrumb-item text-dark">
+                {% if add %}{% blocktranslate with name=opts.verbose_name %}Add {{ name }}
+                {% endblocktranslate %}{% else %}{{ original|truncatewords:"18" }}{% endif %}</li>
+        </ul>
+    {% endblock %}
+{% endif %}
+
+{% block object-tools %}
+            {% if change and not is_popup %}
+                <ul class="object-tools nav nav-pills mb-7 text-end">
+                    {% block object-tools-items %}
+                        {% change_form_object_tools %}
+                    {% endblock %}
+                </ul>
+            {% endif %}
+        {% endblock %}
+{% block content %}
+    <div class="d-flex justify-content-between">
+        {% if language_tabs %}{% include "admin/parler/language_tabs.html" %}{% endif %}
+    </div>
+    {% if errors %}
+        <div class="alert alert-danger d-flex align-items-center p-5">
+            <div class="d-flex flex-column">
+                <p class="errornote">
+                    {% if errors|length == 1 %}{% translate "Please correct the error below." %}{% else %}
+                        {% translate "Please correct the errors below." %}{% endif %}
+                </p>
+            </div>
+        </div>
+        {{ adminform.form.non_field_errors }}
+    {% endif %}
+    <form
+            class="form row g-6"
+            {% if has_file_field %}enctype="multipart/form-data" {% endif %}
+            {% if form_url %}action="{{ form_url }}" {% endif %}
+            method="post"
+            id="{{ opts.model_name }}_form"
+            novalidate
+    >
+        {% csrf_token %}
+
+        {% block form_top %}{% endblock %}
+        {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
+        {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
+        {% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+        {% block field_sets %}
+            
+            <div class="col-lg-9 order-last">
+                <div class="row g-6">
+                    <div class="col-12">
+                        {% for fieldset in adminform %}
+                            {% if forloop.first %}
+                                {% include "admin/includes/fieldset.html" %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        {% if inline_admin_formsets %}
+                            {% block after_field_sets %}{% endblock %}
+                            {% block inline_field_sets %}
+                                {% for inline_admin_formset in inline_admin_formsets %}
+                                    {% include inline_admin_formset.opts.template %}
+                                {% endfor %}
+                            {% endblock %}
+                            {% block after_related_objects %}{% endblock %}
+                        {% endif %}
+                    </div>
+                    <div class="col-12">
+                        {% block submit_buttons_bottom %}
+                            {% submit_row %}
+                        {% endblock %}
+
+                        {% block admin_change_form_document_ready %}
+                            <script id="django-admin-form-add-constants"
+                                    src="{% static 'admin/js/change_form.js' %}"
+                                    {% if adminform and add %}
+                                    data-model-name="{{ opts.model_name }}"
+                                    {% endif %}
+                                    async>
+                            </script>
+                        {% endblock %}
+
+                        {# JavaScript for prepopulated fields #}
+                        {% prepopulated_fields_js %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 order-sm-last">
+                <div class="row g-6">
+                {% for fieldset in adminform %}
+                    {% if not forloop.first %}
+                        <div class="col-12">
+                            {% include "admin/includes/fieldset.html" %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+        {% endblock %}
+    </form>
+{% endblock %}
+
+{% block extrajs %}
+{{  block.super }}
+{% endblock %}

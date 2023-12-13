@@ -1,0 +1,82 @@
+{% load widget_tweaks %}
+<div class="courses-list-content">
+    <div class="box-content">
+        <div class="note-container">
+            <div class="note-add-content">
+                <button class="btn-note"><span class="content-btn-note">Create a new note at <span class="current-time"></span></span>  &nbsp;&nbsp;<i class="fas fa-plus-circle"></i></button>
+                <form method="post" id="add_note_form" action="{% url 'dashboards:note' %}">
+                    {% csrf_token %}
+                    <div class="box-editor">
+                        <div class="editor-box">
+                            {{note_create_from.content|attr:"class:editor"}}
+                            <input type="hidden" value="{{object.pk}}" name="learn">
+                            <div class="btn-group">
+                                <button type="button" class="btn-dashboard" id="close-add-note">Cancel</button>
+                                <button type="submit" class="btn-dashboard __bg">Save note</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="note-list">
+                <div class="select-container">
+                    <select name="" id="" class="form-select">
+                        <option value="-1">All</option>
+                        {% for section in object.lesson.section.course.sections %}
+                        <option value="">{{section.title}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="" id="" class="form-select">
+                        <option value="-1">Sort by most recent</option>
+                        <option value="">Sort by oldest</option>
+                    </select>
+                </div>
+
+                <div class="no-note">
+                    Click the "Create a new note" box, the "+" to make your first note.
+                </div>
+
+                <div class="has-note">
+                    {% for note_update_form in note_update_form_list %}
+                        <div class="note-item" id="note-{{note_update_form.instance.pk}}">
+                            {% comment %} <div class="time-add">
+                                <span class="note-time">0:01</span>
+                            </div> {% endcomment %}
+                            <div class="note-edit-box">
+                                <div class="content-note">
+                                    <div class="title-note">
+                                        <div class="text">
+                                            <h3>Chapter: {{note_update_form.instance.learn.lesson.section}}</h3>
+                                            <p>{{note_update_form.instance.learn.lesson}} - {{note_update_form.instance.learn}}</p>
+                                        </div>
+                                        <div class="action-note">
+                                            <button type="button" class="edit-note"><i class="fal fa-pencil-alt"></i></button>
+                                            <button type="button" delete-url="{% url 'dashboards:note-delete' note_update_form.instance.pk %}" class="delete_note_btn" btn-id="{{note_update_form.instance.pk}}"><i class="far fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="editor-note-content">
+                                        <div class="note-content-text">
+                                            {{note_update_form.instance.content|striptags}}
+                                        </div>
+                                        <div class="editor-box">
+                                            <form method="post" action="{% url 'dashboards:note-update' note_update_form.instance.pk %}" class="update_note_form">
+                                                {% csrf_token %}
+                                                {{note_update_form.content|attr:"class:editor"}}
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn-dashboard" id="close-edit-note">Cancel</button>
+                                                    <button type="submit" class="btn-dashboard __bg">Save note</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

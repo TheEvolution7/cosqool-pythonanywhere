@@ -1,0 +1,10 @@
+<div class="row d-flex align-items-center">
+    <div class="col">
+        {% include 'django/forms/widgets/input.html' %}
+    </div>
+    {% if related_url %}<div class="col"><a href="{{ related_url }}" class="related-lookup" id="lookup_id_{{ widget.name }}" title="{{ link_title }}"></a></div>{% endif %}
+    {% if link_label %}<div class="col"><strong>{% if link_url %}<a href="{{ link_url }}">{% endif %}{{ link_label }}{% if link_url %}</a>{% endif %}</strong></div>{% endif %}
+    
+</div>
+
+

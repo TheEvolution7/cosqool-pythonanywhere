@@ -1,0 +1,100 @@
+{% load i18n dashboard tz %}
+<div class="col-6">
+    <div class="package-item">
+        <div class="title">
+            <div class="content">
+                <h4>{% translate "Subscription Info" %}</h4>
+            </div>
+        </div>
+        <div class="content-package">
+            <div class="content w-100">
+                <p><b>{% translate "Subscription ID" %}:</b> {{subscription.id}}</p>
+                <p>
+                    <b>{% translate "Status" %}:</b> 
+                    <span class="badge bg-secondary">{{subscription.status}}</span>
+                </p>
+                <hr>
+                {% if subscription.status == "CANCELLED" %}
+                <p><b>{% translate "Subscription canceled" %}:</b> {{subscription.status_update_time|formatted_time_paypal}}</p>
+                <p><b>{% translate "Reason" %}:</b> {{subscription.status_change_note}}</p>
+                {% endif %}
+                
+                {% if subscription.status == "ACTIVE" %}
+                <p>
+                    <b>{% translate "Cancel Subscription" %}:</b> 
+                    <button type="button" class="btn btn-outline-primary" id="cancelSubscriptionBtn">{% translate "Cancel" %}</button>
+                    <form id="cancelSubscriptionForm" style="display: none;">
+                        {% csrf_token %}
+                        <div class="row g-2">
+                            <div class="col-12">
+                                <input type="hidden" name="id" value="{{subscription.id}}">
+                                <textarea class="form-control" name="reason" placeholder="{% translate "Reason cancel subscription" %}"></textarea>
+                            </div>
+                            <div class="col-12 text-end">
+                                <button type="button" class="btn btn-outline-primary" id="cancelSubscriptionSubmit">{% translate "Confirm" %}</button>
+                            </div>
+                        </div>
+                    </form>
+                </p>
+                <p><b>{% translate "Next payment due on" %}:</b> {{subscription.billing_info.next_billing_time|formatted_time_paypal}}</p>
+                {% endif %}
+                <hr>
+                <p><b>{% translate "Name" %}:</b> {{plan.name}}</p>
+                <p><b>{% translate "Start Time" %}:</b> {{subscription.start_time|formatted_time_paypal }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-6">
+    <div class="package-item">
+        <div class="title">
+            <div class="content">
+                <h4>{% translate "Plan Details" %}</h4>
+            </div>
+        </div>
+        <div class="content-package">
+            <div class="content w-100">
+                {% if subscription_object.grade %}
+                <p><b>{% translate "Grade Level" %}:</b> {{subscription_object.grade.title}}</p>
+                {% endif %}
+                {% if subscription_object.testprep %}
+                <p><b>{% translate "Testpresp" %}:</b> {{subscription_object.testprep.title}}</p>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-12">
+    <div class="package-item">
+        <div class="title">
+            <div class="content">
+                <h4>{% translate "Transactions History" %}</h4>
+            </div>
+        </div>
+        {% if subscription.id %}
+            <div id="getListTransactionsForSubscription"></div>
+            {% get_list_transactions_for_subscription subscription.id %}
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">{% translate "ID" %}</th>
+                        <th scope="col">{% translate "Status" %}</th>
+                        <th scope="col">{% translate "Time" %}</th>
+                        <th scope="col">{% translate "Price" %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" class="text-center">{% translate "No Transaction" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+</div>
+

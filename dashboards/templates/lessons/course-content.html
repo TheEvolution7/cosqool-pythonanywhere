@@ -1,0 +1,57 @@
+{% load static i18n %} {% load frontend_extras dashboard %}
+<div class="courses-list-content __2">
+	<div class="accordion">
+		{% for item in object.get_items %}
+		<div class="card">
+			<div class="card-header" id="course-g-{{item.pk}}">
+				<h2 class="mb-0 d-flex justify-content-between">
+                    {% comment %} <span class="btn btn-link w-auto" href="{% url "dashboards:learn-detail" item.pk %}">
+						<div class="ct">
+							<div class="text">{{item.title|title}}</div>
+						</div>
+					</span>
+					<button class="btn btn-link w-auto{% if not page_obj.0.learn == item %} collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#course-content-g-{{item.pk}}" aria-expanded="false" aria-controls="course-content-g-{{item.pk}}">
+						<div class="btn-acco"></div>
+					</button> {% endcomment %}
+
+					<button
+						class="btn btn-link btn-block text-left{% if not page_obj.0.learn == item %} collapsed{% endif %}"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#course-content-g-{{item.pk}}"
+						aria-expanded="false"
+						aria-controls="course-content-g-{{item.pk}}">
+						<div class="ct">
+							<div
+								class="text{% if page_obj.0.learn.lesson.section == section %} active{% endif %}">
+								{{item.title|title}}
+							</div>
+						</div>
+						<div class="btn-acco"></div>
+					</button>
+				</h2>
+			</div>
+			<div id="course-content-g-{{item.pk}}" class="collapse {% if page_obj.0.learn == item %} show{% endif %}" aria-labelledby="course-{{item.pk}}">
+				<div class="card-body">
+					<ul class="list-course">
+						{% for learn in item.get_items %}
+						<li class="d-flex flex-column">
+							<div class="d-flex justify-content-between align-items-center {% if page_obj.0 == learn %}fw-bold{% endif %}">
+								<div class="d-flex gap-2">
+									<img
+										src="{% get_static_prefix %}{% if learn|verbose_name == 'Video' %}dashboard/assets/images/icon-menu-new/2.svg{% else %}dashboard/assets/images/icon-courses/2.svg{% endif %}"
+										width="20"
+									/>
+									<a href="{% if learn.pk %}{% if learn|verbose_name == 'Test' %}{% url "dashboards:test-detail" learn.pk %}{% endif %}{% endif %}"> {{learn.title}} </a>
+									{% comment %} {% if learn|verbose_name == 'Video' %}{% url "dashboards:video-detail" learn.pk %}{% endif %} {% endcomment %}
+								</div>
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+	<!--begin::Head-->
+	<head><base href=""/>
+		<title>{% block title %}{% endblock %}</title>
+		<!--begin::Fonts(mandatory for all pages)-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Vendor Stylesheets(used for this page only)-->
+		{% block extrastyle %}{% endblock %}
+		{% block extrahead %}{% endblock %}
+
+		{% block css %}{% endblock %}
+		<!--end::Vendor Stylesheets-->
+		<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+		<link href="{% static "core/assets/plugins/global/plugins.bundle.css" %}" rel="stylesheet" type="text/css" />
+		<link href="{% static "core/assets/css/style.bundle.css" %}" rel="stylesheet" type="text/css" />
+		
+		<!--end::Global Stylesheets Bundle-->
+
+	
+    {% block responsive %}
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    {% endblock %}
+    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body>
+		{% block content %}
+						{{ content }}
+						{% endblock %}
+		<!--end::Modals-->
+		<!--begin::Javascript-->
+		<script>var hostUrl = "{% static "core/assets/" %}";</script>
+		<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+		<script src="{% static "core/assets/plugins/global/plugins.bundle.js" %}"></script>
+		<script src="{% static "core/assets/js/scripts.bundle.js" %}"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Vendors Javascript(used for this page only)-->
+		
+		<!--end::Vendors Javascript-->
+		<!--begin::Custom Javascript(used for this page only)-->
+		{% block js %}{% endblock %}
+		<!--end::Custom Javascript-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+</html>

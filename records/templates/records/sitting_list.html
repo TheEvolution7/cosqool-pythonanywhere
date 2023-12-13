@@ -1,0 +1,80 @@
+{% extends "layout/default.html" %} {% load static i18n tz %} {% block css %}
+<style>
+	.bookmark-active {
+		color: #ffca05;
+	}
+
+	.chapter-course ul.section-content .course-item {
+		position: relative;
+		font-size: 18px;
+		transition: padding-left linear 0.15s;
+		background: #fff;
+	}
+	p {
+		margin-top: auto !important;
+		margin-bottom: auto !important;
+	}
+</style>
+{% endblock css %} {% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<div class="title">
+			<h1>{% trans "List of complete exams" %}</h1>
+			<hr />
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		{% if sitting_list %}
+
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>{% trans "User" %}</th>
+					<th>{% trans "Quiz" %}</th>
+					<th>{% trans "Completed" %}</th>
+					<th>{% trans "Score" %}(%)</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<form action="" method="GET">
+						<td><input type="text" name="user_filter" /></td>
+						<td><input type="text" name="quiz_filter" /></td>
+						<td></td>
+						<td></td>
+						<td>
+							<button type="submit" class="btn btn-default">
+								{% trans "Filter"%}
+							</button>
+						</td>
+					</form>
+				</tr>
+
+				{% for sitting in sitting_list %}
+
+				<tr>
+					<td>{{ sitting.user }}</td>
+					<td>{{ sitting.quiz }}</td>
+					<td>{{ sitting.end|date }}</td>
+					<td>{{ sitting.get_percent_correct }}</td>
+					<td>
+						<a href="{% url 'dashboards:sitting-detail' pk=sitting.id %}">
+							{% trans "View details" %}
+						</a>
+					</td>
+				</tr>
+
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<p>{% trans "There are no matching quizzes" %}.</p>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "courses/course_detail.html" %} {% load static i18n frontend_extras%} {% block title %} {{object.title}}{% endblock title %}{% block tab-content %} {% for tab in tabs %} {% if tab.slug != 'calculator' %}
+<div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="nav-{{tab.slug}}" role="tabpanel">
+    {% if tab.slug == 'course-content' %}
+    {% include 'lessons/'|add:tab.slug|add:'.html' %}
+    {% else %}
+    {% include 'courses/'|add:tab.slug|add:'.html' %}
+    {% endif %}
+</div>
+{% endif %} {% endfor %} {% endblock tab-content %}

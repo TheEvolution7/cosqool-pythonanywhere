@@ -1,0 +1,77 @@
+{% load i18n static %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+  <head>
+    <base href="" />
+    <title>{{settings.site_title}} - {{settings.tagline}}</title>
+    <meta charset="utf-8" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link href="{% static 'core/'%}assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{% static 'core/'%}assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body id="kt_body" class="auth-bg bgi-size-cover bgi-position-center bgi-no-repeat">
+    <script>
+      var defaultThemeMode = "light";
+      var themeMode;
+      if (document.documentElement) {
+        if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+          themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+        } else {
+          if (localStorage.getItem("data-bs-theme") !== null) {
+            themeMode = localStorage.getItem("data-bs-theme");
+          } else {
+            themeMode = defaultThemeMode;
+          }
+        }
+        if (themeMode === "system") {
+          themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-bs-theme", themeMode);
+      }
+    </script>
+    <div class="d-flex flex-column flex-root">
+      <style>
+        body {
+          background-image: url('{% static 'core/'%}assets/media/auth/bg8.jpg');
+        }
+
+        [data-bs-theme="dark"] body {
+          background-image: url('{% static 'core/'%}assets/media/auth/bg8-dark.jpg');
+        }
+      </style>
+      <div class="d-flex flex-column flex-center flex-column-fluid">
+        <div class="d-flex flex-column flex-center text-center p-10">
+          <div class="card card-flush w-md-650px py-5">
+            <div class="card-body py-15 py-lg-20">
+              <div class="mb-7">
+                <a href="{% url 'frontend:welcome' %}" class="">
+                  <img alt="{{settings.site_title}}" src="{{ settings.logo.url }}" class="mh-100px" />
+                </a>
+              </div>
+              <h1 class="fw-bolder text-gray-900 mb-5">Welcome to {{settings.site_title}}</h1>
+              <div class="fw-semibold fs-6 text-gray-500 mb-7">This is your opportunity to get creative and make a name <br />that gives readers an idea </div>
+              <div class="mb-0">
+                <img src="{% static 'core/'%}assets/media/auth/welcome.png" class="mw-100 mh-300px theme-light-show" alt="" />
+                <img src="{% static 'core/'%}assets/media/auth/welcome-dark.png" class="mw-100 mh-300px theme-dark-show" alt="" />
+              </div>
+              <div class="mb-0">
+                <a href="{% url 'frontend:welcome' %}" class="btn btn-sm btn-primary">Go To Dashboard</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var hostUrl = "assets/";
+    </script>
+    <script src="{% static 'core/'%}assets/plugins/global/plugins.bundle.js"></script>
+    <script src="{% static 'core/'%}assets/js/scripts.bundle.js"></script>
+  </body>
+</html>

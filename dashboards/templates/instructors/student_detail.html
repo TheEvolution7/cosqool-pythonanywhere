@@ -1,0 +1,217 @@
+{% extends "./base.html" %}
+{% load static i18n %}
+{% block layout %}
+<div class="row g-4">
+    <div class="col-12">
+        <h1>{{object.get_full_name}}</h1>
+        <hr>
+    </div>
+    <div class="col-12">
+        <div class="detail-progress-container">
+            <div class="row">
+                <div class="col-md-7 col-lg-8">
+                    <div class="content">
+                        <!-- <h4></h4> -->
+                        <h3>Robert Hammer</h3>
+                        <p>Email: sarah@gmail.com<br>
+                            Birth: 18/08/2000</p>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4">
+                    <div id="math-proress"></div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="content">
+                        <h4>Course summary</h4>
+                    </div>
+                    <div class="table-container table-summary">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Assignment type</th>
+                                    <th>Weight</th>
+                                    <th>Grade</th>
+                                    <th>Weighted grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th data-label="Assignment type">Quizzes</th>
+                                    <td data-label="Weight">30%</td>
+                                    <td data-label="Grade">91%</td>
+                                    <td data-label="Weighted grade">27%</td>
+                                </tr>
+                                <tr>
+                                    <th data-label="Assignment type">Midterm Exam</th>
+                                    <td data-label="Weight">30%</td>
+                                    <td data-label="Grade">91%</td>
+                                    <td data-label="Weighted grade">27%</td>
+                                </tr>
+                                <tr>
+                                    <th data-label="Assignment type">Final Exam</th>
+                                    <td data-label="Weight">30%</td>
+                                    <td data-label="Grade">91%</td>
+                                    <td data-label="Weighted grade">27%</td>
+                                </tr>
+                                <tr>
+                                    <td class="hidden-on-mobile">Your current weighted grade summary</td>
+                                    <td class="summary-total" colspan="3" data-label="Your current weighted grade summary">100%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="content mb-4">
+                        <h4>Detailed grades</h4>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <!-- <div class="name-detail">
+                        <h5>Chapter 1: Name</h5>
+                    </div> -->
+                    <div class="box-detail-grade">
+                        <!-- <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Quizzes Name</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th data-label="Quizzes Name">Quizzes</th>
+                                        <td data-label="Score">40/45</td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="Quizzes Name">Midterm Exam</th>
+                                        <td data-label="Score">30/45</td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="Quizzes Name">Final Exam</th>
+                                        <td data-label="Score">45/45</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+                        <div class="name-detail">
+                            <h6>CHAPTER 1 : Experiencing Course Content</h6>
+
+                            <h6>Score</h6>
+                        </div>
+
+                        <div class="accordion accordion-course" id="accordion-1">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+
+                                        <span>Quiz</span>
+                                        <div class="score-text">
+                                            3/3
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div id="collapse-1" class="accordion-collapse collapse" aria-labelledby="heading-1" data-bs-parent="#accordion-1">
+                                    <div class="accordion-body">
+                                        Problem Score:&nbsp;&nbsp;&nbsp;1/1&nbsp;&nbsp;&nbsp;1/1&nbsp;&nbsp;&nbsp;1/1
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="name-detail">
+                            <h6>CHAPTER 2 : Experiencing Course Content</h6>
+
+                            <h6>Score</h6>
+                        </div>
+
+
+                        <div class="accordion accordion-course" id="accordion-2">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-2-1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2-1" aria-expanded="true" aria-controls="collapse-2-1">
+
+                                        <span>Quiz</span>
+                                        <div class="score-text">
+                                            3/3
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div id="collapse-2-1" class="accordion-collapse collapse" aria-labelledby="heading-2-1" data-bs-parent="#accordion-2">
+                                    <div class="accordion-body">
+                                        Problem Score:&nbsp;&nbsp;&nbsp;1/1&nbsp;&nbsp;&nbsp;1/1&nbsp;&nbsp;&nbsp;1/1
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="name-detail">
+                            <h6>Midterm Exam</h6>
+
+                            <h6>Score</h6>
+                        </div>
+
+                        <div class="accordion accordion-course" id="accordion-3">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-3-1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3-1" aria-expanded="true" aria-controls="collapse-3-1">
+
+                                        <span>Exam</span>
+                                        <div class="score-text">
+                                            3/3
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div id="collapse-3-1" class="accordion-collapse collapse" aria-labelledby="heading-3-1" data-bs-parent="#accordion-3">
+                                    <div class="accordion-body">
+                                        Problem Score:&nbsp;&nbsp;&nbsp;1/1&nbsp;&nbsp;&nbsp;1/1&nbsp;&nbsp;&nbsp;1/1
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="name-detail">
+                            <h6>Final Exam</h6>
+
+                            <h6>Score</h6>
+                        </div>
+
+
+                        <div class="accordion accordion-course" id="accordion-4">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-4-1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-4-1" aria-expanded="true" aria-controls="collapse-4-1">
+
+                                        <span>Exam</span>
+                                        <div class="score-text">
+                                            3/3
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div id="collapse-4-1" class="accordion-collapse collapse" aria-labelledby="heading-4-1" data-bs-parent="#accordion-4">
+                                    <div class="accordion-body">
+                                        Problem Score:&nbsp;&nbsp;&nbsp;1/1&nbsp;&nbsp;&nbsp;1/1&nbsp;&nbsp;&nbsp;1/1
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock layout %}

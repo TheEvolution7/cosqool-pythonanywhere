@@ -1,0 +1,16 @@
+{% if show %}
+<nav class="navbar navbar-expand-lg">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% block date-hierarchy-toplinks %}
+        {% block date-hierarchy-back %}
+        <li class="nav-item">{% if back %}<a href="{{ back.link }}" class="date-back nav-link">&lsaquo; {{ back.title }}</a>{% endif %}</li>
+        {% endblock %}
+        {% block date-hierarchy-choices %}
+        {% for choice in choices %}
+        <li class="nav-item">{% if choice.link %}<a class="nav-link" href="{{ choice.link }}">{{ choice.title }}</a>{% else %}<a class="nav-link">{{ choice.title }}</a>{% endif %}</li>
+        {% endfor %}
+        {% endblock %}
+        {% endblock %}
+    </ul>
+</nav>
+{% endif %}

@@ -1,0 +1,281 @@
+{% extends "layout/default.html" %} {% load static i18n courses %} {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %} {% load frontend_extras widget_tweaks menu %} {% block css %}
+<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+<style>
+	.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+	.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+		border-radius: 20px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+		border-color: var(--ck-color-base-border);
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+	}
+</style>
+
+{% endblock css %} {% block content %}
+<div class="row">
+	<div class="col-xl-8 col-lg-7">
+		<div class="row g-4">
+			<div class="col-12">
+				<div class="section-title mb-50">
+					<h4>{% block breadcrumb %}{% endblock breadcrumb %}</h4>
+					<h1>{% block title %}{{object.title}}{% endblock title %}</h1>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="box-video">
+					{% block media %} {% for video in page_obj %} {% if video.url %}
+					<div class="ratio ratio-16x9">
+						<iframe data-src="{{video.url}}" class="lozad rounded-5" allow="autoplay"></iframe>
+					</div>
+
+					{% else %}
+					<div class="ratio ratio-16x9 card rounded-4">
+						<div class="card-body d-flex justify-content-center align-items-center">
+							<a class="btn--link _yellow" href="{% url "dashboards:learnitem-detail" video.pk %}">Start Test</a>
+						</div>
+					</div>
+
+
+					{% endif %} {% endfor %} {% endblock media %}
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="container">
+					<div class="row gap-2 text-center">
+						{% if page_obj.has_previous %}
+							{% comment %} <a role="button" class="btn--link _yellow col" href="?page=1">&laquo; {% trans "First" %}</a> {% endcomment %}
+							<a role="button" class="btn--link _yellow col" href="?page={{ page_obj.previous_page_number }}">&lsaquo; {% trans "Previous" %}</a>
+						{% else %}
+							{% comment %} <a role="button" class="btn--link col">&laquo; {% trans "First" %}</a> {% endcomment %}
+							<a role="button" class="btn--link col">&lsaquo; {% trans "Previous" %}</a>
+						{% endif %}
+						{% comment %} <div class="col-auto d-flex justify-content-center align-items-center">
+							{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+						</div> {% endcomment %}
+						{% if page_obj.has_next %}
+							<a role="button" class="btn--link _yellow col" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %} &rsaquo;</a>
+							{% comment %} <a role="button" class="btn--link _yellow col" href="?page={{ page_obj.paginator.num_pages }}">{% trans "Last" %} &raquo;</a> {% endcomment %}
+						{% else %}
+							<a role="button" class="btn--link col">{% trans "Next" %} &rsaquo;</a>
+							{% comment %} <a role="button" class="btn--link col">{% trans "Last" %} &raquo;</a> {% endcomment %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="detail-courses">
+					<div class="content p-0 m-0">
+						{% block tabs %}
+						<ul class="nav nav-tabs tab-body-header action" role="tablist">
+							{% linklists 'tab-dashboard-course-detail' as tabs %} {% for tab in tabs %} {% if tab.slug == 'calculator' %}
+							<li class="nav-item" data-bs-toggle="modal" data-bs-target="#calculator-modal">{% else %}</li>
+
+							<li class="nav-item" data-bs-toggle="tooltip" data-bs-original-title="{{tab.title|title}}">
+								{% endif %} {% if tab.media %}
+								<a class="nav-link" data-bs-toggle="tab" href="#nav-{{tab.slug}}" role="tab">
+									<img src="{{tab.media|img_url}}" />
+								</a>
+								{% else %}
+								<a class="nav-link{% if forloop.first %} active{% endif %}" data-bs-toggle="tab" href="#nav-{{tab.slug}}" role="tab">
+									<span>{{tab.title|title}}</span>
+								</a>
+								{% endif %}
+							</li>
+							{% endfor %}
+						</ul>
+						<div class="tab-content mt-md-4 mt-2">
+							{% block tab-content %} {% for tab in tabs %} {% if tab.slug != 'calculator' %}
+							<div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="nav-{{tab.slug}}" role="tabpanel">{% include 'courses/'|add:tab.slug|add:'.html' %}</div>
+							{% endif %} {% endfor %} {% endblock tab-content %}
+						</div>
+						{% endblock tabs %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-4 col-lg-5">
+		<div class="sticky_column">
+			{% block course_summary %}{%course_summary object.pk%}{% endblock course_summary %}
+		</div>
+	</div>
+</div>
+
+{% endblock %} {% block modal %}
+
+<div class="modal" id="create-playlist-modal" tabindex="-1">
+	<div class="modal-dialog">
+		<form method="post" action="{% url 'dashboards:playlist-list' %}" id="add_playlist_form">
+			{% csrf_token %}
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">{% translate "Create Playlist" %}: {{form.instance.title}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">{{playlist_create_form}}</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-outline-primary">Save changes</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="modal fade modal-calculator" id="calculator-modal" tabindex="-1" aria-labelledby="calculator-modalTitle" aria-hidden="true" data-bs-backdrop="false">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title fw-bold" id="addUserLabel">Calculator</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<div class="modal-body">
+				<div class="calculator-box">
+					<table class="calculator table">
+						<thead>
+							<tr>
+								<td colspan="7">
+									<div class="output form-group">
+										<input type="text" class="ans form-control" readonly name="" />
+									</div>
+								</td>
+							</tr>
+						</thead>
+						<tbody class="actions">
+							<tr>
+								<td colspan="3"></td>
+								<td>
+									<button class="btn btn-op" data-value="*(">(</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value=")">)</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="%">%</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="ce">CE</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button class="btn btn-op" data-value="inv">Inv</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="sin">sin</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="ln">ln</button>
+								</td>
+								<td>
+									<button class="btn" data-value="7">7</button>
+								</td>
+								<td>
+									<button class="btn" data-value="8">8</button>
+								</td>
+								<td>
+									<button class="btn" data-value="9">9</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="/">&#x00f7;</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button class="btn btn-op" data-value="*3.14">&pi;</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="cos">cos</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="log">log</button>
+								</td>
+								<td>
+									<button class="btn" data-value="4">4</button>
+								</td>
+								<td>
+									<button class="btn" data-value="5">5</button>
+								</td>
+								<td>
+									<button class="btn" data-value="6">6</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="*">&times;</button>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<button class="btn btn-op" data-value="e">e</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="tan">tan</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="radic">&radic;</button>
+								</td>
+								<td>
+									<button class="btn" data-value="3">3</button>
+								</td>
+								<td>
+									<button class="btn" data-value="2">2</button>
+								</td>
+								<td>
+									<button class="btn" data-value="1">1</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="-">-</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button class="btn btn-op" data-value="exp">EXP</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="x^2">x&#xb2;</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="**">x&#94;</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value=".">.</button>
+								</td>
+								<td>
+									<button class="btn" data-value="0">0</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="=">=</button>
+								</td>
+								<td>
+									<button class="btn btn-op" data-value="+">+</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock modal %} {% block js %}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+<script>
+	const observer = lozad();
+	observer.observe();
+</script>
+<script src="{%get_static_prefix%}course_detail_video.js"></script>
+
+<script>
+	let $modal = $("#calculator-modal")
+	$modal.draggable({
+		handle: ".modal-header",
+	})
+	$modal.resizable()
+</script>
+
+{% endblock %}

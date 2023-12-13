@@ -1,0 +1,160 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block content %}
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h2>{{object.title}}</h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 sticky-top">
+            <div class="sidebar-widget-wrapper pr-0">
+                <div class="sidebar-widget">
+                    <div class="sidebar-widget-content">
+                        <div class="sidebar-entry-course-info p-0">
+                            <div class="learn-wrapper">
+                                <div class="chapter-course __2">
+                                    <div class="list-menu-quiz">
+                                        <div class="question-list-nav">
+                                            <div class="nav-btn btn-prev-q prev-question btn-disable"><i class="far fa-chevron-double-left"></i></div>
+                                            <div class="content-question">
+                                                Question <span class="current-quiz">1</span> of <span class="total-quiz">{{object.questions.count}}</span>
+                                            </div>
+                                            <div class="nav-btn btn-next-q next-question"><i class="far fa-chevron-double-right"></i></div>
+                                        </div>
+                                        <div class="question-menu-btn">
+                                            <ul>
+                                                <li>
+                                                    <button type="button" class="btn-list" id="btn-show-list">Quiz List</button>
+                                                </li>
+                                                <li>
+                                                    <button type="submit" class="btn-cal" data-bs-toggle="modal" data-bs-target="#calculator-modal"><img src="assets/images/course/4.svg" alt=""></button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="question-time">
+                                            <div class="section-time">
+            
+                                                <h5 class="title">Time</h5>
+                                                <div class="count-box">
+                                                    <div id="countdown-timer">
+                                                        60
+                                                    </div>
+                                                        s
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-question-menu">
+                                        <ul class="chapter-sections">
+                                            <li class="single-chapter-section">
+                                                <div class="section-header">
+                                                    <div class="section-left">
+        
+                                                        <h5 class="title mb-0">Quiz List</h5>
+                                                        <!-- <div class="progress w-100 mb-0">
+                                                            <div class="progress-fill" style="width: 10%;"></div>
+                                                            <span class="progress-text">10%</span>
+                                                            
+                                                        </div> -->
+                                                        <div class="box-filter">
+                                                            <h4>Show:</h4>
+                                                            <ul class="list-filter-bookmark">
+                                                                <li>
+                                                                    <a href="javascript:;" id="all-bookmark" class="active">All</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:;" id="bookmarked">Bookmarked</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:;" id="unbookmarked">Unbookmarked</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="section-question">
+                                                    {% for question in object.questions %}
+                                                    <li {% if forloop.first %}class="active"{% endif %}><a href="#" data-name="quest-{{forloop.counter}}">{{forloop.counter}}</a></li>
+                                                    {% endfor %}
+                                                    
+                                                </ul>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+
+                                        <a href="javascript:;" class="hide-quiz-list">Hide quiz list <i class="fas fa-chevron-double-up"></i></a>
+                                    </div>
+                                    
+                                    
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-12">
+            <div class="learn-wrapper">
+                <div class="chapter-course">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input type="submit" value="Save">
+                        {% for question in object.questions %}
+                            <ul class="chapter-sections quest-list quest-box {% if forloop.first %}active{% endif %}" id="quest-{{forloop.counter}}">
+                                <li class="single-chapter-section">
+                                    <div class="section-header">
+                                        <div class="section-left">
+                                            <h5 class="sub-title">{{question.content|safe}}</h4>
+
+                                        </div>
+                                        <div class="bookmark-icon">
+                                            <input type="checkbox" name="bookmark" id="bm-q-1">
+                                            <label for="bm-q-1"><i class="far fa-bookmark"></i><i class="fas fa-bookmark"></i></label>
+                                        </div>
+                                    </div>
+                                    <ul class="section-content">
+                                        {% for answer in question.answers %}
+                                            <li class="course-item">
+                                                <div class="section-item-link __radio">
+                                                    <input type="radio" name="answer" id="answer-{{ forloop.counter }}" value="{{answer.id}}">
+                                                    <label for="answer-{{ forloop.counter }}">{{answer.title}}</label>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                <li class="single-chapter-section btn-bottom">
+                                    
+                                    <div class="btn-group">
+                                        {% if not forloop.first %}<button type="button" class="btn--link _blue prev-question">Prev Question</button>{% endif %}
+                                        {% if not forloop.last %}
+                                        <button type="button" class="btn--link _yellow next-question">Next Question</button>
+                                        {% endif %}
+                                        {% if forloop.last %}<button type="submit" class="btn--link _yellow">Submit Test</button>{% endif %}
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                        {% endfor %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "./base.html" %}
+{% load static i18n instructor %}
+{% block layout %}
+<div class="row g-4">
+    <div class="col-12">
+        <h1>{% trans "Students" %}</h1>
+        <hr>
+    </div>
+    <div class="col-12">
+        <div class="card rounded-5">
+            <div class="card-body p-4">
+                <div class="row g-2 d-flex align-items-center">
+                    <div class="col">
+                        <h3>{% trans "My students" %} ({{object_list.count}}) </h3>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <div class="col">
+                                <select class="form-select">
+                                    <option value="-1">All Grade</option>
+                                    <option value="-1">Grade 1</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select class="form-select">
+                                    <option value="-1">All Gender</option>
+                                    <option value="-1">Male</option>
+                                    <option value="-1">Female</option>
+                                    <option value="-1">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 student-section">
+        <div class="row g-4">
+            {% for object in object_list %}
+            <div class="col-md-6">
+                <div class="card rounded-5">
+                    <div class="card-body p-4 d-flex">
+                        <div class="profile-teacher pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
+                            <a href="{% url "instructor:student-detail" object.slug %}"><img src="{{object.avatar.url}}" class="avatar xl rounded-circle img-thumbnail"></a>
+                        </div>
+                        <div class="teacher-info border-start ps-xl-4 ps-md-2 ps-sm-4 ps-4 w-100">
+                            <h4 class="mb-2 fw-bold d-block"><a href="{% url "instructor:student-detail" object.slug %}">{{object.get_full_name}}</a></h4>
+                            <span class="d-block fs-6">{{object.grade.title}}</span>
+                            <span class="d-block fs-6">{% trans "Gender" %}: {{object.gender}}</span>
+                            <div class="video-setting-icon mt-3 pt-3 border-top">
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <a href="" class="btn" data-bs-toggle="tooltip" data-bs-original-title="Progress"><img class="icon-student" src="/static/dashboard/assets/images/icon-menu-new/3.svg" alt=""></a>
+                                    <a href="#" class="btn" data-bs-toggle="tooltip" data-bs-original-title="Mail"><img class="icon-student" src="/static/dashboard/assets/images/icon-menu-new/8.svg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock layout %}

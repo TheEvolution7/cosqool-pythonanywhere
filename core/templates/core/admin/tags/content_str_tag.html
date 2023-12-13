@@ -1,0 +1,23 @@
+{% load thumbnail static %}
+<div class="text-start d-flex align-items-center">
+  <a href="{{obj.id}}/change" class="symbol symbol-50px">
+    <span
+      class="symbol-label"
+      style="background-image: url({% if obj.image_url %}{{obj.image_url|thumbnail_url:'small' }}{% else %}'/media/default.png'{% endif %})"
+    ></span>
+  </a>
+
+  <div class="ms-5">
+    <a href="{{obj.id}}/change" class="text-gray-800 text-hover-primary mb-1"
+      >{{obj|capfirst}}</a
+    >
+    <div class="badge badge-light-primary fw-bold">
+      {{obj.published_status|capfirst}}
+    </div>
+    {% comment %} {% if obj.description %}
+    <div class="text-muted fs-7 fw-bold">{{obj.description|striptags}}</div>
+    {% endif %} {% endcomment %} {% if obj.created_at %}
+    <div class="text-muted fs-7 fw-bold">Last updated: {{obj.updated_at}}</div>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,48 @@
+{% extends "registration/base.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block form %}
+<form class="row g-1" novalidate="novalidate" method="post">
+    {% csrf_token %}
+    <div class="col-12 text-center mb-5">
+        <h1>Create your account</h1>
+        <span>Free access to our dashboard.</span>
+    </div>
+    <div class="col-12">
+        <div class="mb-2">
+            <div class="form-label">{{ form.username.label_tag }}</div>
+            {{ form.username.errors }}
+            {{ form.username|attr:"class:form-control form-control-lg"|attr:"placeholder:name@example.com" }}
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-2">
+            <label class="form-label">{{ form.password1.label_tag }}</label>
+            {{ form.password1.errors }}
+            {{ form.password1|attr:"class:form-control form-control-lg"|attr:"placeholder:8+ characters required" }}
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-2">
+            <label class="form-label">{{ form.password2.label_tag }}</label>
+            {{ form.password2.errors }}
+            {{ form.password2|attr:"class:form-control form-control-lg"|attr:"placeholder:8+ characters required" }}
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                I accept the <a href="#" title="Terms and Conditions" class="text-secondary">Terms and Conditions</a>
+            </label>
+        </div>
+    </div>
+    <div class="col-12 text-center mt-4">
+        <button type="submit" class="btn btn-lg btn-block btn-light lift text-uppercase">SIGN UP</button>
+    </div>
+    <div class="col-12 text-center mt-4">
+        <span class="text-muted">Already have an account? <a href="{% url 'auth:login' %}" title="Sign in" class="text-secondary">Sign in here</a></span>
+    </div>
+</form>
+{% endblock %}

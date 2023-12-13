@@ -1,0 +1,3 @@
+{% for question in questions %}
+    <li {% if forloop.first %}class="active"{% endif %} data-li="{{ forloop.counter }}"><a class="{% if question.bookmark and question.bookmark.status is True %}has-bookmark{% endif %}" data-name="quest-{{forloop.counter}}" id="question-question-pk-{{question.pk}}">{{forloop.counter}}</a></li>
+{% endfor %}

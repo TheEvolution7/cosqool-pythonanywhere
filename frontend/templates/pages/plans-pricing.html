@@ -1,0 +1,53 @@
+{% extends 'layouts/default.html' %}
+
+{% load frontend_extras %}
+{% load i18n static %}
+{% block content %}
+<section class="breadcrumb-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title">
+                    <ul class="breadcrumbs-link">
+                        <li><a href="{% url 'frontend:home' %}">Home</a></li>
+                        <li class="active">{{object}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="member-section section-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title mb-50">
+                    <h2>Membership Plans</h2>
+                </div>
+            </div>
+        </div>
+
+       <div class="row">
+            <div class="col-12">
+                {% get_plan_list %}
+                <div class="hr-bottom"></div>
+            </div>
+       </div>
+    </div>
+    
+</section>
+{% endblock %}
+
+
+{% block extra_js %}
+
+{% comment %} <script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        $(this).hide()
+      });
+    });
+</script> {% endcomment %}
+
+{% endblock  %}

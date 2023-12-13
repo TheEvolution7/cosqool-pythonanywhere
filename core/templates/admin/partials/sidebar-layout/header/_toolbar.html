@@ -1,0 +1,13 @@
+{% load i18n %}
+<div class="topbar d-flex align-items-stretch">
+  {% include './toolbar/_search.html' %}
+  
+  {% include './toolbar/_user_account.html' %}
+  {% include './toolbar/_theme_mode.html' %}
+  
+  {% if site_url %}
+    <div class="d-flex align-items-center">
+      <a href="{{ site_url }}" class="btn btn-success w-100 fw-bold" target="_blank">{% translate 'View site' %}</a>
+    </div>
+  {% endif %}
+</div>

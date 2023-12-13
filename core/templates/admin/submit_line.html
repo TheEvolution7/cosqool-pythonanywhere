@@ -1,0 +1,44 @@
+{% load i18n admin_urls %}
+<div class="d-flex bd-highlight">
+    <div class="me-auto bd-highlight">
+        {% if show_delete_link and original %}
+            {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+            <a href="{% add_preserved_filters delete_url %}" class="btn btn-danger deletelink-box d-flex align-items-center">{% translate "Delete" %}</a>
+        {% endif %}
+    </div>
+    <div class="bd-highlight">
+        {% block submit-row %}
+        <div class="row g-1 row-cols-auto">
+            {% if show_save %}
+                <div class="col">
+                    <button type="submit" name="_save" class="btn btn-success">{% translate 'Save' %}</button>
+                </div>
+            {% endif %}
+
+            {% if show_save_as_new %}
+                <div class="col">
+                    <button type="submit" name="_addanother" class="btn btn-secondary">{% translate 'Save and add another' %}</button>
+                </div>
+            {% endif %}
+
+            {% if show_save_and_add_another %}
+                <div class="col">
+                    <button type="submit" name="_addanother" class="btn btn-secondary">{% translate 'Save and add another' %}</button>
+                </div>
+            {% endif %}
+
+            {% if show_save_and_continue %}
+                <div class="col">
+                    <button type="submit" name="_continue" class="btn btn-secondary">{% if can_change %}{% translate 'Save and continue editing' %}{% else %}{% translate 'Save and view' %}{% endif %}</button>
+                </div>
+            {% endif %}
+
+            {% if show_close %}
+                <div class="col">
+                    <a href="{% url opts|admin_urlname:'changelist' %}" class="closelink">{% translate 'Close' %}</a>
+                </div>
+            {% endif %}
+            </div>
+        {% endblock %}
+    </div>
+</div>

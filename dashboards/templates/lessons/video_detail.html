@@ -1,0 +1,7 @@
+{% extends "courses/course_detail.html" %} {% load static i18n frontend_extras%} {% block title %} {{object.title}}{% endblock title %} {% block media %} {% if object.url %}
+<div class="ratio ratio-16x9">
+	<iframe src="{{object.url}}" loading="lazy" class="rounded-5" allow="autoplay"></iframe>
+</div>
+{% endif %} {% endblock media %} {% block tab-content %} {% for tab in tabs %} {% if tab.slug != 'calculator' %}
+<div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="nav-{{tab.slug}}" role="tabpanel">{% if tab.slug == 'course-content' %} {% include 'lessons/'|add:tab.slug|add:'.html' %} {% else %} {% include 'courses/'|add:tab.slug|add:'.html' %} {% endif %}</div>
+{% endif %} {% endfor %} {% endblock tab-content %}

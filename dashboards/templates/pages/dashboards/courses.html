@@ -1,0 +1,26 @@
+{% extends "layout/default.html" %} {% load parler_tags %} {% load static i18n %} {% load frontend_extras widget_tweaks dashboard %} {% block content %}
+<div class="container-xxl">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="title">
+				<h1>{% translate "List Course" %}</h1>
+				<hr />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		{% for course in courses %}
+		<div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex">
+			<a href="{% url 'dashboards:course-detail' course.pk %}" class="box-link-2">
+				<div class="img">
+					<img src="{% get_static_prefix %}dashboard/assets/images/icon-d/2_1.svg" alt="" />
+				</div>
+				<div class="content">
+					<div class="number">{{course|title}}</div>
+				</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

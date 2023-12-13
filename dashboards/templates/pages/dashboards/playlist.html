@@ -1,0 +1,48 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras %}
+{% block content %}
+<div class="body d-flex align-items-start">
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <h1>{% translate "My Playlist" %}</h1>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 py-20 gx-30">
+            {% for object in object_list %}
+                <div class="col-xl-4 col-lg-4 col-md-6 col-6">
+                    <div class="playlist-item">
+                        <div class="card border-color-light bg-transparent">
+                            <a href="{% url 'dashboards:playlists:detail' object.pk %}">
+                                <img src="{% get_static_prefix %}dashboard/assets/images/bg-list.png" class="card-img">
+                            </a>
+                            
+                            <div class="card-img-overlay d-flex align-items-end justify-content-end" style="left:auto;top:auto">
+                                <a href="{% url 'dashboards:playlists:update' object.pk %}" class="btn btn-outline-warning border-0">
+                                    <img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/8_1.svg" width="20" height="20">
+                                </a>
+                                <a href="{% url 'dashboards:playlists:delete' object.pk %}" class="btn btn-outline-warning border-0">
+                                    <img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/7_1.svg" width="20" height="20">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <h3 class="py-2"><a href="{% url 'dashboards:playlists:update' object.pk %}">{{object.title}}</a></h3>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

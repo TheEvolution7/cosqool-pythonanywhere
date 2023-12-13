@@ -1,0 +1,58 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block bodyclass %}{{ block.super }} app-{{ app_label }}{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+    <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 pt-1">
+        <li class="breadcrumb-item text-muted">
+        <a href="{% url 'admin:index' %}" class="text-muted text-hover-primary">{% translate 'Home' %}</a>
+        </li>
+        <li class="breadcrumb-item">
+        <span class="bullet bg-gray-200 w-5px h-2px"></span>
+        </li>
+        {% for app in app_list %}
+        <li class="breadcrumb-item text-dark">{{ app.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+{% endif %}
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-5 g-xl-9">
+{% if app_list %}
+  {% for app in app_list %}
+    {% for model in app.models %}
+        <div class="col-md-4">
+            <div class="card card-flush shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        {{ model.name }}
+                    </h3>
+                    <div class="card-toolbar">
+                        {% if model.admin_url %}
+                        <a href="{{ model.admin_url }}" class="btn btn-sm btn-light"><i class="bi bi-pencil"></i>{% translate 'Change' %}</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-body card-body d-flex flex-center">
+                    {% if model.add_url %}
+                    <a href="{{ model.add_url }}" class="fw-bold fs-3 text-gray-600 text-hover-primary"><i class="bi bi-plus-lg fs-4 me-2"></i>{% translate 'Add New' %} {{model.object_name}}</a>
+                    {% else %}
+                    <a class="fw-bold fs-3 text-gray-600 text-hover-danger"><i class="bi bi-dash-circle fs-4 me-2"></i>{% translate 'No Actions' %}</a>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+  {% endfor %}
+{% else %}
+<div class="col-md-12">
+  <p>{% translate 'You don’t have permission to view or edit anything.' %}</p>
+</div>
+{% endif %}
+</div>
+{% endblock %}

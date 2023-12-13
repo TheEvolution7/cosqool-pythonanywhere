@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="dropdown">
+  <button class="btn btn-light dropdown-toggle" type="button" id="{{ title }}" data-bs-toggle="dropdown" aria-expanded="false">
+    {% blocktranslate with filter_title=title %} By {{ filter_title }} {% endblocktranslate %}
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="{{ title }}">
+    {% for choice in choices %}
+      <li class="{% if choice.selected %}selected{% endif %}">
+      <a class="dropdown-item" href="{{ choice.query_string|iriencode }}">{{ choice.display }}</a></li>
+    {% endfor %}
+    </ul>
+</div>

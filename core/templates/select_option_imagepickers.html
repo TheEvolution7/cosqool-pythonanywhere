@@ -1,0 +1,5 @@
+{% load static core %}
+{% if option.value %}
+<option data-img-src="{% get_file_by_pk option.value %}" value="{{ option.value|stringformat:'s' }}"{% include "django/forms/widgets/attrs.html" %}>{% get_file_by_pk option.value %}</option>
+{% endif %}
+

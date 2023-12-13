@@ -1,0 +1,71 @@
+{% load widget_tweaks %}
+<div class="card card-flush pt-3 mb-5 mb-lg-10">
+    <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#{{fieldset.name|slugify}}">
+        <h2 class="card-title">
+            {% if fieldset.name %}
+                {{ fieldset.name }}
+            {% else %}
+                General
+            {% endif %}
+        </h2>
+        <div class="card-toolbar rotate-180">
+            <span class="svg-icon svg-icon-1">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor"></path>
+                    </svg>
+            </span>
+        </div>
+    </div>
+    <div id="{{fieldset.name|slugify}}" class="collapse {{fieldset.classes}}">
+        <div class="card-body pt-0">
+            {% if fieldset.description %}
+            <div>{{ fieldset.description|safe }}</div>
+            {% endif %}
+            {% for line in fieldset %}
+                <div class="row mb-10{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}{% if not line.has_visible_field %} hidden{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
+                {% for field in line %} 
+                    <div class="col {% if not line.fields|length_is:'1' %}fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}{% endif %}">
+                        
+                        {% if field.is_checkbox %}
+                            <label class="form-label">{{ field.field.label }}</label>  
+                            <div class="form-check form-check-custom form-check-solid mb-2">
+                                {{field.field|attr:"class:form-check-input"}}
+                                <label class="form-check-label" for="{{ field.field.id_for_label }}">
+                                    {{ field.field.value }}
+                                </label>
+                            </div>
+                            {% if field.field.help_text %}
+                                <div class="help text-muted fs-7"{% if field.field.id_for_label %} id="{{ field.field.id_for_label }}_helptext"{% endif %}>
+                                {{ field.field.help_text|safe }}
+                                </div>
+                            {% endif %}
+                            
+                        {% else %}
+                            {% comment %} <label class="form-label" for="{{ field.field.id_for_label }}">
+                                {{ field.field.label_tag }}
+                            </label> {% endcomment %}
+                            <div class="form-label">
+                            {{ field.label_tag }}
+                            </div>
+                            {% if field.is_readonly %}
+                            <div class="readonly w-100 text-muted">{{ field.contents }}</div>
+                            {% else %}
+                                {{field.field}}
+                                
+                            {% endif %}
+                        {% endif %}
+                        {% if field.field.help_text %}
+                            <div class="help text-muted fs-7"{% if field.field.id_for_label %} id="{{ field.field.id_for_label }}_helptext"{% endif %}>
+                            {{ field.field.help_text|safe }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                        {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+                    </div>
+                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

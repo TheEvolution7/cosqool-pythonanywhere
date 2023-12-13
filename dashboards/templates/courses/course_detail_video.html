@@ -1,0 +1,398 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% load frontend_extras widget_tweaks menu %}
+
+{% block css %}
+<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+<style>
+    .ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar, .ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+        border-radius: 20px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+        border-color: var(--ck-color-base-border);
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+</style>
+
+
+{% endblock css %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-xl-8 col-lg-7">
+        <div class="row gy-1">
+            <div class="col-12">
+                <div class="section-title mb-50">
+                    <h3>{{object.lesson.section.course.grade.category}} - {{object.lesson.section.course.subject.title}}:</h3>
+                    <h1>{{object.lesson.section.course.title}}</h1>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="box-video">
+                    {% if object.media %}
+                    <div class="video-container ratio ratio-16x9">
+                        <iframe class="lazy-iframe" data-src="{% url 'dashboards:video-detail' object.pk %}" frameborder="0" loading="lazy" style="border-radius: 20px;"></iframe>
+                    </div>
+                    {% else %}
+                        <div class="video-thumb">
+                            <img src="{{object.image|img_url}}" width="100%" height="450px" />
+                            <div class="play-btn">
+                                <p>No video</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const lazyIframes = document.querySelectorAll('.lazy-iframe');
+                            lazyIframes.forEach(function(iframe) {
+                                setTimeout(function() {
+                                    iframe.setAttribute('src', iframe.getAttribute('data-src'));
+                                }, 1);
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-flex justify-content-between">
+                    {% if LANGUAGE_BIDI == True %}
+                    <div class="w-100">
+                        {% if next %}
+                        <a href="{% url 'dashboards:course-detail-video' object.lesson.section.course.pk next.pk %}" class="btn btn--link _yellow w-100"><i class="icofont-long-arrow-right"></i><span>{% translate "Next" %}</span></a>
+                        {% else %}
+                        <a  class="btn btn--link _yellow w-100"><i class="icofont-long-arrow-right">{% translate "Next" %}</i></a>
+                        {% endif %}
+                    </div>
+                    <div class="me-2"></div>
+                    <div class="w-100">
+                        {% if previous %}
+                        <a href="{% url 'dashboards:course-detail-video' object.lesson.section.course.pk previous.pk %}" class="btn btn--link _yellow w-100">{% translate "Previous" %}<i class="icofont-long-arrow-left"></i></a>
+                        {% else %}
+                        <a class="btn btn--link _yellow w-100">{% translate "Previous" %}<i class="icofont-long-arrow-left"></i></a>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="w-100">
+                        {% if previous %}
+                        <a href="{% url 'dashboards:course-detail-video' object.lesson.section.course.pk previous.pk %}" class="btn btn--link _yellow w-100"><i class="icofont-long-arrow-left"></i>{% translate "Previous" %}</a>
+                        {% else %}
+                        <a class="btn btn--link _yellow w-100"><i class="icofont-long-arrow-left"></i>{% translate "Previous" %}</a>
+                        {% endif %}
+                    </div>
+                    <div class="me-2"></div>
+                    <div class="w-100">
+                        {% if next %}
+                        <a href="{% url 'dashboards:course-detail-video' object.lesson.section.course.pk next.pk %}" class="btn btn--link _yellow w-100"><span>{% translate "Next" %}</span><i class="icofont-long-arrow-right"></i></a>
+                        {% else %}
+                        <a  class="btn btn--link _yellow w-100">{% translate "Next" %}<i class="icofont-long-arrow-right"></i></a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="detail-courses">
+                    <div class="content">
+                        <ul class="nav nav-tabs tab-body-header action" role="tablist">
+                            {% linklists 'tab-dashboard-course-detail' as tabs %}
+                            {% for tab in tabs %}
+                            {% if tab.slug == 'calculator' %}
+                                <li class="nav-item" data-bs-toggle="modal" data-bs-target="#calculator-modal">
+                            {% else %}
+                                <li class="nav-item" data-bs-toggle="tooltip" data-bs-original-title="{{tab.title|title}}">
+                            {% endif %}
+                            
+                                {% if tab.media %}
+                                    <a class="nav-link" data-bs-toggle="tab" href="#nav-{{tab.slug}}" role="tab">
+                                        <img src="{{tab.media|img_url}}">
+                                    </a>
+                                {% else %}
+                                    <a class="nav-link {% if forloop.first %}active{% endif %}" data-bs-toggle="tab" href="#nav-{{tab.slug}}" role="tab">
+                                        <span>{{tab.title|title}}</span>
+                                    </a>
+                                {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="tab-content mt-md-4 mt-2">
+                            {% for tab in tabs %}
+                                {% if tab.slug != 'calculator' %}
+                                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="nav-{{tab.slug}}" role="tabpanel">
+                                    {% include 'courses/'|add:tab.slug|add:'.html' %}
+                                </div>
+                                {% endif %}
+                                
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-5">
+        <div class="sticky_column">
+            {% comment %} <div class="title-course">
+                <h4>{% translate "Course content" %}</h4>
+                <hr>
+                <div class="box-link-c">
+
+                    {% for section in object.sections %}
+                        <div class="card card-flush border-0 ">
+                            <div class="card-header collapsible" data-bs-toggle="collapse" data-bs-target="#section-{{forloop.counter}}">
+                                <h5>{% translate "Chapter" %} {{forloop.counter}}: {{section.title}}</h5>
+                                <div class="d-flex justify-content-start">
+                                    <h6 class="me-2">1/1</h6>|<h6 class="ms-2 me-2">0:00</h6>
+                                </div>
+                            </div>
+                            <div id="section-{{forloop.counter}}" class="collapse">
+                                <ul class="list-group list-group-flush">
+                                    {% for item in section.items %}
+                                        <li class="list-group-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="item-{{item.pk}}">
+                                                <label class="form-check-label d-flex flex-column" for="item-{{item.pk}}">
+                                                    {{item.title}}
+                                                    <div class="d-flex justify-content-start">
+                                                    <img src="/static/assets/images/icon-courses/6.svg" width="20" class="me-2">
+                                                    <span class="me-2">0:00</span>
+                                                    </div>
+                                                </label>
+                                              </div>
+                                        </li>
+                                    {% endfor %}
+                                  </ul>
+                            </div>
+                        </div>
+                    {% empty %}
+                    Empty
+                    {% endfor %}
+                </div>
+            </div> {% endcomment %}
+            <div class="title-course">
+
+                <h4>{% translate "Course summary" %}</h4>
+                <div class="box-link-c mb-3">
+                    {% for item in summary_list %}
+                        <div class="summary-item">
+                            <div class="content">
+                                <div class="desc d-flex flex-row align-items-center">
+                                    <img src="{% get_static_prefix %}{{item.icon}}" width="25" height="25">
+                                    <div class="me-2"></div>
+                                    <span>{{item.name}}</span>
+                                </div>
+                            </div>
+                            <div class="number">
+                                {{item.data}}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+            <div class="other-course">
+                <h4>{% translate "Other" %} {{object.lesson.section.course.grade.category}} {% translate "Subject" %}: </h4>
+                <ul class="list-course">
+                    {% for subject in subjects %}
+                    <li class="py-2">
+                        <a href="#">{{subject.title}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block modal %}
+
+
+<div class="modal" id="create-playlist-modal" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" action="{% url 'dashboards:playlist-list' %}" id="add_playlist_form">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% translate "Create Playlist" %}: {{form.instance.title}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{playlist_create_form}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="modal fade modal-calculator" id="calculator-modal" tabindex="-1" aria-labelledby="calculator-modalTitle" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title  fw-bold" id="addUserLabel">Calculator</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          
+            <div class="modal-body">
+                <div class="calculator-box">
+                    <table class="calculator table">
+                        <thead>			
+                            <tr>
+                                <td colspan=7>
+                                    <div class="output form-group">
+                                        <input type="text" class="ans form-control" readonly name="">
+                                    </div>				
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody class="actions">		
+                            <tr>
+                                <td colspan=3></td>
+                                <td>
+                                    <button class="btn btn-op" data-value='*('>(</button>				
+                                    
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value=')'>)</button>				
+                                    
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='%'>%</button>			
+                                    
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='ce'>CE</button>				
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="btn btn-op" data-value='inv'>Inv</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='sin'>sin</button>			
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='ln'>ln</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='7'>7</button>
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='8'>8</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='9'>9</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='/'>&#x00f7;</button>				
+                                    
+                                </td>
+                            </tr>			
+                            <tr>
+                                <td>
+                                    <button class="btn btn-op" data-value='*3.14'>&pi;</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='cos'>cos</button>			
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='log'>log</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='4'>4</button>
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='5'>5</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='6'>6</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='*'>	&times;</button>
+                                </td>
+                            </tr>
+                
+                            <tr>
+                                <td>
+                                    <button class="btn btn-op" data-value='e'>e</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='tan'>tan</button>			
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='radic'>&radic;</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='3'>3</button>
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='2'>2</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='1'>1</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='-'>-</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="btn btn-op" data-value='exp'>EXP</button>			
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='x^2'>x&#xb2;</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='**'>x&#94;</button>		
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='.'>.</button>
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='0'>0</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='='>=</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='+'>+</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock modal %}
+
+{% block js %}
+<script src="{%get_static_prefix%}course_detail_video.js"></script>
+
+<script>
+    let $modal = $("#calculator-modal");
+    $modal.draggable({
+        handle: ".modal-header",
+    });
+    $modal.resizable();    
+</script>
+
+
+{% endblock  %}

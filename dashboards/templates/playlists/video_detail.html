@@ -1,0 +1,139 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n frontend_extras %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="section-title mb-50">
+            <h2>{% translate "My Playlist" %}</h2>
+            <h1>{{object.title}}</h1>
+            <br>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-8 col-lg-7">
+
+        <div class="box-video">
+            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modal-video" class="video-thumb">
+                {% comment %} {% if object.image %}
+                <img src="{{object.image|img_url}}"  />
+                {% else %}
+                <img src="{% get_static_prefix %}dashboard/assets/images/icon-d/2_1.svg" class="mx-auto d-block img-fluid">
+                {% endif %} {% endcomment %}
+                <div class="play-btn">
+                    <i class="fal fa-play-circle"></i>
+                </div>
+            </a>
+
+             
+            <!-- <iframe width="100%" height="450" src="https://www.youtube.com/embed/Bm1NtTAtBAA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> -->
+        </div>
+
+        <div class="detail-courses">
+
+            <div class="content">
+                <ul class="nav nav-tabs tab-body-header" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#nav-1" role="tab"> <span>{% translate "Overview" %}</span></a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#nav-2" role="tab"> <span>{% translate "Course Content" %}</span></a></li>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-original-title="Note"><a class="nav-link" data-bs-toggle="tab" href="#nav-3" role="tab"><img src="{% get_static_prefix %}dashboard/assets/images/course/3.svg" alt=""></a></li>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-original-title="FAQs"><a class="nav-link" data-bs-toggle="tab" href="#nav-4" role="tab"><img src="{% get_static_prefix %}dashboard/assets/images/course/4.svg" alt=""></a></li>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-original-title="Add to playlist"><a class="nav-link" data-bs-toggle="tab" href="#nav-5" role="tab"><img src="{% get_static_prefix %}dashboard/assets/images/course/5.svg" alt=""></a></li>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-original-title="Search"><a class="nav-link" data-bs-toggle="tab" href="#nav-6" role="tab"><img src="{% get_static_prefix %}dashboard/assets/images/course/6.svg" alt=""></a></li>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-original-title="Report an error"><a class="nav-link" data-bs-toggle="tab" href="#nav-7" role="tab"><img src="{% get_static_prefix %}dashboard/assets/images/course/7.svg" alt=""></a></li>
+                </ul>
+                <div class="tab-content mt-md-4 mt-2">
+                    <div class="tab-pane fade show active" id="nav-1" role="tabpanel">
+                        <div class="courses-list-content">
+                            {{object.content|safe}}
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-2" role="tabpanel">
+                        <div class="courses-list-content __2">
+                            <div class="accordion" id="list-1">
+                                {% for section in object.sections %}
+                                <div class="card">
+                                    <div class="card-header" id="course-g-1">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#course-{{forloop.counter}}" aria-expanded="true"
+                                                aria-controls="course-{{forloop.counter}}">
+                                                <div class="ct">
+                                                    <div class="text">
+                                                        {% translate "Chapter" %} {{forloop.counter}}: {{section.title}}
+                                                    </div>
+                                                </div>
+                                                <div class="btn-acco"></div>
+                                            </button>
+                                        </h2>
+                                    </div>
+
+                                    <div id="course-{{forloop.counter}}" class="collapse {% if forloop.first %}show{% endif %}" aria-labelledby="course-1"
+                                        >
+                                        <div class="card-body">
+                                            <ul class="list-course">
+                                                {% for item in section.items %}
+                                                    <li>
+                                                        <a href="{% url 'dashboards:lessons:section-item-detail' item.slug %}" class="desc">
+                                                            <div class="icon-file">
+                                                                <img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/11.svg" alt="">
+                                                            </div>
+                                                            {{item.title}}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                Empty
+                                {% endfor %}
+
+                                {% comment %} <div class="box-test-prep">
+                                    <a href="#">
+                                        Test Prep
+                                    </a>
+                                </div> {% endcomment %}
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-5">
+        <div class="sticky_column">
+            <h4>{{object.title}}</h4>
+            <div class="menu-courses">
+                <div class="box-link-c mb-3">
+                    {% for video in object.get_videos %}
+                        <a href="#" class="summary-item active">
+                            <div class="content">
+                                <div class="icon">
+                                    {% comment %} <img src="{{video.image|img_url}}"> {% endcomment %}
+                                    <img src="{%get_static_prefix%}assets/images/icon-courses/6.svg">
+                                </div>
+                                <div class="desc">
+                                    {{video.title}}
+                                </div>
+                            </div>
+                            <div class="number">
+                                00:00
+                            </div>
+
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

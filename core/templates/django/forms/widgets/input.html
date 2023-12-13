@@ -1,0 +1,21 @@
+{% if widget.type == 'radio' %}
+
+    <input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}
+    {% for name, value in widget.attrs.items %}
+        {% if value is not False %} 
+            {% if name == 'class' %}
+                {{ name }}
+                {% if value is not True %}="{{ value|stringformat:'s' }} form-check-input"{% endif %}
+            {% else %}
+                {{ name }}
+                {% if value is not True %}="{{ value|stringformat:'s' }}"{% endif %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    >
+{% elif widget.type == 'checkbox' %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}{% include "django/forms/widgets/attrs.html" %} class="form-check-input">
+{% else %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}{% include "django/forms/widgets/attrs.html" %} class="form-control">
+{% endif %}
+

@@ -1,0 +1,8 @@
+{% load static %}
+<div class="d-flex justify-content-start align-items-center">
+  <a href="{{obj.id}}/change" class="symbol symbol-50px">
+    <span class="symbol-label" style="background-image: url({% if obj.image %}{{obj.image.url}}{% else %}{% get_media_prefix %}default.png{% endif %})"></span></a>
+  <div class="ms-5">
+    <a href="{{obj.id}}/change" class="text-gray-800 text-hover-primary fw-bold">{{obj|title}}</a>
+  </div>
+</div>

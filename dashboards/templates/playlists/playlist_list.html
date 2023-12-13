@@ -1,0 +1,134 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras %}
+{% block content %}
+<style>
+    .card-img-top-wrapper{
+        position:relative;
+      }
+      .card-overlay {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 100%;
+          width: 100%;
+          opacity: 0;
+          border-radius: var(--bs-border-radius-2xl) !important;
+          
+        }
+
+        .card-overlay-active {
+            opacity: 1;
+            border: 5px solid #4b5da9;
+        }
+      
+       .card:hover .card-overlay {
+           opacity: 1;
+           border: 5px solid #4b5da9;
+        }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="title">
+            <h1>{% translate "My Playlist" %}</h1>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="row g-3 py-20 gx-30">
+    {% for object in object_list %}
+        <div class="col-xl-4 col-lg-4 col-md-6 col-6">
+            <div class="playlist-item">
+                <div class="card border-color-light bg-transparent border rounded-5 border-5">
+                    <div class="card-overlay d-flex align-items-end justify-content-end">
+                        <a class="btn btn-outline-warning border-0 me-3 my-3 btnPlaylist" data-bs-toggle="modal" data-bs-target="#dashboards-playlists-update-{{forloop.counter}}">
+                            <img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/8_1.svg" width="20" height="20">
+                        </a>
+                        <a class="btn btn-outline-warning border-0 me-3 my-3 btnPlaylist" id="dashboards-playlists-delete-{{forloop.counter}}">
+                            <img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/7_1.svg" width="20" height="20">
+                        </a>
+                    </div>
+                    <a href="{% url 'dashboards:playlists:detail' object.pk %}">
+                        <img src="{% get_static_prefix %}dashboard/assets/images/bg-list.png" class="card-img rounded-5">
+                    </a>
+                </div>
+                <div class="content">
+                    <h3 class="py-2"><a href="{% url 'dashboards:playlists:detail' object.pk %}">{{object.title}}</a></h3>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block modal %}
+    {% for form in playlist_update_dashboard_forms %}
+        <div class="modal" id="dashboards-playlists-update-{{forloop.counter}}" tabindex="-1">
+            <div class="modal-dialog">
+                <form method="post" action="{% url 'dashboards:playlists:update' form.instance.pk %}">
+                    {% csrf_token %}
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{% translate "Update" %}: {{form.instance.title}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{form.as_p}}
+                            <input type="hidden" name="playlist_pk" value="{{ form.instance.pk }}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-primary" id="password_change_submit">Save changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock  %}
+
+
+{% block js %}
+<script>
+    $(".btnPlaylist").on('click', function(){
+      $(this).parent().addClass('card-overlay-active')
+    });
+{% for object in object_list %}
+    button = document.getElementById('dashboards-playlists-delete-{{forloop.counter}}');
+    button.addEventListener('click', e =>{
+        e.preventDefault();
+        Swal.fire({
+            html: `Do you want to delete {{object.title}} ?`,
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonText: "Ok, got it!",
+        cancelButtonText: 'Nope, cancel it',
+        
+        }).then((result) => {
+            if (result.isConfirmed) {     
+                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                const request = new Request(
+                    "{% url 'dashboards:playlists:delete' object.pk %}",
+                    {
+                        method: 'POST',
+                        headers: {'X-CSRFToken': csrftoken},
+                        mode: 'same-origin'
+                    }
+                );
+                fetch(request).then(function(response) {
+                    Swal.fire('Saved!', '', 'success')
+                    window.location.href = "{% url 'dashboards:playlists:index' %}";
+                });
+            } else if (result.isCancel) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+         })
+    });
+    
+{% endfor %}
+</script>
+{% endblock js %}

@@ -1,0 +1,31 @@
+{#<select name="{{ widget.name }}" class="form-select" {% include "django/forms/widgets/attrs.html" %}>{% for group_name, group_choices, group_index in widget.optgroups %}{% if group_name %}#}
+{#  <optgroup label="{{ group_name }}">{% endif %}{% for option in group_choices %}#}
+{#  {% include option.template_name with widget=option %}{% endfor %}{% if group_name %}#}
+{#  </optgroup>{% endif %}{% endfor %}#}
+{#</select>#}
+
+
+
+  <div class="fv-row">
+    <div class="dropzone" id="uploadImage{{ widget.name }}">
+      <div class="dz-message needsclick">
+        <i class="ki-duotone ki-file-up fs-3x text-primary">
+          <span class="path1"></span>
+          <span class="path2"></span>
+        </i>
+        <div class="ms-4">
+          <h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files here or click to upload.</h3>
+          <span class="fs-7 fw-semibold text-gray-400">Upload up to 10 files</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    var myDropzone = new Dropzone("#uploadImage{{ widget.name }}", {
+        url: "/",
+        paramName: "file",
+        maxFiles: 1,
+    });
+</script>
+

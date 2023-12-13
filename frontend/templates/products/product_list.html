@@ -1,0 +1,196 @@
+<div class="swiper swiper-pricing">
+    <div class="swiper-wrapper">
+        {% for plan in plan_list %}
+        <div class="swiper-slide">
+            <div class="box-price">
+                <div class="title">
+                    <h3>{{plan.object}}</h3>
+                    <p>{{plan.object.description}}</p>
+                </div>
+                <div class="price">
+                    <sup>{{plan.object.get_price_default.currency}}</sup>
+                    <span>{{plan.object.get_price_default.price_amount}}</span>
+                </div>
+                {{plan.form}}
+                <div class="desc">
+                    {{plan.object.content}}
+                </div>
+                
+            </div>
+        </div>
+        {% endfor %}
+        {% comment %} <div class="swiper-slide">
+            <div class="box-price">
+                <div class="title">
+                    <h3>Plan 1</h3>
+                    <p>Student pack </p>
+                </div>
+                <div class="price">
+                    <sup>$</sup>
+                    <span>20.00</span>
+                </div>
+                <div class="btn">
+                    <button type="submit" class="btn-cos mt-3">GET NOW</button>
+                </div>
+                <div class="list-courses">
+                    <select name="" id="">
+                       
+                        <option value="-1">Choose your grade level</option>
+                        <option value="">Grade 1</option>
+                        <option value="">Grade 2</option>
+                        <option value="">Grade 3</option>
+                        <option value="">Grade 4</option>
+                        <option value="">Grade 5</option>
+                        <option value="">Grade 6</option>
+                        <option value="">Grade 7</option>
+                        <option value="">Grade 8</option>
+                        <option value="">Grade 9</option>
+                        <option value="">Grade 10</option>
+                        <option value="">Grade 11</option>
+                        <option value="">Grade 12</option>
+                        <option value="">University courses</option>
+                    </select>
+                </div>
+                <div class="billing">
+                    <p>billing subscription</p>
+                    <ul class="input-price">
+                        <li>
+                            <input type="radio" name="price-1" id="price-plan-1" data-price="20.00" checked>
+                            <label for="price-plan-1">Weekly</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="price-1" id="price-plan-2" data-price="40.00">
+                            <label for="price-plan-2">Semi-yearly</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="price-1" id="price-plan-3" data-price="60.00">
+                            <label for="price-plan-3">Yearly</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="desc">
+                    <p>
+                        Lorem ipsum dolor sit amet, consecte adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="box-price">
+                <div class="title">
+                    <h3>Plan 2</h3>
+                    <p>Test-prep pack</p>
+                </div>
+                <div class="price">
+                    <sup>$</sup>
+                    <span>25.00</span>
+                </div>
+                <div class="btn">
+                    <button type="submit" class="btn-cos mt-3">GET NOW</button>
+                </div>
+                <div class="list-courses">
+                    <select name="" id="">
+                       
+                        <option value="-1">Choose your test-pep</option>
+                        <option value="">Qudrat</option>
+                        <option value="">Tahsili</option>
+                        <option value="">Qudrat and tahsili</option>
+                        
+                    </select>
+                </div>
+                <div class="billing">
+                    <p>billing subscription</p>
+                    <ul class="input-price">
+                        <li>
+                            <input type="radio" name="price-2-1" id="price-plan-2-1" data-price="25.00" checked>
+                            <label for="price-plan-2-1">Weekly</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="price-2-1" id="price-plan-2-2" data-price="45.00">
+                            <label for="price-plan-2-2">Semi-yearly</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="price-2-1" id="price-plan-2-3" data-price="65.00">
+                            <label for="price-plan-2-3">Yearly</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="desc">
+                    <p>
+                        Lorem ipsum dolor sit amet, consecte adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="box-price">
+                <div class="title">
+                    <h3>Plan 3</h3>
+                    <p>Have it all!</p>
+                </div>
+                <div class="price">
+                    <sup>$</sup>
+                    <span>30.00</span>
+                </div>
+                <div class="btn">
+                    <button type="submit" class="btn-cos mt-3">GET NOW</button>
+                </div>
+                <div class="list-courses">
+                    <select name="" id="">
+                       
+                        <option value="-1">Choose your grade level</option>
+                        <option value="">Grade 1</option>
+                        <option value="">Grade 2</option>
+                        <option value="">Grade 3</option>
+                        <option value="">Grade 4</option>
+                        <option value="">Grade 5</option>
+                        <option value="">Grade 6</option>
+                        <option value="">Grade 7</option>
+                        <option value="">Grade 8</option>
+                        <option value="">Grade 9</option>
+                        <option value="">Grade 10</option>
+                        <option value="">Grade 11</option>
+                        <option value="">Grade 12</option>
+                        <option value="">University courses</option>
+                    </select>
+                </div>
+                <div class="list-courses">
+                    <select name="" id="">
+                       
+                        <option value="-1">Choose your test-pep</option>
+                        <option value="">Qudrat</option>
+                        <option value="">Tahsili</option>
+                        <option value="">Qudrat and tahsili</option>
+                        
+                    </select>
+                </div>
+                <div class="billing">
+                    <p>billing subscription</p>
+                    <ul class="input-price">
+                        <li>
+                            <input type="radio" name="price-3-1" id="price-plan-3-1" data-price="30.00" checked>
+                            <label for="price-plan-3-1">Weekly</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="price-3-1" id="price-plan-3-2" data-price="60.00">
+                            <label for="price-plan-3-2">Semi-yearly</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="price-3-1" id="price-plan-3-3" data-price="90.00">
+                            <label for="price-plan-3-3">Yearly</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="desc">
+                    <p>
+                        Lorem ipsum dolor sit amet, consecte adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.
+                    </p>
+                </div>
+                
+            </div>
+        </div> {% endcomment %}
+    </div>
+    <div class="swiper-pagination"></div>
+</div>

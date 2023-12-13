@@ -1,0 +1,5 @@
+{% spaceless %}
+<div class="row datetime mb-2">
+    {% for widget in widget.subwidgets %} <div class="col">{% include widget.template_name %}</div>{% endfor %}
+</div>
+{% endspaceless %}

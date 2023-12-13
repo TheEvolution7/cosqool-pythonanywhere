@@ -1,0 +1,71 @@
+{% extends "registration/base.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block form %}
+<form class="row g-1" novalidate="novalidate" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <div class="col-12 text-center mb-5">
+        <h1>{% translate "Sign in" %}</h1>
+        {% comment %} <span>Free access to our dashboard.</span> {% endcomment %}
+    </div>
+    {% comment %} <div class="col-12 text-center mb-4">
+        <a class="btn btn-lg btn-outline-secondary btn-block" href="#">
+            <span class="d-flex justify-content-center align-items-center">
+                <img class="avatar xs me-2" src="{% static '' %}dashboard/assets/images/google.svg" alt="Image Description">
+                Sign in with Google
+            </span>
+        </a>
+        <span class="dividers text-muted mt-4">OR</span>
+    </div> {% endcomment %}
+    {% if form.errors %}
+        <div class="col-12 text-center mb-4">
+        <p>Your username and password didn't match. Please try again.</p>
+        </div>
+    {% endif %}
+
+    {% if next %}
+    <div class="col-12 text-center mb-4">
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+    <div class="col-12">
+        <div class="mb-2">
+            <div class="form-label">{{ form.username.label_tag }}</div>
+            {{ form.username.errors }}
+            {{ form.username|attr:"class:form-control form-control-lg"|attr:"placeholder:Username" }}
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-2">
+            <div class="form-label">
+                <span class="d-flex justify-content-between align-items-center">
+                    <a class="text-secondary" href="{% url 'auth:password_reset' %}">{% translate 'Forgot Password?' %}</a>
+                    
+                </span>
+            </div>
+            {{ form.password|attr:"class:form-control form-control-lg"|attr:"placeholder:***************" }}
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Remember me
+            </label>
+        </div>
+    </div>
+    <div class="col-12 text-center mt-4">
+        <button type="submit" class="btn btn-lg btn-block btn-light lift text-uppercase" atl="signin">{% translate 'Log in' %}</button>
+    </div>
+    <div class="col-12 text-center mt-4">
+        <span class="text-muted">Don't have an account yet? <a href="{% url 'auth:signup' %}" class="text-secondary">Sign up here</a></span>
+    </div>
+</form>
+{% endblock %}

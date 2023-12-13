@@ -1,0 +1,36 @@
+{% load static i18n %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+
+<head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% get_static_prefix %}dashboard/assets/fonts/avenir/stylesheet.css">
+    <link rel="stylesheet" href="{% get_static_prefix %}dashboard/assets/css/carousel.min.css" />
+    <link rel="stylesheet" href="{% get_static_prefix %}dashboard/assets/css/e-learn.style.min.css">
+    <link rel="stylesheet" href="{% get_static_prefix %}dashboard/assets/css/custom.min.css">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <div id="elearn-layout" class="theme-purple">
+        {% include "./sidebar.html" %}
+        <div class="main bg-cosqool-2">
+            {% include "./header.html" %}
+            <div class="body d-flex align-items-start">
+                <div class="container-xxl">
+                    {% block layout %}{% endblock %}
+                </div>
+                {% include "./footer.html" %}
+            </div>
+
+        </div>
+    </div>
+    {% block modal %}{% endblock %}
+    {% block js %}{% endblock %}
+    <script src="{% get_static_prefix %}dashboard/assets/bundles/libscripts.bundle.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="{% get_static_prefix %}dashboard/assets/bundles/carousel.bundle.js"></script>
+    <script src="{% get_static_prefix %}dashboard/assets/bundles/apexcharts.bundle.js"></script>
+    <script src="{% get_static_prefix %}dashboard/js/template.js"></script>
+    <script src="{% get_static_prefix %}dashboard/js/page/elearn-index.js"></script>
+</body>
+</html>

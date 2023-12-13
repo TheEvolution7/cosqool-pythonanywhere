@@ -1,0 +1,69 @@
+{% load static i18n %} {% load frontend_extras dashboard %}
+<div class="courses-list-content __2">
+	<div class="accordion">
+		{% for section in sections %}
+		<div class="card">
+			<div class="card-header" id="course-g-{{section.pk}}">
+				<h2 class="mb-0">
+					<button
+						class="btn btn-link btn-block text-left{% if not page_obj.0.learn.lesson.section == section %} collapsed{% endif %}"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#course-content-g-{{section.pk}}"
+						aria-expanded="false"
+						aria-controls="course-content-g-{{section.pk}}">
+						<div class="ct">
+							<div
+								class="text{% if page_obj.0.learn.lesson.section == section %} active{% endif %}">
+								{{section.title}}
+							</div>
+						</div>
+						<div class="btn-acco"></div>
+					</button>
+				</h2>
+			</div>
+			<div
+				id="course-content-g-{{section.pk}}"
+				class="collapse{% if page_obj.0.learn.lesson.section == section %} show{% endif %}"
+				aria-labelledby="course-{{section.pk}}">
+				<div class="card-body">
+					<ul class="list-course">
+						{% for item in section.items %}
+						<li class="d-flex flex-column">
+							<div
+								class="d-flex justify-content-between align-items-center {% if page_obj.0.learn.lesson == item %}fw-bold{% endif %}">
+								{% get_first_item_by_lessonitem item %}
+							</div>
+						</li>
+						{% endfor %} {% if forloop.last %}
+						<li class="d-flex flex-column">
+							{% for testprep in object.lesson.section.course.testpreps.all %}
+							<div
+								class="d-flex justify-content-between align-items-center"
+								href="{% url 'dashboards:testprep-detail' testprep.pk %}"
+								style="height: 30px">
+								<div class="d-flex">
+									<img
+										src="{% get_static_prefix %}dashboard/assets/images/icon-courses/2.svg"
+										width="20"
+										class="me-2" />
+									<h6 style="display: contents">
+										{% translate "Test Prep" %}: {{testprep.title|title}}
+									</h6>
+								</div>
+								<a
+									href="{% url 'dashboards:testprep-detail' testprep.pk %}"
+									class="btn--link"
+									>{% trans "Start Exam" %}</a
+								>
+							</div>
+							{% endfor %}
+						</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>

@@ -1,0 +1,153 @@
+{% load static %}
+{% load i18n %}
+{% load parler_tags %}
+
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% get_available_languages as LANGUAGES %}
+<div class="header">
+    <nav class="navbar py-4 px-lg-4 px-md-4">
+        <div class="container-xxl">
+
+            <!-- header rightbar icon -->
+            <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1 order-md-0">
+
+
+                <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
+                    <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
+                        <img class="avatar lg rounded-circle img-thumbnail" src="{{user.teacher.avatar.url}}">
+                    </a>
+                    <div class="u-info ms-2">
+                        <p class="mb-0 line-height-sm "><span class="font-weight-bold">{{user.teacher.get_full_name}}</span></p>
+                        <small>{{user.email}}</small>
+                    </div>
+
+                    <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-start p-0 m-0">
+                        <div class="card border-0 w280">
+                            {% comment %} <div class="card-body pb-0">
+                                <div class="d-flex py-1">
+                                    <img class="avatar rounded-circle" src="{{user.teacher.avatar.url}}">
+                                    <div class="flex-fill ms-3">
+                                        <p class="mb-0"><span class="font-weight-bold">{{user.get_full_name}}</span></p>
+                                        <small class="">{{user.email}}</small>
+                                    </div>
+                                </div>
+                                <div><hr class="dropdown-divider border-dark"></div>
+                            </div> {% endcomment %}
+                            
+                            <div class="list-group m-2 ">
+                                <a href="{% url "frontend:home" %}" class="list-group-item list-group-item-action border-0 ">
+                                    <i class="icon-a fs-6 me-3">
+                                        <img class="icon-menu" src="{%get_static_prefix%}dashboard/assets/images/icon-menu-new/1.svg" alt="">
+                                    </i>
+                                    {% trans "Student" %}
+                                </a>
+                                <div><hr class="dropdown-divider border-dark"></div>
+                                <a href="{% url "instructor:profile" %}" class="list-group-item list-group-item-action border-0 ">
+                                    <i class="icon-a me-3">
+                                        <img class="icon-menu" src="{%get_static_prefix%}dashboard/assets/images/icon-menu-new/1.svg" alt="">
+                                    </i>
+                                    {% trans "Edit Profile" %}
+                                </a>
+                                <div><hr class="dropdown-divider border-dark"></div>
+                                <a href="{% url "instructor:logout" %}" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>{% trans "Logout" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- menu toggler -->
+            <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
+                <span class="fa fa-bars"></span>
+            </button>
+
+            <!-- main menu Search-->
+            <div class="order-0 order-md-1 col-lg-6 col-md-6 col-sm-12 col-12 mb-3 mb-md-0 ">
+                <div class="input-menu-home">
+                    <div class="input-group flex-nowrap input-group-lg input-menu-group">
+                        <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">
+                        <button type="button" class="input-group-text" id="addon-wrapping"><img src="{%get_static_prefix%}dashboard/assets/images/icon-menu-new/10.svg" alt=""></button>
+                    </div>
+
+                    <!-- <button type="button" class="input-group-text add-member-top" id="addon-wrappingone" data-bs-toggle="modal" data-bs-target="#addUser"><i class="fa fa-plus"></i></button> -->
+                    <div class="icon-ring has-noti">
+                        <a href="javascript:;" data-noti="0"><img src="{%get_static_prefix%}dashboard/assets/images/icon-menu-new/11.svg" alt=""></a>
+                        <ul class="list-noti">
+                            {% comment %} <li>
+                                <a href="#" class="noti-item">
+                                    <div class="icon">
+                                        <img src="{%get_static_prefix%}dashboard/assets/images/icon-menu/6.svg" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <div class="title">
+                                            <h4>Notification 1</h4>
+                                        </div>
+                                        <div class="date-time">
+                                            3d
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="#" class="noti-item">
+                                    <div class="icon">
+                                        <img src="{%get_static_prefix%}dashboard/assets/images/icon-menu/6.svg" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <div class="title">
+                                            <h4>Notification 2</h4>
+                                        </div>
+                                        <div class="date-time">
+                                            3d
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="#" class="noti-item">
+                                    <div class="icon">
+                                        <img src="{%get_static_prefix%}dashboard/assets/images/icon-menu/6.svg" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <div class="title">
+                                            <h4>Notification 3</h4>
+                                        </div>
+                                        <div class="date-time">
+                                            3d
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </li> {% endcomment %}
+                        </ul>
+                    </div>
+                    <div class="menu-language">
+                        
+                        {% for lang_code, title in LANGUAGES %}
+                            {% get_language_info for lang_code as lang %}
+                            {% get_translated_url lang_code as tr_url %}
+                            {% if lang_code == LANGUAGE_CODE %}
+                                <a class="nav-link">{{ lang.name_local|capfirst }}</a>
+                            {% endif %}
+                        {% endfor %}
+                        <ul>
+                            {% for lang_code, title in LANGUAGES %}
+                            {% get_language_info for lang_code as lang %}
+                            {% get_translated_url lang_code as tr_url %}
+                                {% if lang_code == LANGUAGE_CODE %}
+                                    
+                                {% else %}
+                                    {% if tr_url %}<li><a href="{{ tr_url }}" hreflang="{{ lang_code }}">{{ lang.name_local|capfirst }}</a></li>{% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+</div>

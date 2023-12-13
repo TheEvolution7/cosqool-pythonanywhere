@@ -1,0 +1,60 @@
+{% load i18n %}
+<div class="swiper swiper-pricing">
+    <div class="swiper-wrapper">
+        {% for plan in plans %}
+        <div class="swiper-slide">
+            <form class="box-price" action="{% url 'dashboards:ckeckout' %}">
+                <input type="hidden" value="{{plan.title}}" name="plan">
+                <div class="title">
+                    <h3>{{plan.title|title}}</h3>
+                    <p>{{plan.description}}</p>
+                </div>
+                
+                    <div class="price">
+                        <span>{{plan.get_plan_item.0.amount}} {{plan.get_plan_item.0.currency}}</span>
+                    </div>
+                    <div class="btn">
+                        <button type="submit" class="btn-cos mt-3">{% translate "GET NOW" %}</button>
+                    </div>
+                    
+                    {% if plan.get_plan_item.0.get_grades.count > 0 %}
+                    <div class="list-courses">
+                        <select name="grade" required=required>
+                            {% for grade in plan.get_plan_item.0.get_grades %}
+                                <option value="{{grade.title}}">{{grade.title}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+
+                    {% if plan.get_plan_item.0.get_testpreps.count > 0 %}
+                    <div class="list-courses">
+                        <select name="testprep" required=required>
+                            {% for testprep in plan.get_plan_item.0.get_testpreps %}
+                                <option value="{{testprep.title}}">{{testprep.title}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="billing">
+                        <p>{% translate "billing subscription" %}</p>
+                        <ul class="input-price">
+                            {% for item in plan.get_plan_item %}
+                            <li>
+                                <input type="radio" name="option" id="{{item.plan.slug}}-{{item.option.slug}}" {% if forloop.first %}checked{% endif %} value="{{item.option.title}}" data-price="{{item.amount}} {{item.currency}}">
+                                <label for="{{item.plan.slug}}-{{item.option.slug}}">{{item.option.title}}</label>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                
+                <div class="desc">
+                    {{plan.content}}
+                </div>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+</div>

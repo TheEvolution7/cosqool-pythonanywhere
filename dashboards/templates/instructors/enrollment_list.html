@@ -1,0 +1,72 @@
+{% extends "./base.html" %}
+{% load static i18n instructor %}
+{% block layout %}
+<div class="row g-4">
+    <div class="col-12">
+        <h1>{% trans "Enrollments" %}</h1>
+        <hr>
+    </div>
+    <div class="col-12">
+        <div class="student-section">
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="card rounded-5">
+                        <div class="card-body p-4">
+                            <div class="row g-2 d-flex align-items-center">
+                                <div class="col">
+                                    <h3>{% trans "My Enrollments" %} ({{object_list.count}}) </h3>
+                                </div>
+                                <div class="col-md-8">
+                                    <form>
+                                        <div class="row g-2">
+                                            <div class="col-md-6">
+                                                <input name="search" type="text" class="form-control" placeholder="Search" value="{{request.GET.search}}">
+                                            </div>
+                                            {% for form in filter.form %}
+                                            <div class="col">
+                                                {{form}}
+                                            </div>
+                                            {% endfor %}
+                                            <div class="col">
+                                                <button class="btn--link w-100 h-100" type="submit">Filter</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% for object in object_list %}
+                <div class="col-6">
+                    <div class="card rounded-5">
+                        <div class="card-body p-4 d-flex align-items-center">
+                            <div class="profile-teacher pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
+                                <a href="{% url "instructor:enrollment-detail" object.pk %}"><img src="{{object.student.avatar.url}}" class="avatar xl rounded-circle img-thumbnail"></a>
+                            </div>
+                            <div class="teacher-info border-start ps-xl-4 ps-md-2 ps-sm-4 ps-4 w-100">
+                                <h4>
+                                    <a href="{% url "instructor:enrollment-detail" object.pk %}"><span>{{object.student.get_full_name}}</span></a>
+                                    {% if object.status == 'enrolled' %}
+                                        <span class="badge bg-secondary">{{object.status|title}}</span>
+                                    {% endif %}
+                                    {% if object.status == 'completed' %}
+                                        <span class="badge bg-success">{{object.status|title}}</span>
+                                    {% endif %}
+                                    {% if object.status == 'dropped' %}
+                                        <span class="badge bg-danger">{{object.status|title}}</span>
+                                    {% endif %}
+                                    
+                                </h4>
+                                <span class="d-block fs-6">{% trans "Level" %}: {{object.grade.title}}</span>
+                                <span class="d-block fs-6">{% trans "Enrolled" %}: {{object.created_at|date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock layout %}

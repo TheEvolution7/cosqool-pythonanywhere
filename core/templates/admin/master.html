@@ -1,0 +1,28 @@
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %} 
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}"  direction="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}" style="direction: {{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" /> 
+    {% block extrastyle %}{% endblock %} {% block extrahead %}{% endblock %}
+    <link href="{% get_static_prefix %}assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{% get_static_prefix %}assets/css/style.bundle.css" rel="stylesheet" type="text/css" /> {% static 'core/assets/media/logos/favicon.ico' as favicon %}
+    <link rel="shortcut icon" href="{{ site.favicon.url|default:favicon }}" /> 
+    {% block responsive %}<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">{% endblock %}
+    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE"> {% endblock %} 
+    {% csrf_token %} 
+    <script>
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    </script>
+  </head>
+  <body> 
+    {% include './partials/theme-mode/_init.html' %}
+    {% block layout %} {% endblock layout %} 
+    <script src="{% get_static_prefix %}assets/plugins/global/plugins.bundle.js"></script>
+    <script src="{% get_static_prefix %}assets/js/scripts.bundle.js"></script> 
+    {% block extrajs %}{% endblock %}
+  </body>
+</html>

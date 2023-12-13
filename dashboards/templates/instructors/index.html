@@ -1,0 +1,98 @@
+{% extends "./base.html" %}
+{% load static %}
+{% load i18n %}
+{% block layout %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="title">
+            <div class="d-md-flex justify-content-between align-items-center">
+                <h2>Home</h2>
+            <hr>
+        </div>
+        
+    </div>
+    <div class="col-12">
+        <div class="card info-card">
+            <div class="card-body p-4 d-flex align-items-center">
+                <div class="d-flex align-items-center flex-column flex-md-row flex-fill">
+                    <div class="avt">
+                        <img src="{{user.teacher.avatar.url}}" alt="" class="rounded-circle">
+                       
+                    </div>
+
+                    <div class="media-body ms-md-5 m-0 mt-4 mt-md-0 text-md-start text-center">
+                        <h2 class="font-weight-bold mb-3 ">{% trans "Hello" %}, {{user.get_full_name}}</h2>
+                        
+                        <!-- <div class="color-blue-text mb-2">Grade 1</div> -->
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="box-purcharge row">
+            <div class="col-md-6 col-lg-7">
+                <h3>Annoucements</h3>
+                <div class="package-item">
+                    <div class="content-package">
+                        <div class="content">
+                            <p><b>TH:</b> New Student Addition</p>
+                            <p><b>Date:</b> July 5, 2023</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet, recusandae commodi officiis iusto minus est mollitia quas explicabo dolore porro ad enim nemo accusamus.</p>
+                         
+                        </div>
+                        <div class="btn-group">
+                            <a href="#" class="btn--link">Click here for more</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-5">
+                <h3>Tip of the Day:</h3>
+                <div class="package-item _tip-box">
+                    <div class="content-package">
+                        <div class="content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate nemo nulla beatae! Magni laudantium omnis nisi vel consectetur, repellat sint, atque expedita deleniti fugit quasi eligendi, soluta ipsam laborum provident.</p>
+                         
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="box-purcharge mt-0 pt-0">
+            <h3>Dashboard tutorial:</h3>
+            <div class="row">
+                <div class="col-md-6 col-lg-7">
+                    <div class="box-video-thumb">
+                        <video
+                        id="my-video"
+                        class="video-js"
+                        controls
+                        preload="auto"
+                        width="640"
+                        height="264"
+                        poster="assets/images/video-img/video2.jpg"
+                        data-setup="{}"
+                    >
+                        <source src="../assets/video/2.mp4" type="video/mp4" />
+                        <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank"
+                            >supports HTML5 video</a
+                        >
+                        </p>
+                    </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock layout %}

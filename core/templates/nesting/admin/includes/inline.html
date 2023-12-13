@@ -1,0 +1,51 @@
+{% load widget_tweaks %}
+
+
+<fieldset class="card-body pt-0 module aligned djn-module {{ fieldset.classes }}{% if inline_admin_form.form.inlines %} has-inlines{% endif %}">
+    {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
+    {% if fieldset.description %}
+        <div class="description">{{ fieldset.description|safe }}</div>
+    {% endif %}
+    {% for line in fieldset %}
+        <div class="row{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}{% if not line.has_visible_field %} hidden{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
+        {% for field in line %} 
+            <div class="col {% if not line.fields|length_is:'1' %}fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}{% endif %}">
+                
+                {% if field.is_readonly %}
+                        <div class="readonly w-100 text-muted">{{ field.contents }}</div>
+                    {% else %}
+                        {% if field.is_checkbox %}
+                        
+                        <div class="form-label">
+                            <label class="translatable-field"></label>
+                        </div>
+                        <div class="form-check form-check-custom form-check-solid mb-2 form-control border-0">
+                            {{field.field|attr:"class:form-check-input"}}
+                            <label class="form-check-label">
+                                {{ field.field.label }}
+                            </label>
+                        </div>
+                        {% else %}
+                        <div class="form-label">
+                            {{ field.label_tag }}
+                        </div>
+                            {{field.field}}
+                        {% endif %}
+                    {% endif %}
+
+                    {% if field.field.help_text %}
+                        <div class="help text-muted fs-7"{% if field.field.id_for_label %} id="{{ field.field.id_for_label }}_helptext"{% endif %}>
+                        {{ field.field.help_text|safe }}
+                        </div>
+                    {% endif %}
+                    
+                    {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                    {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+                
+                {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+</fieldset>

@@ -1,0 +1,6 @@
+{% load static %} {% spaceless %}
+<a href="{% url 'admin:index' %}">
+  {% comment %} <img alt="{{site_title}}" src="{{logo.url|default:logo}}" class="h-25px h-lg-30px d-none d-md-block"/>
+  <img alt="{{site_title}}" src="{{logo.url|default:logo}}"class="h-25px d-block d-md-none"/> {% endcomment %}
+</a>
+{% endspaceless %}

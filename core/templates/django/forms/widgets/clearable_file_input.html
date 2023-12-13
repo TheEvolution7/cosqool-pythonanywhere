@@ -1,0 +1,43 @@
+{% comment %} {% if widget.is_initial %}
+{{ widget.initial_text }}: <a href="{{ widget.value.url }}">{{ widget.value }}</a>
+{% if not widget.required %}
+<input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+<label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>{% endif %}<br>
+{{ widget.input_text }}:{% endif %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}> {% endcomment %}
+
+<div class="avatar-upload feature-img-upload">
+    <div class="avatar-preview feature-img">
+        {% if widget.value and not widget.value.url %}
+            <div {% include "django/forms/widgets/attrs.html" %} style="background-image: url('{{ widget.value }}')">
+            </div>
+            {% else %}
+                {% if widget.is_initial %}
+                    <div {% include "django/forms/widgets/attrs.html" %} style="background-image: url('{{ widget.value.url }}')">
+                    </div>
+                    {% else %}
+                    <div {% include "django/forms/widgets/attrs.html" %} style="background-image: url('/media/default/default.jpg');">
+                    </div>
+                {% endif %}
+        {% endif %}
+
+        
+    </div>
+    <br>
+    <div class="image-field-box">
+        <div>
+            <label class="text-black">{{ widget.initial_text }}:</label></br>
+            {% if widget.value and not widget.value.url %}
+            <a href="{{ widget.value }}">{{ widget.value }}</a>
+            {% else %}
+                {% if widget.is_initial %}
+                <a href="{{ widget.value.url }}">{{ widget.value }}</a>
+                {% endif %}
+            {% endif %}
+
+            
+        </div>	
+        <input class="form-control image-field"type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+    </div>
+</div>
+

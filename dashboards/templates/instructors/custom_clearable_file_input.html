@@ -1,0 +1,18 @@
+{% if widget.is_initial %}
+<div class="row g-4">
+    <div class="col-12">
+        <img src="{{ widget.value.url }}" class="w-100 rounded-circle">
+    </div>
+    <div class="col-12">
+        <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} class="form-control">
+        {% comment %} <div class="mb-3">
+            <div class="input-group">
+                <div class="input-group-text">
+                    <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %} class="form-check-input mt-0">
+                </div>
+                <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} class="form-control">
+            </div>
+        </div> {% endcomment %}
+    </div>
+</div>
+{% endif %}

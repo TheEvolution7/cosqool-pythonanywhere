@@ -1,0 +1,31 @@
+{% for article in page_obj %}
+    <div class="col-md-6 d-flex">
+        <div class="blog-item">
+            <a href="{% url 'frontend:article-detail' article.slug %}" class="img">
+                <img src="{{article.image_thumbnail.url}}" alt="{{article}}">
+            </a>
+            <div class="content">
+                <div class="date">
+                    <i class="fal fa-calendar"></i>{{article.created_at}}
+                </div>
+                <a href="{% url 'frontend:article-detail' article.slug %}" class="title">
+                    <h3>
+                        {{article}}
+                    </h3>
+                </a>
+                <div class="desc">
+                    <p>{{article.description}}</p>
+                </div>
+                <div class="btn-blog">
+                    <a href="{% url 'frontend:article-detail' article.slug %}" class="btn-cos mt-3">read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<div class="col-12">
+    <ul class="pagination justify-content-center mt-3 mb-4">
+        
+        {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </ul>
+</div>

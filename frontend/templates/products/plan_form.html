@@ -1,0 +1,19 @@
+<div class="btn">
+    <button type="submit" class="btn-cos mt-3">GET NOW</button>
+</div>
+{% if form.course %}
+<div class="list-courses">
+    {{form.course}}
+</div>
+{% endif %}
+{% if form.test %}
+<div class="list-courses">
+    {{form.test}}
+</div>
+{% endif %}
+<div class="billing">
+    <p>billing subscription</p>
+    {% if form.price %}{{form.price}}{% endif %}
+    
+    
+</div>

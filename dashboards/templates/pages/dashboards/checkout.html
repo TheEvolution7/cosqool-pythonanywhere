@@ -1,0 +1,166 @@
+{% extends 'layout/master.html' %}
+
+{% load static i18n %}
+{% block css %}
+<link rel="stylesheet" href="{%get_static_prefix%}dashboard/assets/css/payment.min.css">
+{% endblock css %}
+
+
+{% block layout %}
+<main class="payment-section">
+    <div class="payment-header">
+        <div class="payment-logo">
+            <a href="#">
+                <img src="{%get_static_prefix%}/dashboard/assets/images/logo-1.svg" alt="">
+            </a>
+        </div>
+        <div class="payment-close">
+            <a href="#" class="btn--link">
+                Close
+            </a>
+        </div>
+    </div>
+    <div class="payment-body mw-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="payment-title">
+                        <h1>{% translate "Order summary" %}</h1>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    {% comment %} <div class="payment-first">
+                        <h3>{% translate "Your details" %}</h3>
+                        <div class="payment-info">
+                            <label for="" class="">
+                                Email address
+                                <span class="label-tag">
+                                    Required*
+                                </span>
+                            </label>
+                            <div class="payment-select">
+                                <input type="email" class="form-control" autocomplete="email" name="email" placeholder="Email" required=required>   
+                            </div>
+                            
+                        </div>
+                        <div class="payment-info">
+                            <label for="" class="">
+                                Country
+                                <span class="label-tag">
+                                    Required*
+                                </span>
+                            </label>
+                            <div class="payment-select">
+                                <div class="payment-select-icon">
+                                    <i class="fal fa-globe"></i>
+                                </div>
+                                <select required="" aria-invalid="false" autocomplete="off" data-purpose="">
+                                    <option value="-1">Please Choose ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="عربي">عربي</option>
+                                </select>
+                                <div class="payment-select-icon-arrow">
+                                    <i class="fal fa-angle-down"></i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <p>Cospool is required by law to collect applicable transaction taxes on purchases made in certain tax jurisdictions.</p>
+                    </div> {% endcomment %}
+    
+                    <div class="payment-box">
+                        <h3>{% translate "Payment" %}</h3>
+                        <div id="paypal-button-container-{{planitem.paypal_plan_id}}"></div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="payment-sumary">
+                        {% comment %} {% for billing_cycle in plan_object.billing_cycles %}
+                            <div class="item-pay">
+                                <div class="package-item">
+                                    <div class="title">
+                                        <div class="price">
+                                            <sup>{{billing_cycle.pricing_scheme.fixed_price.currency_code}}</sup>
+                                            <span>{{billing_cycle.pricing_scheme.fixed_price.value}}</span>
+                                            <sup><small>inc. VAT</small></sup>
+                                        </div>
+                                        <p>then {{billing_cycle.pricing_scheme.fixed_price.value}} {{billing_cycle.pricing_scheme.fixed_price.currency_code}} {{billing_cycle.frequency.interval_unit}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %} {% endcomment %}
+                        
+                        <div class="item-pay">
+                            <div class="package-item">
+                                <div class="title">
+                                    <div class="content">
+                                        <h4>{{plan_object.name|title}}</h4>
+                                    </div>
+                                    {% for billing_cycle in plan_object.billing_cycles %}
+                                    <div class="price">
+                                        <span>{{billing_cycle.pricing_scheme.fixed_price.value}} {{billing_cycle.pricing_scheme.fixed_price.currency_code}}</span>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                                
+                                <div class="content-package">
+                                    <div class="content">
+                                        <p><b>Grade level:</b> {{request.GET.grade}}</p>
+                                        <p><b>Billing subscription:</b> {{request.GET.option}}</p>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+
+{% block js %}
+{% url "dashboards:subscription-list" %}
+<script src="https://www.paypal.com/sdk/js?client-id=AST_3GZ94quJwZuGehO0ylOSDMWmm65mfOJnWzf3XWIvmh8h9iwniFZOBE0Sm950X8CBfNumg-6FZS9y&vault=true&intent=subscription&locale=en_US" data-sdk-integration-source="button-factory"></script>
+{% csrf_token %}
+<script>
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+    paypal.Buttons({
+        style: {
+            shape: 'pill',
+            color: 'gold',
+            layout: 'vertical',
+            label: 'subscribe'
+        },
+        createSubscription: function(data, actions) {
+            return actions.subscription.create({
+                plan_id: '{{planitem.paypal_plan_id}}'
+            });
+        },
+        onApprove: function(data, actions) {
+            $.ajax({
+                url: '{% url "dashboards:subscription-list" %}',
+                headers: {'X-CSRFToken': csrftoken},
+                method: "POST",
+                data: {
+                    grade:"{{grade_id}}",
+                    option:"{{option_id}}",
+                    plan:"{{plan_id}}",
+                    testpresp:"{{testpresp_id}}",
+                    user:"{{request.user.pk}}",
+                    paypal_data:JSON.stringify(data),
+                    paypal_actions:JSON.stringify(actions),
+                },
+                success: function(data, textStatus){
+                    window.location.href = "{% url 'dashboards:index' %}";
+                }
+            });
+        }
+    }).render('#paypal-button-container-{{planitem.paypal_plan_id}}');
+</script>
+{% endblock js %}

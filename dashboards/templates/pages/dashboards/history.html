@@ -1,0 +1,53 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks humanize %}
+
+{% block content %}
+<div class="body d-flex align-items-start">
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <div class="title-history">
+                        <h2>My History</h2>
+                        <select name="" id="" class="form-select">
+                            <option value="-1">Filter</option>
+                            <option value="">Sort by day add</option>
+                        </select>
+                    </div>
+                    
+                    <hr>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="history-container">
+                    {% load log %}
+                    {% get_admin_log 15 as admin_log for_user user %}
+                    {% for entry in admin_log %}
+                        <div class="history-item">
+                            <div class="icon">
+                                <img src="{% static '' %}dashboard/assets/images/icon-menu/6.svg" alt="">
+                            </div>
+                            <div class="content">
+                                <a href="#" class="title">
+                                    <h4>{% if entry.is_deletion or not entry.get_admin_url %}
+                                        {{ entry.object_repr }}
+                                        {% else %}
+                                            {{ entry.object_repr }}
+                                        {% endif %}
+                                    {{ entry.get_change_message|safe }}</h4>
+                                </a>
+                                <div class="date-time">
+                                    {{ entry.action_time|naturaltime|capfirst }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+ 
+    </div>
+</div>
+{% endblock %}

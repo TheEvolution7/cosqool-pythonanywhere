@@ -1,0 +1,47 @@
+<div class="sidebar-widget-area sticky_column">
+    <div class="widget search-widget mb-30">
+        <form>
+            <div class="form_group">
+                <input type="email" class="form_control" placeholder="Search here" name="email" required>
+                <button class="search-btn"><img src="assets/images/share-icon.svg" alt=""></button>
+            </div>
+        </form>
+    </div>
+    <div class="widget category-widget mb-30">
+        <h4 class="widget-title">{{category_list}}</h4>
+        <ul class="category-nav">
+            {% for category in category_list.children %}
+            <li><a href="{% url 'frontend:article-category' category.slug %}">{{category}}<span>({{category.articles.count}})</span></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="widget recent-post-widget mb-30">
+        <h4 class="widget-title">Latest posts</h4>
+        <ul class="recent-post-list">
+            {% for article in last_article_list %}
+                <li class="post-thumbnail-content">
+                    <a href="{% url 'frontend:article-detail' article.slug %}">
+                        <img src="{{article.thumbnail.url}}" alt="post image">
+                    </a>
+                    
+                    <div class="post-title-date">
+                        <h6><a href="{% url 'frontend:article-detail' article.slug %}">{{article}}</a></h6>
+                        <span class="posted-on">{{article.created_at}}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="widget tag-cloud-widget mb-30">
+        <h4 class="widget-title">Popular Tags</h4>
+        <a href="#">data science</a>
+        <a href="#">deep learning</a>
+        <a href="#">education</a>
+        <a href="#">language</a>
+        <a href="#">learning</a>
+        <a href="#">machine learning</a>
+        <a href="#">tips</a>
+        <a href="#">videos</a>
+        <a href="#">web development</a>
+    </div>
+</div>

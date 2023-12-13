@@ -1,0 +1,22 @@
+<div class="me-4">
+    {% if object %}
+    <button type="button" class="btn bookmark-active btn-bookmark py-4" data-part={{part.pk}} data-question={{question.pk}}>
+        <i class="fas fa-bookmark fs-4"></i>
+    </button>
+    {% else %}
+    <button type="button" class="btn btn-bookmark py-4" data-part={{part.pk}} data-question={{question.pk}}>
+        <i class="far fa-bookmark fs-4"></i>
+    </button>
+    {% endif %}
+
+    {% comment %} <input type="checkbox" name="bookmark" id="bm-q-1">
+    <label for="bm-q-1">
+        {% if object %}
+        <i class="fas fa-bookmark d-inline"></i>
+        {% else %}
+        <i class="far fa-bookmark"></i>
+        {% endif %}
+    </label> {% endcomment %}
+</div>
+
+

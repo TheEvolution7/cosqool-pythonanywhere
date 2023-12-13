@@ -1,0 +1,112 @@
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% get_available_languages as LANGUAGES %}
+{% load parler_tags frontend_extras %}
+
+<header class="theme-header">
+    <!-- header Navigation -->
+    <div class="header-navigation navigation-style-v1">
+        <div class="nav-overlay"></div>
+        <div class="container-fluid">
+            <div class="primary-menu">
+                <div class="site-branding">
+                    <a href="{% url 'frontend:home' %}" class="brand-logo">
+                       
+                        {% if LANGUAGE_BIDI %}
+                        <img class="logo-first" src="{%get_static_prefix%}assets/images/logo/logo-1.svg" alt="Site Logo">
+                        {% else %}
+                        <img class="logo-first" src="{%get_static_prefix%}assets/images/logo/logo-2.svg" alt="Site Logo">
+                        {% endif %}
+                            <img class="logo-on-scroll" src="{%get_static_prefix%}assets/images/logo-dot.svg" alt="">
+                    </a>
+                </div>
+                <div class="menu-page">
+                    <div class="nav-menu">
+                        <!-- Navbar Close -->
+                        <div class="navbar-close"><i class="far fa-times"></i></div>
+                        <!-- Nav Search -->
+                        <div class="nav-search">
+                            <form>
+                                <div class="form_group">
+                                    <input type="email" class="form_control" placeholder="Search Here" name="email"
+                                        required>
+                                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Main Menu -->
+                        <nav class="main-menu">
+                            <ul>
+                                <li class="menu-item"><a href="/" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %} nav-link">{% trans "Home" %}</a></li>
+                                <li class="menu-item"><a href="/about-us" class="{% if request.resolver_match.kwargs.slug == 'about-us' %}active{% endif %} nav-link">{% trans "About us" %}</a></li>
+                                <!-- <li class="menu-item"><a href="#section-course" class="nav-link">Courses</a></li> -->
+                                <li class="menu-item"><a href="/plans-pricing" class="{% if request.resolver_match.kwargs.slug == 'plans-pricing' %}active{% endif %} nav-link">{% trans "Plans &amp; Pricing" %}</a></li>
+                                <!-- <li class="menu-item"><a href="#" class="nav-link">Become a tutor</a></li>
+                                <li class="menu-item"><a href="news-blog.html" class="nav-link">News & Blogs</a></li>
+                                <li class="menu-item"><a href="contact-us.html" class="nav-link">Contact Us</a></li> --> 
+                                <li class="menu-item btn-login"><a href="#" class="nav-link">Login</a></li>
+                                <li class="menu-item btn-login"><a href="#" class="nav-link">Sign Up</a></li>
+
+                                
+                            </ul>
+                            {% comment %} <ul>
+                                {% for link in links %}
+                                <li class="menu-item"><a href="/{{link.linked_object.slug}}" class="nav-link {% if request.path == link.linked_object.slug %}active{% endif %}">{{link|safe}}</a></li>
+                                {% endfor %}
+                            </ul> {% endcomment %}
+                        </nav>
+                    </div>
+                    
+                    <div class="header-right-nav">
+                        <div class="right-menu">
+                            <ul>
+                                {% if user.is_authenticated %}
+                                    <li><a target="_blank" href="{% url 'dashboards:index' %}" class="nav-link">{% translate "Hi" %}, {{ user.get_full_name }}</a></li>
+                                    <li><a href="{% url 'auth:logout' %}" class="btn-cos">{% translate "Logout" %}</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'auth:signin' %}" class="nav-link">Login</a></li>
+                                    <li><a href="{% url 'auth:signup' %}" class="btn-cos">sign up</a></li>
+                                {% endif %}
+                                
+
+                                
+
+                                <li class="menu-language">
+                                    {% for lang_code, title in LANGUAGES %}
+                                        {% get_language_info for lang_code as lang %}
+                                        {% get_translated_url lang_code as tr_url %}
+                                        {% if lang_code == LANGUAGE_CODE %}
+                                            <a class="nav-link">{{ lang.code|upper }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <ul>
+                                        {% for lang_code, title in LANGUAGES %}
+                                        {% get_language_info for lang_code as lang %}
+                                        {% get_translated_url lang_code as tr_url %}
+                                            {% if lang_code == LANGUAGE_CODE %}
+                                               
+                                            {% else %}
+                                                {% if tr_url %}<li><a href="{{ tr_url }}" hreflang="{{ lang_code }}">{{ lang.code|upper }}</a></li>{% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                        <ul>
+                            <li class="navbar-toggle-btn">
+                                <div class="navbar-toggler">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,2307 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-28 12:44+0700\n"
+"PO-Revision-Date: 2023-08-28 05:44+0000\n"
+"Last-Translator: Super Admin <admin@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: accounts/admin.py:49 accounts/admin.py:95 accounts/admin.py:115
+#: contacts/models.py:33
+msgid "Avatar"
+msgstr ""
+
+#: accounts/admin.py:52 accounts/admin.py:98 accounts/admin.py:119
+#: core/templates/admin/object_history.html:23 orders/admin.py:138
+msgid "User"
+msgstr ""
+
+#: accounts/models.py:17
+msgid "day of birth"
+msgstr ""
+
+#: accounts/models.py:21
+msgid "first name"
+msgstr ""
+
+#: accounts/models.py:22
+msgid "last name"
+msgstr ""
+
+#: accounts/models.py:24
+msgid "Choose gender"
+msgstr ""
+
+#: accounts/models.py:25
+msgid "Male"
+msgstr ""
+
+#: accounts/models.py:26
+msgid "Female"
+msgstr ""
+
+#: accounts/models.py:27
+msgid "Others"
+msgstr ""
+
+#: accounts/models.py:31
+msgid "gender"
+msgstr ""
+
+#: accounts/models.py:32
+msgid "avatar"
+msgstr ""
+
+#: accounts/models.py:40
+msgid "phone number"
+msgstr ""
+
+#: accounts/models.py:43
+msgid "language"
+msgstr ""
+
+#: accounts/models.py:47
+msgid "website"
+msgstr ""
+
+#: accounts/models.py:49
+msgid "facebook url"
+msgstr ""
+
+#: accounts/models.py:51
+msgid "twitter url"
+msgstr ""
+
+#: accounts/models.py:53
+msgid "linkedin url"
+msgstr ""
+
+#: accounts/models.py:55
+msgid "youtube url"
+msgstr ""
+
+#: accounts/models.py:57 accounts/models.py:122
+#: dashboards/templates/testpreps/testprep_detail.html:81
+#: dashboards/templates/testpreps/testprep_result.html:30
+msgid "Created at"
+msgstr ""
+
+#: accounts/models.py:58 accounts/models.py:123
+msgid "Updated at"
+msgstr ""
+
+#: accounts/models.py:74
+msgid "headline"
+msgstr ""
+
+#: accounts/models.py:75
+msgid "biography"
+msgstr ""
+
+#: accounts/models.py:101
+msgid "Address"
+msgstr ""
+
+#: accounts/models.py:102
+msgid "Addresses"
+msgstr ""
+
+#: albums/models.py:22 albums/models.py:26 contacts/models.py:19
+msgid "Group"
+msgstr ""
+
+#: albums/models.py:23 albums/models.py:27 contacts/models.py:20
+msgid "Groups"
+msgstr ""
+
+#: albums/models.py:37 albums/models.py:38
+msgid "Gallery"
+msgstr ""
+
+#: albums/models.py:49 albums/models.py:50 contents/models.py:52
+#: contents/models.py:55
+msgid "Image"
+msgstr ""
+
+#: analytics/models.py:6 analytics/models.py:7
+msgid " Overview"
+msgstr ""
+
+#: analytics/models.py:11
+msgid "Product"
+msgstr ""
+
+#: analytics/models.py:12
+msgid "Products"
+msgstr ""
+
+#: analytics/models.py:16
+msgid "Variation"
+msgstr ""
+
+#: analytics/models.py:17
+msgid "Variations"
+msgstr ""
+
+#: analytics/models.py:21 orders/admin.py:135
+msgid "Order"
+msgstr ""
+
+#: analytics/models.py:22
+msgid "Orders"
+msgstr ""
+
+#: analytics/models.py:26 contents/models.py:39 courses/models.py:15
+#: courses/models.py:19
+msgid "Category"
+msgstr ""
+
+#: analytics/models.py:27 contents/models.py:40 courses/models.py:16
+#: courses/models.py:20
+msgid "Categories"
+msgstr ""
+
+#: analytics/models.py:31 analytics/models.py:32
+msgid "Revenue"
+msgstr ""
+
+#: analytics/models.py:36 core/templates/admin/filer/tools/detail_info.html:15
+msgid "Download"
+msgstr ""
+
+#: analytics/models.py:37
+msgid "Downloads"
+msgstr ""
+
+#: analytics/templates/admin/analytic_change_list.html:11
+#: analytics/templates/admin/overview_change_list.html:11
+#: auth/templates/registration/logged_out.html:4
+#: auth/templates/registration/password_change_done.html:12
+#: auth/templates/registration/password_change_form.html:13
+#: auth/templates/registration/password_reset_complete.html:6
+#: auth/templates/registration/password_reset_confirm.html:7
+#: auth/templates/registration/password_reset_done.html:6
+#: contents/templates/admin/polymorphic_tree/change_form_breadcrumbs.html:5
+#: contents/templates/admin/polymorphic_tree/delete_confirmation.html:7
+#: contents/templates/admin/polymorphic_tree/object_history_breadcrumbs.html:5
+#: core/templates/admin/500.html:6 core/templates/admin/app_index.html:10
+#: core/templates/admin/auth/user/change_password.html:10
+#: core/templates/admin/base.html:38 core/templates/admin/change_form.html:17
+#: core/templates/admin/change_list.html:23
+#: core/templates/admin/delete_confirmation.html:14
+#: core/templates/admin/delete_selected_confirmation.html:14
+#: core/templates/admin/filer/breadcrumbs.html:4
+#: core/templates/admin/filer/folder/change_form.html:6
+#: core/templates/admin/filer/folder/directory_listing.html:43
+#: core/templates/admin/invalid_setup.html:6
+#: core/templates/admin/object_history.html:6
+#: core/templates/custom_change_list.html:36
+#: core/templates/registration/logged_out.html:4
+#: core/templates/registration/password_change_done.html:12
+#: core/templates/registration/password_change_form.html:13
+#: core/templates/registration/password_reset_complete.html:6
+#: core/templates/registration/password_reset_confirm.html:7
+#: core/templates/registration/password_reset_done.html:6
+#: core/templates/registration/password_reset_form.html:7
+#: frontend/templates/registration/logged_out.html:4
+#: frontend/templates/registration/password_change_done.html:12
+#: frontend/templates/registration/password_change_form.html:13
+#: frontend/templates/registration/password_reset_complete.html:6
+#: frontend/templates/registration/password_reset_confirm.html:7
+#: frontend/templates/registration/password_reset_done.html:6
+msgid "Home"
+msgstr ""
+
+#: articles/models.py:17 articles/models.py:21
+msgid "Article Category"
+msgstr ""
+
+#: articles/models.py:18 articles/models.py:22
+msgid "Article Categories"
+msgstr ""
+
+#: articles/models.py:37
+msgid "Tag"
+msgstr ""
+
+#: articles/models.py:38
+msgid "Tags"
+msgstr ""
+
+#: articles/models.py:67
+msgid "Article"
+msgstr ""
+
+#: articles/models.py:68
+msgid "Articles"
+msgstr ""
+
+#: auth/templates/registration/logged_out.html:10
+#: core/templates/registration/logged_out.html:10
+#: frontend/templates/registration/logged_out.html:10
+msgid "Thanks for spending some quality time with the web site today."
+msgstr ""
+
+#: auth/templates/registration/logged_out.html:12
+#: core/templates/registration/logged_out.html:12
+#: frontend/templates/registration/logged_out.html:12
+msgid "Log in again"
+msgstr ""
+
+#: auth/templates/registration/login.html:10
+msgid "Sign in"
+msgstr ""
+
+#: auth/templates/registration/login.html:51
+#: frontend/templates/registration/login.html:49
+msgid "Forgot Password?"
+msgstr ""
+
+#: auth/templates/registration/login.html:67
+#: auth/templates/registration/password_reset_complete.html:15
+#: core/templates/admin/login.html:47
+#: core/templates/registration/password_reset_complete.html:15
+#: frontend/templates/registration/login.html:65
+#: frontend/templates/registration/password_reset_complete.html:15
+msgid "Log in"
+msgstr ""
+
+#: auth/templates/registration/password_change_done.html:4
+#: auth/templates/registration/password_change_form.html:5
+#: core/templates/admin/partials/sidebar-layout/header/toolbar/_user_account.html:33
+#: core/templates/registration/password_change_done.html:4
+#: core/templates/registration/password_change_form.html:5
+#: frontend/templates/registration/password_change_done.html:4
+#: frontend/templates/registration/password_change_form.html:5
+msgid "Documentation"
+msgstr ""
+
+#: auth/templates/registration/password_change_done.html:4
+#: auth/templates/registration/password_change_form.html:5
+#: core/templates/admin/auth/user/change_password.html:14
+#: core/templates/admin/auth/user/change_password.html:52
+#: core/templates/admin/partials/sidebar-layout/header/toolbar/_user_account.html:40
+#: core/templates/registration/password_change_done.html:4
+#: core/templates/registration/password_change_form.html:5
+#: frontend/templates/registration/password_change_done.html:4
+#: frontend/templates/registration/password_change_form.html:5
+msgid "Change password"
+msgstr ""
+
+#: auth/templates/registration/password_change_done.html:7
+#: auth/templates/registration/password_change_form.html:8
+#: core/templates/admin/app_list.html:103
+#: core/templates/admin/partials/sidebar-layout/header/toolbar/_user_account.html:54
+#: core/templates/registration/password_change_done.html:7
+#: core/templates/registration/password_change_form.html:8
+#: frontend/templates/registration/password_change_done.html:7
+#: frontend/templates/registration/password_change_form.html:8
+msgid "Log out"
+msgstr ""
+
+#: auth/templates/registration/password_change_done.html:13
+#: auth/templates/registration/password_change_form.html:14
+#: core/templates/registration/password_change_done.html:13
+#: core/templates/registration/password_change_form.html:14
+#: frontend/templates/registration/password_change_done.html:13
+#: frontend/templates/registration/password_change_form.html:14
+msgid "Password change"
+msgstr ""
+
+#: auth/templates/registration/password_change_done.html:18
+#: core/templates/registration/password_change_done.html:18
+#: frontend/templates/registration/password_change_done.html:18
+msgid "Your password was changed."
+msgstr ""
+
+#: auth/templates/registration/password_change_form.html:24
+#: core/templates/admin/auth/user/change_password.html:25
+#: core/templates/admin/change_form.html:62
+#: core/templates/admin/change_list.html:76
+#: core/templates/admin/filer/folder/new_folder_form.html:15
+#: core/templates/custom_change_list.html:59
+#: core/templates/registration/password_change_form.html:24
+#: frontend/templates/registration/password_change_form.html:24
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: auth/templates/registration/password_change_form.html:24
+#: core/templates/admin/auth/user/change_password.html:25
+#: core/templates/admin/change_form.html:62
+#: core/templates/admin/change_list.html:76
+#: core/templates/custom_change_list.html:59
+#: core/templates/registration/password_change_form.html:24
+#: frontend/templates/registration/password_change_form.html:24
+msgid "Please correct the errors below."
+msgstr ""
+
+#: auth/templates/registration/password_change_form.html:29
+#: core/templates/registration/password_change_form.html:29
+#: frontend/templates/registration/password_change_form.html:29
+msgid ""
+"Please enter your old password, for security’s sake, and then enter your new"
+" password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: auth/templates/registration/password_change_form.html:57
+#: auth/templates/registration/password_reset_confirm.html:31
+#: core/templates/registration/password_change_form.html:57
+#: core/templates/registration/password_reset_confirm.html:31
+#: frontend/templates/registration/password_change_form.html:57
+#: frontend/templates/registration/password_reset_confirm.html:31
+msgid "Change my password"
+msgstr ""
+
+#: auth/templates/registration/password_reset_complete.html:7
+#: auth/templates/registration/password_reset_done.html:7
+#: core/templates/registration/password_reset_complete.html:7
+#: core/templates/registration/password_reset_done.html:7
+#: core/templates/registration/password_reset_form.html:8
+#: frontend/templates/registration/password_reset_complete.html:7
+#: frontend/templates/registration/password_reset_done.html:7
+msgid "Password reset"
+msgstr ""
+
+#: auth/templates/registration/password_reset_complete.html:13
+#: core/templates/registration/password_reset_complete.html:13
+#: frontend/templates/registration/password_reset_complete.html:13
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: auth/templates/registration/password_reset_confirm.html:8
+#: core/templates/registration/password_reset_confirm.html:8
+#: frontend/templates/registration/password_reset_confirm.html:8
+msgid "Password reset confirmation"
+msgstr ""
+
+#: auth/templates/registration/password_reset_confirm.html:16
+#: core/templates/registration/password_reset_confirm.html:16
+#: frontend/templates/registration/password_reset_confirm.html:16
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: auth/templates/registration/password_reset_confirm.html:23
+#: core/templates/registration/password_reset_confirm.html:23
+#: frontend/templates/registration/password_reset_confirm.html:23
+msgid "New password:"
+msgstr ""
+
+#: auth/templates/registration/password_reset_confirm.html:28
+#: core/templates/registration/password_reset_confirm.html:28
+#: frontend/templates/registration/password_reset_confirm.html:28
+msgid "Confirm password:"
+msgstr ""
+
+#: auth/templates/registration/password_reset_confirm.html:37
+#: core/templates/registration/password_reset_confirm.html:37
+#: frontend/templates/registration/password_reset_confirm.html:37
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: auth/templates/registration/password_reset_done.html:13
+#: core/templates/registration/password_reset_done.html:13
+#: frontend/templates/registration/password_reset_done.html:13
+msgid ""
+"We’ve emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+#: auth/templates/registration/password_reset_done.html:15
+#: core/templates/registration/password_reset_done.html:15
+#: frontend/templates/registration/password_reset_done.html:15
+msgid ""
+"If you don’t receive an email, please make sure you’ve entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: auth/templates/registration/password_reset_email.html:2
+#: core/templates/registration/password_reset_email.html:2
+#: frontend/templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: auth/templates/registration/password_reset_email.html:4
+#: core/templates/registration/password_reset_email.html:4
+#: frontend/templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: auth/templates/registration/password_reset_email.html:8
+#: core/templates/registration/password_reset_email.html:8
+#: frontend/templates/registration/password_reset_email.html:8
+msgid "Your username, in case you’ve forgotten:"
+msgstr ""
+
+#: auth/templates/registration/password_reset_email.html:10
+#: core/templates/registration/password_reset_email.html:10
+#: frontend/templates/registration/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: auth/templates/registration/password_reset_email.html:12
+#: core/templates/registration/password_reset_email.html:12
+#: frontend/templates/registration/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: auth/templates/registration/password_reset_form.html:16
+#: core/templates/registration/password_reset_form.html:20
+#: frontend/templates/registration/password_reset_form.html:16
+msgid "Email address:"
+msgstr ""
+
+#: auth/templates/registration/password_reset_form.html:21
+#: core/templates/registration/password_reset_form.html:23
+#: frontend/templates/registration/password_reset_form.html:21
+msgid "Reset my password"
+msgstr ""
+
+#: contacts/admin.py:41 core/admin.py:47 core/admin.py:115
+#: invoices/admin.py:52
+msgid "Options"
+msgstr ""
+
+#: contacts/admin.py:67 dashboards/templates/testpreps/testprep_detail.html:80
+#: dashboards/templates/testpreps/testprep_result.html:35
+msgid "Status"
+msgstr ""
+
+#: contacts/models.py:12 contacts/models.py:52 content/models.py:17
+#: core/models.py:92 lessons/models.py:42 menus/models.py:27
+#: products/models.py:54 quizzes/models.py:63 settings/models.py:19
+msgid "title"
+msgstr ""
+
+#: contacts/models.py:13 contacts/models.py:53 core/models.py:93
+#: lessons/models.py:43 menus/models.py:28 quizzes/models.py:64
+#: settings/models.py:20
+msgid "slug"
+msgstr ""
+
+#: contacts/models.py:15 content/models.py:19 core/models.py:95
+#: lessons/models.py:45 menus/models.py:30 quizzes/models.py:66
+msgid "description"
+msgstr ""
+
+#: contacts/models.py:26
+#: core/templates/admin/filer/folder/directory_table.html:15
+msgid "Name"
+msgstr ""
+
+#: contacts/models.py:27
+msgid "Company Name"
+msgstr ""
+
+#: contacts/models.py:28
+msgid "Email"
+msgstr ""
+
+#: contacts/models.py:29
+msgid "Phone"
+msgstr ""
+
+#: contacts/models.py:32
+msgid "Notes"
+msgstr ""
+
+#: contacts/models.py:42
+msgid "Contact"
+msgstr ""
+
+#: contacts/models.py:43
+msgid "Contacts"
+msgstr ""
+
+#: contacts/models.py:59
+msgid "Contact Form"
+msgstr ""
+
+#: contacts/models.py:60
+msgid "Contact Forms"
+msgstr ""
+
+#: contacts/models.py:76
+msgid "To"
+msgstr ""
+
+#: contacts/models.py:77
+msgid "From"
+msgstr ""
+
+#: contacts/models.py:78 courses/models.py:49
+#: dashboards/templates/courses/course_detail_video.html:227
+msgid "Subject"
+msgstr "موضوع"
+
+#: contacts/models.py:80
+msgid "Additional headers"
+msgstr ""
+
+#: contacts/models.py:80
+msgid "Reply-To: "
+msgstr ""
+
+#: contacts/models.py:81
+msgid "Message body"
+msgstr ""
+
+#: contacts/models.py:81
+msgid ""
+"<p>From: [your-name] &lt;[your-email]&gt;</p><p>Subject: [your-"
+"subject]</p><p>Message Body: [your-message]</p><p>-- This e-mail was sent "
+"from a contact form on [_site_title] ([_site_url])</p>"
+msgstr ""
+
+#: contacts/models.py:84
+msgid "Mail"
+msgstr ""
+
+#: contacts/models.py:85
+msgid "Mails"
+msgstr ""
+
+#: contacts/models.py:96
+msgid "Sender's message was sent successfully"
+msgstr ""
+
+#: contacts/models.py:97
+msgid "Thank you for your message. It has been sent."
+msgstr ""
+
+#: contacts/models.py:98
+msgid "Sender's message failed to send"
+msgstr ""
+
+#: contacts/models.py:99
+msgid ""
+"There was an error trying to send your message. Please try again later."
+msgstr ""
+
+#: contacts/models.py:100
+msgid "Validation errors occurred"
+msgstr ""
+
+#: contacts/models.py:101
+msgid "One or more fields have an error. Please check and try again."
+msgstr ""
+
+#: contacts/models.py:108
+msgid "Message"
+msgstr ""
+
+#: contacts/models.py:109
+msgid "Messages"
+msgstr ""
+
+#: content/models.py:10
+msgid "Video"
+msgstr ""
+
+#: content/models.py:11 dashboards/templates/content/playlist_form.html:23
+#: dashboards/templates/content/playlist_update.html:23
+msgid "Videos"
+msgstr ""
+
+#: content/models.py:22
+msgid "Date published (newest)"
+msgstr ""
+
+#: content/models.py:23
+msgid "Date published (oldest)"
+msgstr ""
+
+#: content/models.py:24
+msgid "Most popular"
+msgstr ""
+
+#: content/models.py:25
+msgid "Date added (newest)"
+msgstr ""
+
+#: content/models.py:26
+msgid "Date added (oldest)"
+msgstr ""
+
+#: content/models.py:33 core/models.py:59 notification/models.py:28
+#: score/models.py:9 testpreps/models.py:152 testpreps/models.py:193
+#: testpreps/models.py:214
+msgid "created at"
+msgstr ""
+
+#: content/models.py:34 core/models.py:60 score/models.py:10
+#: testpreps/models.py:153 testpreps/models.py:194 testpreps/models.py:215
+msgid "updated at"
+msgstr ""
+
+#: content/models.py:37
+#, fuzzy
+#| msgid "My Playlist"
+msgid "Playlist"
+msgstr "بلدي قائمة التشغيل"
+
+#: content/models.py:38
+#, fuzzy
+#| msgid "My Playlist"
+msgid "Playlists"
+msgstr "بلدي قائمة التشغيل"
+
+#: content/models.py:61
+#, fuzzy
+#| msgid "My Playlist"
+msgid "Playlist Video"
+msgstr "بلدي قائمة التشغيل"
+
+#: content/models.py:62
+#, fuzzy
+#| msgid "My Playlist"
+msgid "Playlist Videos"
+msgstr "بلدي قائمة التشغيل"
+
+#: contents/models.py:13 contents/models.py:21
+msgid "Title"
+msgstr ""
+
+#: contents/models.py:20
+msgid "parent"
+msgstr ""
+
+#: contents/models.py:27 fields/models.py:52 fields/models.py:59
+msgid "Field"
+msgstr ""
+
+#: contents/models.py:28 fields/models.py:53 fields/models.py:60
+msgid "Fields"
+msgstr ""
+
+#: contents/models.py:35
+msgid "Opening title"
+msgstr ""
+
+#: contents/models.py:36
+msgid "Opening image"
+msgstr ""
+
+#: contents/models.py:47 quizzes/models.py:35
+msgid "Text"
+msgstr ""
+
+#: contents/models.py:48
+msgid "Texts"
+msgstr ""
+
+#: contents/models.py:56
+msgid "Images"
+msgstr ""
+
+#: contents/templates/admin/polymorphic_tree/change_form_breadcrumbs.html:16
+#: core/templates/admin/widgets/related_widget_wrapper.html:21
+#: dashboards/templates/create_playlist_form.html:10
+msgid "Add"
+msgstr ""
+
+#: contents/templates/admin/polymorphic_tree/delete_confirmation.html:16
+#: core/templates/admin/delete_confirmation.html:18
+#: core/templates/admin/filer/folder/directory_listing.html:195
+#: core/templates/admin/submit_line.html:6
+#: core/templates/admin/widgets/related_widget_wrapper.html:29
+#: dashboards/templates/content/playlist_form.html:24
+#: dashboards/templates/content/playlist_update.html:24
+msgid "Delete"
+msgstr ""
+
+#: contents/templates/admin/polymorphic_tree/jstree_list_results.html:115
+msgid ""
+"Unable to move the node, the current display is out-of-date.\\nThe current "
+"page now reloaded."
+msgstr ""
+
+#: contents/templates/admin/polymorphic_tree/jstree_list_results.html:123
+msgid ""
+"There was an error while moving the node, please reload the current page."
+msgstr ""
+
+#: contents/templates/admin/polymorphic_tree/object_history_breadcrumbs.html:16
+#: core/templates/admin/change_form_object_tools.html:5
+#: core/templates/admin/filer/file/change_form.html:35
+#: core/templates/admin/filer/folder/change_form.html:21
+#: core/templates/admin/filer/image/change_form.html:35
+#: core/templates/admin/object_history.html:10
+msgid "History"
+msgstr ""
+
+#: core/admin.py:40
+msgid "Featured Image"
+msgstr ""
+
+#: core/admin.py:54
+msgid "Parent"
+msgstr ""
+
+#: core/admin.py:62
+msgid "Content Types"
+msgstr ""
+
+#: core/models.py:45
+msgid "image"
+msgstr ""
+
+#: core/models.py:56
+msgid "media"
+msgstr ""
+
+#: core/models.py:64
+msgid "Published"
+msgstr ""
+
+#: core/models.py:65
+msgid "Archived"
+msgstr ""
+
+#: core/models.py:97 lessons/models.py:47 menus/models.py:32
+#: quizzes/models.py:68 testpreps/models.py:60 testpreps/models.py:114
+msgid "content"
+msgstr ""
+
+#: core/models.py:98 lessons/models.py:48 menus/models.py:33
+#: quizzes/models.py:69 testpreps/models.py:65 testpreps/models.py:119
+msgid "Position"
+msgstr ""
+
+#: core/templates/admin/404.html:4 core/templates/admin/404.html:8
+msgid "Page not found"
+msgstr ""
+
+#: core/templates/admin/404.html:10
+msgid "We’re sorry, but the requested page could not be found."
+msgstr ""
+
+#: core/templates/admin/500.html:7
+msgid "Server error"
+msgstr ""
+
+#: core/templates/admin/500.html:11
+msgid "Server error (500)"
+msgstr ""
+
+#: core/templates/admin/500.html:14
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: core/templates/admin/500.html:15
+msgid ""
+"There’s been an error. It’s been reported to the site administrators via "
+"email and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: core/templates/admin/actions.html:11
+#: core/templates/admin/filer/actions.html:5
+msgid "Run the selected action"
+msgstr ""
+
+#: core/templates/admin/actions.html:11
+#: core/templates/admin/filer/actions.html:5
+msgid "Go"
+msgstr ""
+
+#: core/templates/admin/actions.html:19
+#: core/templates/admin/filer/actions.html:14
+#: core/templates/admin/filer/folder/directory_table.html:226
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: core/templates/admin/actions.html:19
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: core/templates/admin/actions.html:21
+#: core/templates/admin/filer/actions.html:16
+#: core/templates/admin/filer/folder/directory_table.html:228
+msgid "Clear selection"
+msgstr ""
+
+#: core/templates/admin/app_index.html:35
+#: core/templates/admin/edit_inline/stacked.html:16
+#: core/templates/admin/edit_inline/tabular.html:46
+#: core/templates/admin/filer/folder/directory_listing.html:149
+#: core/templates/admin/widgets/related_widget_wrapper.html:13
+#: core/templates/nesting/admin/inlines/polymorphic_stacked.html:35
+#: core/templates/nesting/admin/inlines/stacked.html:40
+#: core/templates/nesting/admin/inlines/tabular.html:68
+msgid "Change"
+msgstr ""
+
+#: core/templates/admin/app_index.html:41
+msgid "Add New"
+msgstr ""
+
+#: core/templates/admin/app_index.html:43
+msgid "No Actions"
+msgstr ""
+
+#: core/templates/admin/app_index.html:54
+msgid "You don’t have permission to view or edit anything."
+msgstr ""
+
+#: core/templates/admin/app_list.html:11
+msgid "Dashboards"
+msgstr "لوحات القيادة"
+
+#: core/templates/admin/app_list.html:62
+msgid "Welcome,"
+msgstr ""
+
+#: core/templates/admin/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you’ll be able to edit more user"
+" options."
+msgstr ""
+
+#: core/templates/admin/auth/user/add_form.html:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: core/templates/admin/auth/user/change_password.html:29
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: core/templates/admin/base_site.html:3
+#: core/templates/admin/filer/folder/new_folder_form.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: core/templates/admin/base_site.html:6
+msgid "Django administration"
+msgstr ""
+
+#: core/templates/admin/change_form.html:37
+#: core/templates/admin/change_list_object_tools.html:12
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: core/templates/admin/change_form_object_tools.html:7
+#: core/templates/admin/edit_inline/stacked.html:18
+#: core/templates/admin/edit_inline/tabular.html:48
+#: core/templates/admin/filer/file/change_form.html:37
+#: core/templates/admin/filer/folder/change_form.html:23
+#: core/templates/admin/filer/image/change_form.html:37
+#: core/templates/nesting/admin/inlines/polymorphic_stacked.html:37
+#: core/templates/nesting/admin/inlines/stacked.html:42
+#: core/templates/nesting/admin/inlines/tabular.html:70
+msgid "View on site"
+msgstr ""
+
+#: core/templates/admin/change_list.html:49
+msgid "Filter"
+msgstr ""
+
+#: core/templates/admin/change_list.html:59
+#: core/templates/admin/filer/widgets/admin_file.html:9
+#: core/templates/admin/filer/widgets/admin_file.html:37
+#: core/templates/admin/filer/widgets/admin_folder.html:18
+msgid "Clear"
+msgstr ""
+
+#: core/templates/admin/change_list_results.html:45
+msgid "No matching records found"
+msgstr ""
+
+#: core/templates/admin/dashboard/activity.html:5
+msgid "Activity"
+msgstr "نشاط"
+
+#: core/templates/admin/delete_confirmation.html:35
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: core/templates/admin/delete_confirmation.html:44
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the"
+" following protected related objects:"
+msgstr ""
+
+#: core/templates/admin/delete_confirmation.html:59
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: core/templates/admin/delete_confirmation.html:63
+#: core/templates/admin/delete_selected_confirmation.html:39
+msgid "Objects"
+msgstr ""
+
+#: core/templates/admin/delete_confirmation.html:70
+#: core/templates/admin/delete_selected_confirmation.html:50
+msgid "Yes, I’m sure"
+msgstr ""
+
+#: core/templates/admin/delete_confirmation.html:71
+#: core/templates/admin/delete_selected_confirmation.html:51
+#: core/templates/admin/filer/delete_selected_files_confirmation.html:46
+#: core/templates/admin/filer/folder/choose_copy_destination.html:77
+#: core/templates/admin/filer/folder/choose_move_destination.html:73
+msgid "No, take me back"
+msgstr ""
+
+#: core/templates/admin/delete_selected_confirmation.html:17
+msgid "Delete multiple objects"
+msgstr ""
+
+#: core/templates/admin/delete_selected_confirmation.html:23
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: core/templates/admin/delete_selected_confirmation.html:30
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: core/templates/admin/delete_selected_confirmation.html:37
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: core/templates/admin/edit_inline/stacked.html:16
+#: core/templates/admin/edit_inline/tabular.html:46
+#: core/templates/admin/widgets/related_widget_wrapper.html:36
+#: core/templates/nesting/admin/inlines/polymorphic_stacked.html:35
+#: core/templates/nesting/admin/inlines/stacked.html:40
+#: core/templates/nesting/admin/inlines/tabular.html:68
+msgid "View"
+msgstr ""
+
+#: core/templates/admin/edit_inline/tabular.html:31
+#: core/templates/nesting/admin/inlines/tabular.html:42
+msgid "Delete?"
+msgstr ""
+
+#: core/templates/admin/filer/actions.html:14
+#, python-format
+msgid "Select all %(total_count)s files and/or folders"
+msgstr ""
+
+#: core/templates/admin/filer/breadcrumbs.html:4
+#: core/templates/admin/filer/folder/directory_listing.html:42
+msgid "Go back to admin homepage"
+msgstr ""
+
+#: core/templates/admin/filer/breadcrumbs.html:5
+#: core/templates/admin/filer/folder/directory_listing.html:46
+msgid "Go back to Filer app"
+msgstr ""
+
+#: core/templates/admin/filer/breadcrumbs.html:5
+#: core/templates/admin/filer/folder/change_form.html:7
+#: core/templates/admin/filer/folder/directory_listing.html:47
+msgid "Filer"
+msgstr ""
+
+#: core/templates/admin/filer/breadcrumbs.html:7
+#: core/templates/admin/filer/folder/directory_listing.html:51
+msgid "Go back to root folder"
+msgstr ""
+
+#: core/templates/admin/filer/breadcrumbs.html:7
+#: core/templates/admin/filer/folder/change_form.html:8
+#: core/templates/admin/filer/folder/directory_listing.html:51
+#: core/templates/admin/filer/folder/directory_listing.html:120
+msgid "root"
+msgstr ""
+
+#: core/templates/admin/filer/breadcrumbs.html:10
+#: core/templates/admin/filer/breadcrumbs.html:20
+#: core/templates/admin/filer/folder/change_form.html:10
+#: core/templates/admin/filer/folder/directory_listing.html:56
+#: core/templates/admin/filer/folder/directory_listing.html:63
+#, python-format
+msgid "Go back to '%(folder_name)s' folder"
+msgstr ""
+
+#: core/templates/admin/filer/change_form.html:25
+msgid "Duplicates"
+msgstr ""
+
+#: core/templates/admin/filer/delete_selected_files_confirmation.html:11
+msgid ""
+"Deleting the selected files and/or folders would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: core/templates/admin/filer/delete_selected_files_confirmation.html:19
+msgid ""
+"Deleting the selected files and/or folders would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: core/templates/admin/filer/delete_selected_files_confirmation.html:27
+msgid ""
+"Are you sure you want to delete the selected files and/or folders? All of "
+"the following objects and their related items will be deleted:"
+msgstr ""
+
+#: core/templates/admin/filer/delete_selected_files_confirmation.html:47
+msgid "Yes, I&#39;m sure"
+msgstr ""
+
+#: core/templates/admin/filer/folder/change_form.html:6
+#: core/templates/admin/filer/folder/change_form.html:7
+#: core/templates/admin/filer/folder/change_form.html:8
+#: core/templates/admin/filer/folder/directory_listing.html:120
+msgid "Go back to"
+msgstr ""
+
+#: core/templates/admin/filer/folder/change_form.html:6
+msgid "admin homepage"
+msgstr ""
+
+#: core/templates/admin/filer/folder/change_form.html:8
+#: core/templates/admin/filer/folder/directory_listing.html:120
+#: core/templates/admin/filer/folder/new_folder_form.html:4
+#: core/templates/admin/filer/folder/new_folder_form.html:7
+#: core/templates/admin/filer/tools/clipboard/clipboard.html:27
+msgid "folder"
+msgstr ""
+
+#: core/templates/admin/filer/folder/change_form.html:37
+#: core/templates/admin/filer/folder/directory_listing.html:113
+#: core/templates/admin/filer/folder/directory_listing.html:121
+#: core/templates/admin/filer/folder/directory_table.html:28
+#: core/templates/admin/filer/folder/directory_table.html:58
+#: core/templates/admin/filer/folder/directory_table.html:172
+msgid "Folder Icon"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_copy_destination.html:36
+msgid ""
+"Your account doesn't have permissions to copy all of the selected files "
+"and/or folders."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_copy_destination.html:38
+#: core/templates/admin/filer/folder/choose_copy_destination.html:44
+#: core/templates/admin/filer/folder/choose_copy_destination.html:50
+#: core/templates/admin/filer/folder/choose_move_destination.html:38
+#: core/templates/admin/filer/folder/choose_move_destination.html:44
+#: core/templates/admin/filer/folder/choose_move_destination.html:50
+msgid "Take me back"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_copy_destination.html:42
+#: core/templates/admin/filer/folder/choose_move_destination.html:42
+msgid "There are no destination folders available."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_copy_destination.html:48
+msgid "There are no files and/or folders available to copy."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_copy_destination.html:53
+msgid ""
+"The following files and/or folders will be copied to a destination folder "
+"(retaining their tree structure):"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_copy_destination.html:67
+#: core/templates/admin/filer/folder/choose_move_destination.html:65
+msgid "Destination folder:"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_copy_destination.html:78
+#: core/templates/admin/filer/folder/choose_copy_destination.html:81
+#: core/templates/admin/filer/folder/directory_listing.html:198
+msgid "Copy"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_copy_destination.html:80
+msgid "It is not allowed to copy files into same folder"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_images_resize_options.html:15
+msgid ""
+"Your account doesn't have permissions to resize all of the selected images."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_images_resize_options.html:18
+msgid "There are no images available to resize."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_images_resize_options.html:20
+msgid "The following images will be resized:"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_images_resize_options.html:33
+msgid "Choose an existing thumbnail option or enter resize parameters:"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_images_resize_options.html:35
+msgid "Choose resize parameters:"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_images_resize_options.html:38
+msgid ""
+"Warning: Images will be resized in-place and originals will be lost. Maybe "
+"first make a copy of them to retain the originals."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_images_resize_options.html:41
+msgid "Resize"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_move_destination.html:36
+msgid ""
+"Your account doesn't have permissions to move all of the selected files "
+"and/or folders."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_move_destination.html:48
+msgid "There are no files and/or folders available to move."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_move_destination.html:53
+msgid ""
+"The following files and/or folders will be moved to a destination folder "
+"(retaining their tree structure):"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_move_destination.html:74
+#: core/templates/admin/filer/folder/choose_move_destination.html:77
+#: core/templates/admin/filer/folder/directory_listing.html:201
+msgid "Move"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_move_destination.html:76
+msgid "It is not allowed to move files into same folder"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_rename_format.html:15
+msgid ""
+"Your account doesn't have permissions to rename all of the selected files."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_rename_format.html:18
+msgid "There are no files available to rename."
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_rename_format.html:20
+msgid ""
+"The following files will be renamed (they will stay in their folders and "
+"keep original filename, only displayed filename will be changed):"
+msgstr ""
+
+#: core/templates/admin/filer/folder/choose_rename_format.html:59
+msgid "Rename"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:112
+msgid "Go back to the parent folder"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:149
+msgid "Change current folder details"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:163
+#: core/templates/admin/search_form.html:15
+msgid "Search"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:170
+#: core/templates/admin/submit_line.html:16
+msgid "Close"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:172
+msgid "Limit"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:177
+msgid "Check it to limit the search to current folder"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:178
+msgid "Limit the search to current folder"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:183
+msgid "Click here to run search for entered phrase"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:219
+msgid "Adds a new Folder"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:223
+msgid "New Folder"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:228
+#: core/templates/admin/filer/folder/directory_listing.html:233
+#: core/templates/admin/filer/folder/directory_listing.html:236
+#: core/templates/admin/filer/folder/directory_listing.html:241
+#: core/templates/admin/filer/folder/directory_listing.html:249
+msgid "Upload Files"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_listing.html:246
+msgid "You have to select a folder first"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:4
+#: core/templates/admin/filer/folder/directory_table.html:165
+#: core/templates/admin/filer/tools/clipboard/clipboard.html:27
+msgid "Unsorted Uploads"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:16
+#: core/templates/admin/filer/tools/detail_info.html:58
+msgid "Owner"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:17
+#: core/templates/admin/filer/tools/detail_info.html:37
+msgid "Size"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:18
+msgid "Actions"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:27
+#: core/templates/admin/filer/folder/directory_table.html:34
+#: core/templates/admin/filer/folder/directory_table.html:57
+#: core/templates/admin/filer/folder/directory_table.html:64
+#, python-format
+msgid "Change '%(item_label)s' folder details"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:75
+#: core/templates/admin/filer/tools/search_form.html:5
+#, python-format
+msgid "%(counter)s folder"
+msgid_plural "%(counter)s folders"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templates/admin/filer/folder/directory_table.html:76
+#: core/templates/admin/filer/tools/search_form.html:6
+#, python-format
+msgid "%(counter)s file"
+msgid_plural "%(counter)s files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templates/admin/filer/folder/directory_table.html:82
+msgid "Change folder details"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:83
+msgid "Remove folder"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:95
+#: core/templates/admin/filer/folder/directory_table.html:103
+#: core/templates/admin/filer/folder/directory_table.html:118
+msgid "Select this file"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:106
+#: core/templates/admin/filer/folder/directory_table.html:121
+#: core/templates/admin/filer/folder/directory_table.html:145
+#, python-format
+msgid "Change '%(item_label)s' details"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:130
+msgid "Permissions"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:130
+msgid "disabled"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:130
+msgid "enabled"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:141
+#, python-format
+msgid "Canonical url '%(item_label)s'"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:143
+#, python-format
+msgid "Download '%(item_label)s'"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:146
+msgid "Remove file"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:169
+msgid "Drop your file to upload into:"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:179
+msgid "Upload"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:191
+msgid "cancel"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:195
+msgid "Upload success!"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:199
+msgid "Upload canceled!"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:206
+msgid "previous"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:211
+#, python-format
+msgid "Page %(number)s of %(num_pages)s."
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:216
+msgid "next"
+msgstr ""
+
+#: core/templates/admin/filer/folder/directory_table.html:226
+#, python-format
+msgid "Select all %(total_count)s"
+msgstr ""
+
+#: core/templates/admin/filer/folder/new_folder_form.html:4
+#: core/templates/admin/filer/folder/new_folder_form.html:7
+msgid "Add new"
+msgstr ""
+
+#: core/templates/admin/filer/folder/new_folder_form.html:30
+#: core/templates/admin/pagination.html:7
+#: core/templates/admin/submit_line.html:11
+#: dashboards/templates/content/playlist_form.html:17
+#: dashboards/templates/content/playlist_update.html:17
+msgid "Save"
+msgstr ""
+
+#: core/templates/admin/filer/templatetags/file_icon.html:9
+msgid "Your browser does not support audio."
+msgstr ""
+
+#: core/templates/admin/filer/templatetags/file_icon.html:14
+msgid "Your browser does not support video."
+msgstr ""
+
+#: core/templates/admin/filer/tools/clipboard/clipboard.html:9
+msgid "Clipboard"
+msgstr ""
+
+#: core/templates/admin/filer/tools/clipboard/clipboard.html:21
+msgid "Paste all items here"
+msgstr ""
+
+#: core/templates/admin/filer/tools/clipboard/clipboard.html:27
+msgid "Move all clipboard files to"
+msgstr ""
+
+#: core/templates/admin/filer/tools/clipboard/clipboard.html:27
+msgid "Empty Clipboard"
+msgstr ""
+
+#: core/templates/admin/filer/tools/clipboard/clipboard.html:50
+msgid "the clipboard is empty"
+msgstr ""
+
+#: core/templates/admin/filer/tools/clipboard/clipboard_item_rows.html:16
+msgid "upload failed"
+msgstr ""
+
+#: core/templates/admin/filer/tools/detail_info.html:19
+msgid "Expand"
+msgstr ""
+
+#: core/templates/admin/filer/tools/detail_info.html:24
+#: core/templates/admin/filer/widgets/admin_file.html:30
+msgid "File is missing"
+msgstr ""
+
+#: core/templates/admin/filer/tools/detail_info.html:33
+#: notification/models.py:10
+msgid "Type"
+msgstr ""
+
+#: core/templates/admin/filer/tools/detail_info.html:41
+msgid "File-size"
+msgstr ""
+
+#: core/templates/admin/filer/tools/detail_info.html:45
+msgid "Modified"
+msgstr ""
+
+#: core/templates/admin/filer/tools/detail_info.html:49
+msgid "Created"
+msgstr ""
+
+#: core/templates/admin/filer/tools/search_form.html:5
+msgid "found"
+msgstr ""
+
+#: core/templates/admin/filer/tools/search_form.html:5
+msgid "and"
+msgstr ""
+
+#: core/templates/admin/filer/tools/search_form.html:7
+msgid "cancel search"
+msgstr ""
+
+#: core/templates/admin/filer/widgets/admin_file.html:19
+msgid "Drop files here or click to upload"
+msgstr ""
+
+#: core/templates/admin/filer/widgets/admin_file.html:33
+msgid "no file selected"
+msgstr ""
+
+#: core/templates/admin/filer/widgets/admin_file.html:40
+#: core/templates/admin/filer/widgets/admin_folder.html:14
+msgid "Lookup"
+msgstr ""
+
+#: core/templates/admin/filer/widgets/admin_file.html:41
+msgid "Choose File"
+msgstr ""
+
+#: core/templates/admin/filer/widgets/admin_folder.html:7
+#: core/templates/admin/filer/widgets/admin_folder.html:33
+msgid "Folder"
+msgstr ""
+
+#: core/templates/admin/filer/widgets/admin_folder.html:11
+#: core/templates/admin/filer/widgets/admin_folder.html:33
+msgid "none selected"
+msgstr ""
+
+#: core/templates/admin/filer/widgets/admin_folder.html:15
+msgid "Add Folder"
+msgstr ""
+
+#: core/templates/admin/filter.html:4 core/templates/admin/mptt_filter.html:3
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: core/templates/admin/includes/object_delete_summary.html:2
+msgid "Summary"
+msgstr ""
+
+#: core/templates/admin/invalid_setup.html:12
+msgid ""
+"Something’s wrong with your database installation. Make sure the appropriate"
+" database tables have been created, and make sure the database is readable "
+"by the appropriate user."
+msgstr ""
+
+#: core/templates/admin/login.html:28
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this"
+" page. Would you like to login to a different account?"
+msgstr ""
+
+#: core/templates/admin/login.html:43
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: core/templates/admin/object_history.html:22
+msgid "Date/time"
+msgstr ""
+
+#: core/templates/admin/object_history.html:24
+msgid "Action"
+msgstr ""
+
+#: core/templates/admin/object_history.html:49
+msgid "entry"
+msgstr ""
+
+#: core/templates/admin/object_history.html:49
+msgid "entries"
+msgstr ""
+
+#: core/templates/admin/object_history.html:52
+msgid ""
+"This object doesn’t have a change history. It probably wasn’t added via this"
+" admin site."
+msgstr ""
+
+#: core/templates/admin/pagination.html:6
+#: core/templates/admin/search_form.html:20
+msgid "Show all"
+msgstr ""
+
+#: core/templates/admin/parler/deletion_not_allowed.html:5
+#, python-format
+msgid ""
+"Deletion of the %(language_name)s translation of %(object_name)s "
+"'%(escaped_object)s' is not allowed, because it is the last available "
+"translation of this instance."
+msgstr ""
+
+#: core/templates/admin/parler/language_tabs.html:17
+#: core/templates/admin/parler/language_tabs.html:23
+msgid "Delete Translation"
+msgstr ""
+
+#: core/templates/admin/partials/sidebar-layout/header/_toolbar.html:11
+msgid "View site"
+msgstr ""
+
+#: core/templates/admin/popup_response.html:3
+msgid "Popup closing…"
+msgstr ""
+
+#: core/templates/admin/search_form.html:20
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templates/admin/search_form.html:20
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: core/templates/admin/submit_line.html:13
+msgid "Save as new"
+msgstr ""
+
+#: core/templates/admin/submit_line.html:14
+msgid "Save and add another"
+msgstr ""
+
+#: core/templates/admin/submit_line.html:15
+msgid "Save and continue editing"
+msgstr ""
+
+#: core/templates/admin/submit_line.html:15
+msgid "Save and view"
+msgstr ""
+
+#: core/templates/admin/widgets/related_widget_wrapper.html:12
+#, python-format
+msgid "Change selected %(model)s"
+msgstr ""
+
+#: core/templates/admin/widgets/related_widget_wrapper.html:20
+#, python-format
+msgid "Add another %(model)s"
+msgstr ""
+
+#: core/templates/admin/widgets/related_widget_wrapper.html:28
+#, python-format
+msgid "Delete selected %(model)s"
+msgstr ""
+
+#: core/templates/admin/widgets/related_widget_wrapper.html:35
+#, python-format
+msgid "View selected %(model)s"
+msgstr ""
+
+#: core/templates/nesting/admin/inlines/polymorphic_stacked.html:86
+#: core/templates/nesting/admin/inlines/stacked.html:85
+#: core/templates/nesting/admin/inlines/tabular.html:131
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: core/templates/registration/password_reset_form.html:14
+msgid ""
+"Forgotten your password? Enter your email address below, and we’ll email "
+"instructions for setting a new one."
+msgstr ""
+
+#: courses/models.py:32
+msgid "Grade"
+msgstr ""
+
+#: courses/models.py:33
+msgid "Grades"
+msgstr ""
+
+#: courses/models.py:50
+msgid "Subjects"
+msgstr ""
+
+#: courses/models.py:66
+msgid "Course"
+msgstr "دورة"
+
+#: courses/models.py:67
+msgid "Courses"
+msgstr "الدورات"
+
+#: dashboards/templates/content/playlist_detail.html:43
+msgid "No Video"
+msgstr ""
+
+#: dashboards/templates/content/playlist_form.html:11
+#: dashboards/templates/content/playlist_update.html:11
+msgid "Playlist details"
+msgstr ""
+
+#: dashboards/templates/content/playlist_list.html:11
+#: dashboards/templates/content/video_detail.html:8
+#: dashboards/templates/pages/dashboards/playlist.html:11
+msgid "My Playlist"
+msgstr "بلدي قائمة التشغيل"
+
+#: dashboards/templates/content/playlist_list.html:52
+msgid "Update"
+msgstr ""
+
+#: dashboards/templates/content/video_detail.html:38
+msgid "Overview"
+msgstr "ملخص"
+
+#: dashboards/templates/content/video_detail.html:39
+msgid "Course Content"
+msgstr "محتوى الدورة"
+
+#: dashboards/templates/content/video_detail.html:65
+#: dashboards/templates/courses/course-content.html:13
+#: dashboards/templates/courses/search.html:37
+msgid "Chapter"
+msgstr "الفصل"
+
+#: dashboards/templates/courses/course-content.html:60 testpreps/models.py:19
+msgid "Test Prep"
+msgstr ""
+
+#: dashboards/templates/courses/course_detail_video.html:104
+#: dashboards/templates/courses/course_detail_video.html:106
+#: dashboards/templates/lessons/learn_detail.html:54
+msgid "Previous"
+msgstr "سابق"
+
+#: dashboards/templates/courses/course_detail_video.html:110
+#: dashboards/templates/courses/course_detail_video.html:112
+#: dashboards/templates/lessons/learn_detail.html:55
+msgid "Next"
+msgstr "التالي"
+
+#: dashboards/templates/courses/course_detail_video.html:207
+msgid "Course summary"
+msgstr "ملخص الدورة"
+
+#: dashboards/templates/courses/course_detail_video.html:227
+msgid "Other"
+msgstr "آخر"
+
+#: dashboards/templates/courses/course_detail_video.html:394
+#, fuzzy
+#| msgid "My Playlist"
+msgid "Create Playlist"
+msgstr "بلدي قائمة التشغيل"
+
+#: dashboards/templates/layout/default.html:35
+msgid "Student Profile"
+msgstr "حساب الطالب"
+
+#: dashboards/templates/layout/default.html:55
+msgid "My Profile"
+msgstr "ملفي"
+
+#: dashboards/templates/layout/default.html:118 notification/models.py:20
+msgid "Notification"
+msgstr ""
+
+#: dashboards/templates/layout/default.html:136
+msgid "Terms And Conditions"
+msgstr "الأحكام والشروط"
+
+#: dashboards/templates/layout/default.html:137
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+#: dashboards/templates/layout/default.html:138
+msgid "Cookie Policy"
+msgstr "سياسة ملفات الارتباط"
+
+#: dashboards/templates/layout/default.html:139
+msgid "Integrity Policy"
+msgstr "سياسة النزاهة"
+
+#: dashboards/templates/lessons/learn_detail.html:60
+#: dashboards/templates/lessons/lesson_detail.html:50
+msgid "Back to course"
+msgstr "العودة إلى الدورة"
+
+#: dashboards/templates/lessons/learn_detail.html:81
+#: dashboards/templates/lessons/lesson_detail.html:70
+#: dashboards/templates/lessons/lessonitem_detail.html:87
+msgid "About"
+msgstr "عن"
+
+#: dashboards/templates/lessons/learn_detail.html:82 lessons/models.py:74
+msgid "Transcript"
+msgstr "نص"
+
+#: dashboards/templates/lessons/lessonitem_detail.html:37
+msgid "Empty"
+msgstr "فارغ"
+
+#: dashboards/templates/lessons/practice_detail.html:124
+#: dashboards/templates/quizzes/quiz_detail.html:83
+msgid "Try again"
+msgstr "حاول ثانية"
+
+#: dashboards/templates/lessons/practice_detail.html:126
+#: dashboards/templates/quizzes/quiz_detail.html:85
+msgid "Next Question"
+msgstr "السؤال التالي"
+
+#: dashboards/templates/lessons/practice_detail.html:128
+#: dashboards/templates/quizzes/quiz_detail.html:87
+msgid "Show Summary"
+msgstr "عرض الملخص"
+
+#: dashboards/templates/lessons/practice_detail.html:130
+#: dashboards/templates/quizzes/quiz_detail.html:89
+msgid "Check"
+msgstr "يفحص"
+
+#: dashboards/templates/pages/dashboards/courses.html:10
+msgid "List Course"
+msgstr "قائمة بالطبع"
+
+#: dashboards/templates/pages/dashboards/profile.html:14
+msgid "Balance"
+msgstr "رصيد"
+
+#: dashboards/templates/pages/dashboards/progress_detail.html:12
+msgid "My Progress"
+msgstr "تقدمي"
+
+#: dashboards/templates/pages/dashboards/progress_detail.html:90
+msgid "CHAPTER"
+msgstr "الفصل"
+
+#: dashboards/templates/pages/dashboards/progress_detail.html:91
+msgid "Score"
+msgstr "نتيجة"
+
+#: dashboards/templates/templatetags/notification.html:30
+msgid "Empty notification"
+msgstr ""
+
+#: dashboards/templates/templatetags/sidebar.html:24
+msgid "FAQ"
+msgstr "التعليمات"
+
+#: dashboards/templates/templatetags/sidebar.html:30
+msgid "Contact Us"
+msgstr "اتصل بنا"
+
+#: dashboards/templates/templatetags/sidebar.html:36
+msgid "News and Blogs"
+msgstr "الأخبار والمدونات"
+
+#: dashboards/templates/testpreps/part_detail.html:59
+msgid "Time"
+msgstr ""
+
+#: dashboards/templates/testpreps/part_detail.html:145
+#: dashboards/templates/testpreps/testprep_result.html:92
+#: dashboards/templates/testpreps/testprepresult_detail.html:102
+#: quizzes/models.py:56 testpreps/models.py:94 testpreps/models.py:107
+msgid "Question"
+msgstr ""
+
+#: dashboards/templates/testpreps/part_detail.html:168
+#: dashboards/templates/testpreps/part_detail.html:181
+#: dashboards/templates/testpreps/testprepresult_detail.html:120
+msgid "Submit Test"
+msgstr ""
+
+#: dashboards/templates/testpreps/part_detail.html:170
+msgid "Continue Exam"
+msgstr ""
+
+#: dashboards/templates/testpreps/part_detail.html:178
+#, fuzzy
+#| msgid "Next Question"
+msgid "No Question"
+msgstr "السؤال التالي"
+
+#: dashboards/templates/testpreps/testprep_detail.html:32
+msgid "Take Now"
+msgstr ""
+
+#: dashboards/templates/testpreps/testprep_detail.html:86
+msgid "View Results"
+msgstr ""
+
+#: dashboards/templates/testpreps/testprep_result.html:24
+msgid "Result Details"
+msgstr ""
+
+#: dashboards/templates/testpreps/testprep_result.html:41
+msgid "Total time"
+msgstr ""
+
+#: dashboards/templates/testpreps/testprep_result.html:49
+msgid "Back"
+msgstr ""
+
+#: dashboards/templates/testpreps/testprep_result.html:75
+msgid "Answer Sheet"
+msgstr ""
+
+#: dashboards/templates/testpreps/testprep_result.html:84
+#: testpreps/models.py:53
+msgid "Part"
+msgstr ""
+
+#: dashboards/templates/testpreps/testprepresult_detail.html:122
+msgid "Continue"
+msgstr ""
+
+#: events/models.py:17
+msgid "Event Object"
+msgstr ""
+
+#: events/models.py:18
+msgid "Event Objects"
+msgstr ""
+
+#: events/models.py:43
+msgid "Calendar"
+msgstr ""
+
+#: events/models.py:44
+msgid "Calendars"
+msgstr ""
+
+#: events/models.py:57
+msgid "Event"
+msgstr ""
+
+#: events/models.py:58
+msgid "Events"
+msgstr ""
+
+#: fields/models.py:25
+msgid "Field Group"
+msgstr ""
+
+#: fields/models.py:26
+msgid "Field Groups"
+msgstr ""
+
+#: fields/models.py:44
+msgid "attributes"
+msgstr ""
+
+#: frontend/templates/header.html:48
+msgid "Hi"
+msgstr ""
+
+#: frontend/templates/header.html:49
+msgid "Logout"
+msgstr ""
+
+#: frontend/templatetags/frontend_extras.py:49
+msgid "Choose your grade level"
+msgstr ""
+
+#: frontend/templatetags/frontend_extras.py:56
+msgid "Choose your test-prep"
+msgstr ""
+
+#: lessons/models.py:14
+msgid "Lesson"
+msgstr "درس"
+
+#: lessons/models.py:15
+msgid "Lessons"
+msgstr "الدروس"
+
+#: lessons/models.py:65
+msgid "Learn"
+msgstr "يتعلم"
+
+#: lessons/models.py:66
+msgid "Learns"
+msgstr "يتعلم"
+
+#: lessons/models.py:75
+msgid "Transcripts"
+msgstr "النصوص"
+
+#: lessons/models.py:83
+msgid "Practice"
+msgstr ""
+
+#: lessons/models.py:84
+msgid "Practices"
+msgstr ""
+
+#: menus/models.py:20
+msgid "Menu"
+msgstr ""
+
+#: menus/models.py:21
+msgid "Menus"
+msgstr ""
+
+#: menus/models.py:51 menus/models.py:56
+msgid "Menu Item"
+msgstr ""
+
+#: menus/models.py:52 menus/models.py:57
+msgid "Menu Items"
+msgstr ""
+
+#: mysite/settings.py:211
+msgid "English"
+msgstr ""
+
+#: mysite/settings.py:212
+msgid "العربيّة"
+msgstr ""
+
+#: notification/models.py:11
+msgid "Types"
+msgstr ""
+
+#: notification/models.py:21
+msgid "Notifications"
+msgstr ""
+
+#: orders/admin.py:43
+msgid "date"
+msgstr ""
+
+#: orders/admin.py:47
+msgid "customer"
+msgstr ""
+
+#: orders/admin.py:51
+msgid "total"
+msgstr ""
+
+#: orders/admin.py:56
+msgid "payment status"
+msgstr ""
+
+#: orders/admin.py:58
+msgid "UnPaid"
+msgstr ""
+
+#: orders/admin.py:60
+msgid "Paid"
+msgstr ""
+
+#: orders/admin.py:63
+msgid "items"
+msgstr ""
+
+#: orders/admin.py:65
+msgid "{obj.lines.count()} item"
+msgstr ""
+
+#: orders/admin.py:101
+msgid "Order Details"
+msgstr ""
+
+#: orders/admin.py:117
+msgid "Price Gross"
+msgstr ""
+
+#: orders/admin.py:120
+msgid "Price Net"
+msgstr ""
+
+#: orders/admin.py:123
+msgid "Unit Price"
+msgstr ""
+
+#: pages/models.py:10
+msgid "Page"
+msgstr ""
+
+#: pages/models.py:11
+msgid "Pages"
+msgstr ""
+
+#: products/models.py:36
+msgid "Plan"
+msgstr ""
+
+#: products/models.py:37
+msgid "Plans"
+msgstr ""
+
+#: products/models.py:71
+msgid "Price"
+msgstr ""
+
+#: products/models.py:72
+msgid "Prices"
+msgstr ""
+
+#: quizzes/models.py:13
+msgid "Quiz"
+msgstr "اختبار"
+
+#: quizzes/models.py:14
+msgid "Quizzes"
+msgstr "الإختبارات"
+
+#: quizzes/models.py:32
+msgid "Select Type"
+msgstr ""
+
+#: quizzes/models.py:33
+msgid "single choice(Yes/No)"
+msgstr ""
+
+#: quizzes/models.py:34
+msgid "Multiple Choice"
+msgstr ""
+
+#: quizzes/models.py:36
+msgid "Textarea"
+msgstr ""
+
+#: quizzes/models.py:57 testpreps/models.py:95 testpreps/models.py:108
+msgid "Questions"
+msgstr ""
+
+#: quizzes/models.py:71
+msgid "correct"
+msgstr ""
+
+#: score/models.py:20
+msgid "Learn Score"
+msgstr ""
+
+#: score/models.py:21
+msgid "Learn Scores"
+msgstr ""
+
+#: score/models.py:27
+msgid "Practice Score"
+msgstr ""
+
+#: score/models.py:28
+msgid "Practice Scores"
+msgstr ""
+
+#: score/models.py:34
+msgid "Quiz Score"
+msgstr ""
+
+#: score/models.py:35
+msgid "Quiz Scores"
+msgstr ""
+
+#: score/models.py:42
+msgid "Question Score"
+msgstr ""
+
+#: score/models.py:43
+msgid "Question Scores"
+msgstr ""
+
+#: sections/models.py:26
+msgid "Section"
+msgstr "الدورات"
+
+#: sections/models.py:27
+msgid "Sections"
+msgstr "الأقسام"
+
+#: sections/models.py:61
+msgid "Section Item"
+msgstr "عنصر القسم"
+
+#: sections/models.py:62
+msgid "Section Items"
+msgstr "عنصر القسم"
+
+#: settings/models.py:36
+msgid "Setting"
+msgstr ""
+
+#: settings/models.py:37
+msgid "Settings"
+msgstr ""
+
+#: testpreps/models.py:20
+msgid "Test Preps"
+msgstr ""
+
+#: testpreps/models.py:35
+msgid "TestPrep"
+msgstr ""
+
+#: testpreps/models.py:36
+msgid "TestPreps"
+msgstr ""
+
+#: testpreps/models.py:54
+msgid "Parts"
+msgstr ""
+
+#: testpreps/models.py:71
+msgid "Multiple Choice Questions"
+msgstr ""
+
+#: testpreps/models.py:73
+msgid "Single Select"
+msgstr ""
+
+#: testpreps/models.py:74
+msgid "Multi-Select"
+msgstr ""
+
+#: testpreps/models.py:75
+msgid "Dropdown Menu"
+msgstr ""
+
+#: testpreps/models.py:76
+msgid "Star Rating"
+msgstr ""
+
+#: testpreps/models.py:77
+msgid "Text Slider"
+msgstr ""
+
+#: testpreps/models.py:78
+msgid "Numeric Slider"
+msgstr ""
+
+#: testpreps/models.py:79
+msgid "Thumbs Up/Down"
+msgstr ""
+
+#: testpreps/models.py:80
+msgid "Matrix Table"
+msgstr ""
+
+#: testpreps/models.py:81
+msgid "Rank Order"
+msgstr ""
+
+#: testpreps/models.py:82
+msgid "Image/Picture Based"
+msgstr ""
+
+#: testpreps/models.py:85
+msgid "True/False"
+msgstr ""
+
+#: testpreps/models.py:86
+msgid "Short Answer"
+msgstr ""
+
+#: testpreps/models.py:87
+msgid "Essay"
+msgstr ""
+
+#: testpreps/models.py:126 testpreps/models.py:134
+msgid "Answer"
+msgstr ""
+
+#: testpreps/models.py:127 testpreps/models.py:135
+msgid "Answers"
+msgstr ""
+
+#: testpreps/models.py:145 testpreps/models.py:186
+msgid "Pending"
+msgstr ""
+
+#: testpreps/models.py:146 testpreps/models.py:187
+#, fuzzy
+#| msgid "My Progress"
+msgid "In Progress"
+msgstr "تقدمي"
+
+#: testpreps/models.py:147 testpreps/models.py:188
+msgid "Completed"
+msgstr ""
+
+#: testpreps/models.py:171
+msgid "Testprep Result"
+msgstr ""
+
+#: testpreps/models.py:172
+msgid "Testprep Results"
+msgstr ""
+
+#: testpreps/models.py:200
+msgid "Part Result"
+msgstr ""
+
+#: testpreps/models.py:201
+msgid "Part Results"
+msgstr ""
+
+#~ msgid "Dashboard"
+#~ msgstr "لوحة القيادة"
+
+#~ msgid "My Courses"
+#~ msgstr "دوراتي"
+
+#~ msgid "My History"
+#~ msgstr "تاريخي"
+
+#~ msgid "My Schedule"
+#~ msgstr "جدولي"

@@ -1,0 +1,100 @@
+{% extends 'admin/master.html' %}
+{% load i18n static %}
+{% block layout %}
+
+    <!--begin::Main-->
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="page d-flex flex-row flex-column-fluid">
+            <!--begin::Aside-->
+            {% if not is_popup and is_nav_sidebar_enabled %}
+                {% block nav-sidebar %}
+                    {% include "admin/nav_sidebar.html" %}
+                {% endblock %}
+            {% endif %}
+
+            <!--end::Aside-->
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-column flex-row-fluid{% if not is_popup and is_nav_sidebar_enabled %} wrapper{% endif %}">
+                <!--begin::Header-->
+                {% include './partials/sidebar-layout/_header.html' %}
+                <!--end::Header-->
+                <!--begin::Content-->
+                <div class="content d-flex flex-column flex-column-fluid">
+                    <!--begin::Toolbar-->
+                    <div class="toolbar d-flex flex-stack mb-3 mb-lg-5" id="kt_toolbar">
+                        <!--begin::Container-->
+                        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack flex-wrap">
+                            <!--begin::Page title-->
+                            <div class="page-title d-flex flex-column me-5 py-2">
+                                {% block pretitle %}{% endblock %}
+                                {% block content_title %}{% if title %}
+                                    <h1 class="d-flex flex-column text-dark fw-bold fs-3 mb-0">{{ title }}</h1>
+                                {% endif %}{% endblock %}
+                                {% block content_subtitle %}{% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}{% endblock %}
+
+                                {% block breadcrumbs %}
+                                    <div class="breadcrumbs">
+                                        <a href="{% url 'admin:index' %}"
+                                           class="text-muted text-hover-primary">{% translate 'Home' %}</a>
+                                        {% if title %} &rsaquo; {{ title }}{% endif %}
+                                    </div>
+                                {% endblock %}
+                            </div>
+                            <!--end::Page title-->
+                            <!--begin::Actions-->
+                            <div class="d-flex align-items-center py-2">
+                                {% block object-tools %}{% endblock %}
+                            </div>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Toolbar-->
+                    <!--begin::Post-->
+                    {% block messages %}
+                        {% if messages %}
+                            <div class="container-xxl">
+                                {% for message in messages %}
+                                    <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} d-flex align-items-center p-5">
+                                        <div class="d-flex flex-column">
+                                            <h4 class="mb-1 text-{% if message.tags %}{{ message.tags }}{% endif %}">
+                                                Message</h4>
+                                            <span>{{ message|capfirst }}</span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endblock messages %}
+
+                    <div class="post d-flex flex-column-fluid">
+                        <div class="container-xxl">
+                            {% block content %}
+                                {{ content }}
+                            {% endblock content %}
+                        </div>
+                    </div>
+                    {% block sidebar %}{% endblock %}
+                    <!--end::Post-->
+                </div>
+                <!--end::Content-->
+                <!--begin::Footer-->
+                {% include './partials/sidebar-layout/_footer.html' %}
+                <!--end::Footer-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::Root-->
+    <!--begin::Drawers-->
+    {% comment %} {% include './partials/_drawers.html' %} {% endcomment %}
+    <!--end::Drawers-->
+    <!--end::Main-->
+    {% include './partials/_scrolltop.html' %}
+    <!--begin::Modals-->
+    {% include './partials/_modals.html' %}
+    <!--end::Modals-->
+{% endblock layout %}

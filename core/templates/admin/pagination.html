@@ -1,0 +1,23 @@
+{% load admin_list %}
+{% load i18n %}
+<div class="d-flex justify-content-between">
+    <div>
+    {{ cl.result_count }} {% if cl.result_count == 1 %}{{ cl.opts.verbose_name }}{% else %}{{ cl.opts.verbose_name_plural }}{% endif %}
+    {% if show_all_url %}<a href="{{ show_all_url }}" class="showall">{% translate 'Show all' %}</a>{% endif %}
+    {% if cl.formset and cl.result_count %}<input type="submit" name="_save" class="default" value="{% translate 'Save' %}">{% endif %}
+    </div>
+    <ul class="pagination">
+        {% if pagination_required %}
+        <li class="page-item previous {% if cl.page_num == 1 %}disabled{% endif %}">
+            <a href="{{ cl.get_query_string }}{% if cl.get_query_string %}&amp;{% endif %}page={{ cl.page_num|add:'-1' }}" class="page-link"><i class="previous"></i></a>
+        </li>
+        {% for i in page_range %}
+            <li class="page-item {% if cl.page_num == i %}active{% endif %}"><a href="{{ cl.get_query_string }}p={{ i }}" class="page-link">{{ i }}</a></li>
+        {% endfor %}
+        <li class="page-item next {% if cl.page_num == cl.paginator.num_pages %}disabled{% endif %}">
+            <a href="{{ cl.get_query_string }}{% if cl.get_query_string %}&amp;{% endif %}page={{ cl.page_num|add:'1' }}" class="page-link"><i class="next"></i></a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+

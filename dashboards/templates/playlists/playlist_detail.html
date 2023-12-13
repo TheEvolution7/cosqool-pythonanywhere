@@ -1,0 +1,78 @@
+{% extends "layout/default.html" %} {% load static i18n frontend_extras %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="title">
+      <h1>{{object.title}}</h1>
+      <hr />
+    </div>
+  </div>
+</div>
+
+<div class="row playlist-detail">
+  <div class="col-12">
+    <div class="box-video">
+      <div class="row">
+        <div class="col-12">
+          <div class="p-0">
+            {% for video in page_obj %}
+            <iframe
+              width="100%"
+              height="450"
+              src="{{video.file.file.url}}"
+              frameborder="0"
+              loading="lazy"
+              style="border-radius: 20px"
+            ></iframe>
+            {% empty %}
+            <img
+              src="{% get_static_prefix %}dashboard/assets/images/bg-list.png"
+              width="100%"
+              height="450"
+            />
+            {% endfor %}
+          </div>
+          <h3 class="title-video">
+            {% for video in page_obj %}{{video.title}}{% endfor %}
+          </h3>
+        </div>
+        <div class="col-12">
+          <h5>{% translate "Playlist" %}:</h5>
+          <div class="vid-list-container">
+            {% for video_object in videos %}
+            <a
+              class="active"
+              href="javascript:;"
+              onclick="document.getElementById('vid_frame').src='{{video.media.url}}'"
+              tabindex="0"
+              data-video-title="{{video_object.title}}"
+            >
+              <div class="desc">
+                <span>{{forloop.counter}}.</span>{{video_object.file.name}}
+              </div>
+              <div class="time">{{video_object.media|get_duration_video}}</div>
+              <div class="icon-del">
+                <button
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="Remove"
+                >
+                  <img
+                    src="{% get_static_prefix %}dashboard/assets/images/icon-courses/7_1.svg"
+                    alt=""
+                  />
+                </button>
+              </div>
+            </a>
+            {% empty %}
+            <div class="d-flex align-items-center justify-content-center">
+              <span><b>{% translate "No Video" %}</b></span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

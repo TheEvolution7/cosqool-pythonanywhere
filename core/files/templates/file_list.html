@@ -1,0 +1,60 @@
+{% load static %}
+
+<form id="input_list_form">
+    <div class="scroll row row-cols-6 g-2">
+        {% for file in files %}
+            <div class="col">
+                <div class="card overlay overflow-hidden">
+                    <div class="card-body p-0">
+                        <div class="overlay-wrapper ratio ratio-1x1">
+                            <img src="{% get_static_prefix %}core/assets/media/misc/spinner.gif"
+                                 data-src="{{ file.get_url }}" class="rounded img-fluid lozad"/>
+                        </div>
+                        <div class="overlay-layer card-rounded bg-dark bg-opacity-25 align-items-start justify-content-end p-2">
+                            <div class="form-check form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="{{ file.pk }}" name="files">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</form>
+
+<script>
+
+
+    var btn = $("#upload_modal").find(".submit-button-modal")
+    $(btn).attr('disabled', true)
+    var data = []
+    $("form[id=input_list_form] input[type='checkbox']").on("click", function () {
+         data = $("form[id=input_list_form]").serializeArray()
+        if ($(this).is(":checked"))
+        {
+            $(this).parent().parent().addClass('opacity-100')
+        }else{
+            $(this).parent().parent().removeClass('opacity-100')
+        }
+
+        if (data.length > 0) {
+            $(btn).attr('disabled', false)
+        }else{
+            $(btn).attr('disabled', true)
+        }
+    });
+
+    $(btn).on("click", function () {
+        $.ajax({
+            method: "POST",
+            url: "{% url 'admin:playlist_item_detail' %}",
+            data: data,
+            headers: {'X-CSRFToken': csrftoken},
+        })
+            .done(function (msg) {
+                $("form[id=input_list_form]").trigger('reset')
+                loadMedia()
+            });
+    })
+
+</script>

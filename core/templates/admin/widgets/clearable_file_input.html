@@ -1,0 +1,67 @@
+{% comment %} {% if widget.is_initial %}<p class="file-upload">{{ widget.initial_text }}: <a href="{{ widget.value.url }}">{{ widget.value }}</a>{% if not widget.required %}
+<span class="clearable-file-input">
+<input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+<label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label></span>{% endif %}<br>
+{{ widget.input_text }}:{% endif %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>{% if widget.is_initial %}</p>{% endif %} {% endcomment %}
+{% load static %}
+<div class="text-center pt-0">
+{% if widget.is_initial %}
+    {% if widget.value.width and widget.value.height and widget.value is not None%}
+        <div class="image-input image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
+            <div class="image-input-wrapper w-150px h-150px" style="background-image: url({{ widget.value.url }})"></div>
+            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change">
+                <i class="bi bi-pencil-fill fs-7"></i>
+                <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} />
+            </label>
+            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel">
+                <i class="bi bi-x fs-2"></i>
+            </span>
+            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove">
+                <i class="bi bi-x fs-2"></i>
+                <input type="hidden" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+            </span>
+        </div>
+        {% else %}
+        <div class="text-start">
+            <div class="fs-7 mb-7">{{ widget.initial_text }}: <a class="text-muted text-hover-primary" target="_blank" href="{{ widget.value.url }}">{{ widget.value }}</a></div>
+            {% if not widget.required %}
+            <div class="fs-7 mb-7">
+                <div class="form-check form-check-custom form-check-solid">
+                    <input class="form-check-input" type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+                    <label for="{{ widget.checkbox_id }}" class="form-check-label">{{ widget.clear_checkbox_label }}</label>
+                </div>
+            </div>
+            {% endif %}
+            <div class="fs-7 mb-7">
+                {% if not widget.required %}{{ widget.input_text }}:{% endif %}
+                <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} class="form-control">
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+{% if widget.attrs.accept == None %}
+    <div class="row">
+        <div class="col">
+            <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} class="form-control">
+        </div>
+    </div>
+    
+{% else %}
+    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
+        <div class="image-input-wrapper w-150px h-150px" style="background-image: url({% get_media_prefix %}default.png)"></div>
+        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change">
+            <i class="bi bi-pencil-fill fs-7"></i>
+            <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} />
+        </label>
+        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel">
+            <i class="bi bi-x fs-2"></i>
+        </span>
+        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove">
+            <i class="bi bi-x fs-2"></i>
+        </span>
+    </div>
+{% endif %}
+
+{% endif %}
+</div>

@@ -1,0 +1,26 @@
+{% load i18n %}
+<div class="title-course">
+    <h4>{% translate "Course summary" %}</h4>
+    <div class="box-link-c mb-3">
+        {% for item in summary_list %}
+        <div class="summary-item">
+            <div class="content">
+                <div class="desc d-flex flex-row align-items-center">
+                    <a {% if item.url %}href="{{item.url}}"{% endif %}>{{item.name}}</a>
+                </div>
+            </div>
+            <div class="number">{{item.data}}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="other-course">
+    <h4>{% translate "Other" %} {{object.lesson.section.course.grade.category}} {% translate "Subject" %}:</h4>
+    <ul class="list-course">
+        {% for subject in subjects %}
+        <li class="py-2">
+            <a href="#">{{subject.title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

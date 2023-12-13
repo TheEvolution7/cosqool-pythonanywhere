@@ -1,0 +1,12 @@
+{% load static i18n frontend_extras%}
+<div class="d-flex">
+    <img src="{% get_static_prefix %}{{icon}}" width="20" class="me-2">
+    <a class="me-1" href="{{url}}">
+        {{sectionitem.title}}
+    </a>
+</div>
+
+
+{% comment %} {% if type == 'Practice' %}
+<a href="{% url 'dashboards:sectionitem-detail' sectionitem.pk sectionitem.get_items.first.pk %}" class="btn btn-sm btn-outline-primary">{% trans "Start Quiz" %}</a>
+{% endif %} {% endcomment %}

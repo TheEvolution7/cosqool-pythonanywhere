@@ -1,0 +1,79 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n dashboard frontend_extras %}
+{% block content %}
+<div class="row" style="max-width: 1000px;">
+    <div class="col-12 mb-3">
+        <div class="card info-card">
+            <div class="card-body p-4 d-flex align-items-center">
+                <div class="d-flex align-items-center flex-column flex-md-row flex-fill">
+                    <div class="avt _icon">
+                        <img src="{% get_static_prefix %}dashboard/assets/images/icon-d/8.svg" alt="" class="">
+                    </div>
+
+                    <div class="media-body title-index text-md-start text-center">
+                        <h3>Home</h3>
+                        <h2 class="font-weight-bold">Hello, Sarah</h2>
+                        
+                        <!-- <div class="color-blue-text mb-2">Grade 1</div> -->
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mb-4">
+        <div class="box-video-thumb">
+            <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="640"
+            height="264"
+            poster="{% get_static_prefix %}dashboard/assets/images/icon-d/bg.jpg"
+            data-setup="{}"
+        >
+            <source src="{% get_static_prefix %}dashboard/assets/video/2.mp4" type="video/mp4" />
+            <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank"
+                >supports HTML5 video</a
+            >
+            </p>
+        </video>
+        </div>
+    </div>
+    <div class="col-12 dash-col">
+        <div class="dash-item">
+            <div class="dash-title">
+                <h3>Annoucements</h3>
+            </div>
+           
+            <div class="dash-content">
+                <div class="content">
+                    <p><b>TH:</b> New Course Addition</p>
+                    <p><b>Date:</b> July 5, 2023</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet, recusandae commodi officiis iusto minus est mollitia quas explicabo dolore porro ad enim nemo accusamus.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="dash-item">
+            <div class="dash-title">
+                <h3>Tip of the Day</h3>
+            </div>
+           
+            <div class="dash-content">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate nemo nulla beatae! Magni laudantium omnis nisi vel consectetur, repellat sint, atque expedita deleniti fugit quasi eligendi, soluta ipsam laborum provident.</p>
+                </div>
+
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+{% endblock %}

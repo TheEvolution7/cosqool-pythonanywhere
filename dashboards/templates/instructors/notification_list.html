@@ -1,0 +1,26 @@
+{% extends "./base.html" %}
+{% load static i18n instructor %}
+{% block layout %}
+<div class="row g-4">
+    <div class="col-12">
+        <h1>{% trans "Notifications" %}</h1>
+        <hr>
+    </div>
+    <div class="col-12">
+        <div class="box-purcharge row p-0">
+            {% for object in object_list %}
+            <div class="col-12">
+                <div class="package-item {% if not object.is_read %}_tip-box{% endif %}">
+                    <div class="content-package">
+                        <div class="content">
+                            <p><b>{{object.notification.title|title}} - {{object.created_at|timesince}}</b></p>
+                            {{object.notification.content|safe}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock layout %}

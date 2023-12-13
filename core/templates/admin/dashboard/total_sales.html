@@ -1,0 +1,39 @@
+{% load i18n static humanize %}
+<div class="col-xl-6">
+    <div class="card card-xl-stretch mb-5 mb-xl-8">
+      <div class="card-header border-0 bg-primary py-5">
+        <h3 class="card-title fw-bold text-white">
+            Total sales
+        </h3>
+        <div class="card-toolbar">
+            <a href="" class="text-white">View report</a href="#">
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="mixed-widget-12-chart card-rounded-bottom bg-primary" data-kt-color="primary" style="height: 200px"></div>
+        <div class="card-rounded bg-body mt-n10 position-relative card-px py-15">
+          <div class="row g-0 mb-7">
+            <div class="col mx-5">
+              <div class="fs-6 text-gray-400">Total orders</div>
+              <div class="fs-2 fw-bold text-gray-800">0</div>
+            </div>
+            <div class="col mx-5">
+              <div class="fs-6 text-gray-400">Total sales</div>
+              <div class="fs-2 fw-bold text-gray-800">${{0.00|floatformat:2|intcomma}}</div>
+            </div>
+          </div>
+          <div class="row g-0">
+            <div class="col mx-5">
+              <div class="fs-6 text-gray-400">Gross sales</div>
+              <div class="fs-2 fw-bold text-gray-800">${{0.00|floatformat:2|intcomma}}</div>
+            </div>
+            <div class="col mx-5">
+              <div class="fs-6 text-gray-400">Net sales</div>
+              <div class="fs-2 fw-bold text-gray-800">${{0.00|floatformat:2|intcomma}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

@@ -1,0 +1,244 @@
+{% extends "admin/empty.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block content %}
+{{ inline_admin_formset.formset.management_form }}
+{{ inline_admin_formset.formset.non_form_errors }}
+{% load widget_tweaks %}
+
+
+<div class="card">
+    <div class="card-header pb-0">
+      <h5 class="card-title">Media</h5>
+    </div>
+    <div class="card-body card-scroll h-500px">
+            <!--begin::Input group-->
+            <div class="row g-5">
+                <!--begin::Col-->
+                <div class="col-12">
+                    <!--begin::Dropzone-->
+                    <div class="dropzone dropzone-queue mb-2" id="kt_dropzonejs_example_2">
+                        {% csrf_token %}
+                        <!--begin::Controls-->
+                        <div class="dropzone-panel mb-lg-0 mb-2">
+                            <a class="dropzone-select btn btn-sm btn-sm btn-primary me-2">Attach files</a>
+                            <a class="dropzone-upload btn btn-sm btn-sm btn-light-primary me-2">Upload All</a>
+                            <a class="dropzone-remove-all btn btn-sm btn-sm btn-light-primary">Remove All</a>
+                        </div>
+                        <!--end::Controls-->
+                        <hr>
+                        <br>
+                        <!--begin::Items-->
+                        <div class="dropzone-items row draggable-zone">
+                            <div class="dropzone-item col-auto draggable p-3 draggable" style="background-color: var(--kt-table-bg);">
+                                <div class="card overflow-hidden"> 
+                                    <div class="card-body p-0">
+                                        <div class="overlay">
+                                            <div class="overlay-wrapper">
+                                                <div class="symbol symbol-125px">
+                                                <img data-dz-thumbnail class="mw-100" src="/media/default.png"/>
+                                                </div>
+                                            </div>
+                                            <div class="overlay-layer bg-dark bg-opacity-25 d-flex align-items-end flex-column bd-highlight">
+                                                <div class="p-2 bd-highlight">
+                                                    <a class="btn btn-sm btn-icon btn-info me-1 mb-1 draggable-handle"><i class="fa fa-reorder"></i></a>
+                                                </div>
+                                                <div class="mt-auto p-2 bd-highlight">
+                                                    <a class="dropzone-start"></a>
+                                                <a class="btn btn-sm btn-icon btn-danger me-1 mb-1" data-dz-remove=""><i class="fa fa-trash"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% comment %} <div class="text-center card-p dropzone-filename">
+                                            <a class="progress" style="display: contents;">
+                                                <div
+                                                    class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                                    role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-dz-uploadprogress>
+                                                </div>
+                                            </a>
+                                            <span data-dz-name></span>
+                                            <strong>(<span data-dz-size></span>)</strong>
+                                            <div class="dropzone-error" data-dz-errormessage></div>
+                                        </div> {% endcomment %}
+                                    </div>
+                                </div>
+
+                                
+                                
+                                {% comment %} <a class="btn btn-sm btn-icon btn-danger dropzone-delete me-2 mb-2" data-dz-remove><i class="bi bi-x fs-1"></i></a> {% endcomment %}
+                            </div>
+                            
+                            {% for inline_admin_form in inline_admin_formset %}
+                            {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+                            {% if not forloop.last and inline_admin_formset.has_add_permission %}
+                            {% for fieldset in inline_admin_form %}
+                                {% for line in fieldset %}
+                                    {% for field in line %} 
+                                    {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                                    {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+                                    <div class="dropzone-item col-auto draggable p-3" style="background-color: var(--kt-table-bg);">
+                                        <div class="card overflow-hidden"> 
+                                            <div class="card-body p-0">
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper">
+                                                        {% if field.is_readonly %}
+                                                        {{ field.contents }}
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="overlay-layer bg-dark bg-opacity-25 d-flex align-items-end flex-column bd-highlight">
+                                                        <div class="p-2 bd-highlight">
+                                                            <a class="btn btn-sm btn-icon btn-light-info draggable-handle"><i class="fa fa-reorder"></i></a>
+                                                        </div>
+                                                        <div class="mt-auto p-1 bd-highlight">
+                                                            <a target="_blank" href="{% url 'admin:portfolios_portfolioimage_change' inline_admin_form.pk_field.field.value %}" class="btn btn-sm btn-icon btn-light-success"><i class="fa fa-pencil"></i></a>
+                                                            <a class="btn btn-sm btn-icon btn-light-danger" href="{% url 'admin:portfolios_portfolioimage_delete' inline_admin_form.pk_field.field.value %}"><i class="fa fa-trash"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endfor %}
+                            {% if inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+                            {% if inline_admin_form.fk_field %}{{ inline_admin_form.fk_field.field }}{% endif %}
+                            {% endif %}
+
+                            
+                            {% endfor %}
+                        </div>
+                        <!--end::Items-->
+                        
+                    </div>
+                    <!--end::Dropzone-->
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Input group-->
+  </div>
+  
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'core/' %}assets/plugins/custom/draggable/draggable.bundle.js"></script>
+<script>
+    // set the dropzone container id
+const id = "#kt_dropzonejs_example_2";
+const dropzone = document.querySelector(id);
+
+// set the preview element template
+var previewNode = dropzone.querySelector(".dropzone-item");
+previewNode.id = "";
+var previewTemplate = previewNode.parentNode.innerHTML;
+previewNode.parentNode.removeChild(previewNode);
+var myDropzone = new Dropzone(id, { // Make the whole body a dropzone
+    url: "{% url 'admin:portfolios_portfolio_change' object_id %}bulk-upload/", // Set the url for your upload script location
+    parallelUploads: 20,
+    previewTemplate: previewTemplate,
+    maxFilesize: false, // Max filesize in MB
+    autoQueue: false, // Make sure the files aren't queued until manually added
+    previewsContainer: id + " .dropzone-items", // Define the container to display the previews
+    clickable: id + " .dropzone-select", // Define the element that should be used as click trigger to select files.
+    headers: {'X-CSRFToken': '{{ csrf_token }}'},
+    paramName : "image_url",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+
+    addedfile: function (file) {
+        file.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
+
+        this.previewsContainer.insertBefore(file.previewElement, this.previewsContainer.firstChild);
+
+        return false;
+    }
+    
+});
+
+myDropzone.on("addedfile", function (file) {
+    // Hookup the start button
+    file.previewElement.querySelector(id + " .dropzone-start").onclick = function () { myDropzone.enqueueFile(file); };
+    const dropzoneItems = dropzone.querySelectorAll('.dropzone-item');
+    dropzoneItems.forEach(dropzoneItem => {
+        dropzoneItem.style.display = '';
+    });
+    dropzone.querySelector('.dropzone-upload').style.display = "inline-block";
+    dropzone.querySelector('.dropzone-remove-all').style.display = "inline-block";
+});
+
+// Update the total progress bar
+{% comment %} myDropzone.on("totaluploadprogress", function (progress) {
+    const progressBars = dropzone.querySelectorAll('.progress-bar');
+    progressBars.forEach(progressBar => {
+        progressBar.style.width = progress + "%";
+    });
+}); {% endcomment %}
+
+myDropzone.on("sending", function (file) {
+    // Show the total progress bar when upload starts
+    const progressBars = dropzone.querySelectorAll('.progress-bar');
+    progressBars.forEach(progressBar => {
+        progressBar.style.opacity = "1";
+    });
+    // And disable the start button
+    file.previewElement.querySelector(id + " .dropzone-start").setAttribute("disabled", "disabled");
+});
+
+// Hide the total progress bar when nothing's uploading anymore
+myDropzone.on("complete", function (progress) {
+    const progressBars = dropzone.querySelectorAll('.dz-complete');
+
+    setTimeout(function () {
+        progressBars.forEach(progressBar => {
+            progressBar.querySelector('.progress-bar').style.opacity = "0";
+            progressBar.querySelector('.progress').style.opacity = "0";
+            progressBar.querySelector('.dropzone-start').style.opacity = "0";
+        });
+    }, 300);
+});
+
+// Setup the buttons for all transfers
+dropzone.querySelector(".dropzone-upload").addEventListener('click', function () {
+    myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
+});
+
+// Setup the button for remove all files
+dropzone.querySelector(".dropzone-remove-all").addEventListener('click', function () {
+    dropzone.querySelector('.dropzone-upload').style.display = "none";
+    dropzone.querySelector('.dropzone-remove-all').style.display = "none";
+    myDropzone.removeAllFiles(true);
+});
+
+// On all files completed upload
+myDropzone.on("queuecomplete", function (progress) {
+    const uploadIcons = dropzone.querySelectorAll('.dropzone-upload');
+    uploadIcons.forEach(uploadIcon => {
+        uploadIcon.style.display = "none";
+    });
+});
+
+// On all files removed
+myDropzone.on("removedfile", function (file) {
+    if (myDropzone.files.length < 1) {
+        dropzone.querySelector('.dropzone-upload').style.display = "none";
+        dropzone.querySelector('.dropzone-remove-all').style.display = "none";
+    }
+});
+
+var containers = document.querySelectorAll(".draggable-zone");
+	
+var swappable = new Sortable.default(containers, {
+    draggable: ".draggable",
+    handle: ".draggable .draggable-handle",
+    mirror: {
+        //appendTo: selector,
+        appendTo: "body",
+        constrainDimensions: true
+    }
+});
+</script>
+
+{% endblock %}

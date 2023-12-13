@@ -1,0 +1,51 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block content %}
+<div class="body d-flex align-items-start">
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <h2>My Schedule</h2>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="nav-show">
+                    <ul>
+                        <li><div class="box _test"></div>Test</li>
+                        <li><div class="box _learn"></div>learn</li>
+                        <li><div class="box _off"></div>Day off</li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-12">
+                <div id="calendar"></div>
+            </div>
+            
+        </div>
+ 
+    </div>
+</div>
+{% endblock %}
+
+
+{% block js %}
+{{ calendar.content|json_script:"calendar-content" }}
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+<script>
+    const calendarContent = JSON.parse(document.getElementById('calendar-content').textContent);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl,calendarContent);
+        calendar.render();
+    });
+
+  </script>
+{% endblock  %}

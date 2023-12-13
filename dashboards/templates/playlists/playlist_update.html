@@ -1,0 +1,39 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n frontend_extras %}
+{% block content %}
+<div class="row">
+    <div class="col-8">
+        <form method="post">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-12">
+                    <h2>{% translate "Playlist details" %}</h2>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h1>{{object.title|title}}</h1>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-end">
+                            <input type="submit" value="{% translate "Save" %}" class="btn btn-outline-primary me-2">
+                            <div class="dropdown me-2">
+                                <button class="btn btn-icon btn-outline-primary" type="button" id="dropdownMenuOption" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="icofont-options"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuOption">
+                                <li><a class="dropdown-item" href="{% url 'dashboards:playlists:detail' object.pk %}"><i class="icofont-video-alt me-2"></i>{% translate "Videos" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'dashboards:playlists:delete' object.pk %}"><i class="icofont-trash me-2"></i>{% translate "Delete" %}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    {{ form.as_p }}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

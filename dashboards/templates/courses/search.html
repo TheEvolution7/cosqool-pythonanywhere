@@ -1,0 +1,66 @@
+{% load static i18n %}
+<div class="courses-list-content mb-4">
+    <div class="input-group flex-nowrap input-group-lg">
+        
+        <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">
+        <button type="button" class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></button>
+        
+    </div>
+
+    <div class="box-search-content">
+        <div class="star-search-content">
+            <h3>Start a new search</h3>
+            <p>To find caption, lectures or resources</p>
+        </div>
+
+        <!-- If no result -->
+        <div class="star-search-content">
+            <h3>Sorry, no results for ".."</h3>
+            <p>Your search did not math any caption, lectures or resource</p>
+        </div>
+
+        <!-- If there are results -->
+        <div class="has-results">
+            <div class="box-link-c accordion" id="list-results">
+                {% for section in object.lesson.section.course.sections %}
+                <div class="card">
+                    <div class="card-header" id="course-g-{{section.pk}}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left {% if not forloop.first %}collapsed{% endif %}" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#course-content-g-{{section.pk}}" aria-expanded="false"
+                                aria-controls="course-content-g-{{section.pk}}">
+                                <div class="ct">
+                                    <div class="icon-c">
+                                        <img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/1.svg" alt="">
+                                    </div>
+                                    <div class="text">
+                                        {% translate "Chapter" %} {{forloop.counter}}: {{section.title}}
+                                    </div>
+                                </div>
+                                <div class="btn-acco"></div>
+                            </button>
+                        </h2>
+                    </div>
+        
+                    <div id="course-content-g-{{section.pk}}" class="collapse {% if forloop.first %}show{% endif %}" aria-labelledby="course-{{section.pk}}"
+                        >
+                        <div class="card-body">
+                            <ul class="list-course">
+                                {% for item in section.items %}
+                                    <li>
+                                        <a>  
+                                            {{item.title}}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                Empty
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

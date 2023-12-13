@@ -1,0 +1,46 @@
+{% load static %}
+{% load i18n %}
+<div class="sidebar px-4 py-4 py-md-4  me-0">
+    <div class="d-flex flex-column h-100">
+        <a href="{% url "instructor:index" %}" class="mb-0 brand-icon">
+            <img class="logo-big" src="{%get_static_prefix%}dashboard/assets/images/logo-1.svg" alt="">
+            <img class="logo-mini" src="{%get_static_prefix%}dashboard/assets/images/logo-dot.svg" alt="">
+        </a>
+        <ul class="menu-list mt-3">
+            <li>
+                <a class="m-link" href="{% url "instructor:index" %}">
+                    <img class="icon-menu" src="{%get_static_prefix%}dashboard/assets/images/icon-menu/1.svg" alt="">
+                    <span>{% trans "Home" %}</span>
+                </a>
+            </li>
+            <li>
+                <a class="m-link" href="{% url "instructor:profile" %}">
+                    <img class="icon-menu" src="{%get_static_prefix%}dashboard/assets/images/icon-menu-new/1.svg" alt="">
+                    <span>{% trans "Profile" %}</span>
+                </a>
+            </li>
+            <li>
+                <a class="m-link" href="{% url "instructor:student-list" %}">
+                    <img class="icon-menu" src="{%get_static_prefix%}dashboard/assets/images/icon-menu-new/2.svg" alt="">
+                    <span>{% trans "Students" %}</span>
+                </a>
+            </li>
+            <li>
+                <a class="m-link" href="{% url "instructor:enrollment-list" %}">
+                    <img class="icon-menu" src="{%get_static_prefix%}dashboard/assets/images/icon-menu-new/2.svg" alt="">
+                    <span>{% trans "Enrollments" %}</span>
+                </a>
+            </li>
+            <li>
+                <a class="m-link" href="{% url "instructor:notification-list" %}">
+                    <img class="icon-menu" src="{%get_static_prefix%}dashboard/assets/images/icon-menu-new/2.svg" alt="">
+                    <span>{% trans "Notifications" %}</span>
+                </a>
+            </li>
+            
+        </ul>
+        <button type="button" class="btn btn-link sidebar-mini-btn">
+            <span><i class="icofont-bubble-right"></i></span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>:: Cosqool :: Signin</title>
+    <link rel="stylesheet" href="{% static '' %}dashboard/assets/fonts/avenir/stylesheet.css">
+    <!-- project css file  -->
+    <link rel="stylesheet" href="{% static '' %}dashboard/assets/css/e-learn.style.min.css">
+    <link rel="stylesheet" href="{% static '' %}dashboard/assets/css/custom.min.css">
+</head>
+
+<body>
+    
+{% block content %}
+<div id="elearn-layout" class="theme-black">
+
+    <!-- main body area -->
+    <div class="main p-2 py-3 p-xl-5 ">
+        
+        <!-- Body: Body -->
+        <div class="body d-flex p-0 p-xl-5">
+            <div class="container-xxl">
+
+                <div class="row g-0">
+                    <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center rounded-lg auth-h100">
+                        <div style="max-width: 25rem;">
+                            <div class="text-center mb-5">
+                                <img src="{% static '' %}dashboard/assets/images/logo-1.svg" alt="">
+                            </div>
+                            <div class="mb-5">
+                                <h2 class="color-900 text-center">click it. be ahead</h2>
+                            </div>
+                            <!-- Image block -->
+                            <div class="">
+                                <img src="{% static '' %}assets/images/new/testimonial/2.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 d-flex justify-content-center align-items-center border-0 rounded-lg auth-h100">
+                        <div class="w-100 p-4 p-md-5 card border-0 bg-cosqool text-light" style="max-width: 32rem;">
+                            <!-- Form -->
+                            {% block form %}{% endblock %}
+                            <!-- End Form -->
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div>
+                                    <a href="#" class="me-2 text-muted"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                    <a href="#" class="me-2 text-muted"><i class="fab fa-instagram fa-lg"></i></a>
+                                    <a href="#" class="me-2 text-muted"><i class="fab fa-youtube fa-lg"></i></a>
+                                    <a href="#" class="me-2 text-muted"><i class="fab fa-twitter fa-lg"></i></a>
+                                </div>
+                                <div>
+                                    <a href="#" title="home" class="me-2 text-muted">Home</a>
+                                    <a href="#" title="about" class="me-2 text-muted">About Us</a>
+                                    <a href="#" title="faq" class="me-2 text-muted">FAQs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Row -->
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+<!-- Jquery Core Js -->
+<script src="{% static '' %}dashboard/assets/bundles/libscripts.bundle.js"></script>
+
+</body>
+</html>

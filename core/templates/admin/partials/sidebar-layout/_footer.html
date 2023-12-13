@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="footer py-4 d-flex flex-lg-column">
+    <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <div class="text-dark order-2 order-md-1">
+            <span class="text-muted fw-semibold me-1">{% now "Y" %}&copy;</span>
+            <a href="{% url 'admin:index' %}" class="text-gray-800 text-hover-primary">{{ site_title }}</a>
+        </div>
+        <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+            <li class="menu-item"><a href="{% url 'admin:index' %}" class="menu-link px-2">v1.0.0</a></li>
+        </ul>
+    </div>
+</div>

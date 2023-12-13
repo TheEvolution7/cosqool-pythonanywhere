@@ -1,0 +1,139 @@
+{% extends "./base.html" %}
+{% load static i18n %}
+{% block layout %}
+<div class="row g-4">
+    <div class="col-12">
+        <h1>{% trans "Enrollment detail" %}</h1>
+        <hr>
+    </div>
+    <div class="col-12">
+        <div class="card rounded-5">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-4 col-lg-2 d-flex flex-column">
+                        <img src="{{object.student.avatar.url}}" class="rounded-circle w-100">
+                    </div>
+                    <div class="col-8">
+                        <div class="d-flex flex-column">
+                            <h4 class="card-title">{{object.student.get_full_name}}</h4>
+                            <span class="d-block fs-6">{% trans "Status" %}: 
+                                {% if object.status == 'enrolled' %}
+                                    <span class="badge bg-secondary">{{object.status|title}}</span>
+                                {% endif %}
+                                {% if object.status == 'completed' %}
+                                    <span class="badge bg-success">{{object.status|title}}</span>
+                                {% endif %}
+                                {% if object.status == 'dropped' %}
+                                    <span class="badge bg-danger">{{object.status|title}}</span>
+                                {% endif %}
+                            </span>
+                            {% if object.status == 'completed' %}
+                                <span class="d-block fs-6">{% trans "Completed at" %}: {{object.completed_at}}</span>
+                            {% endif %}
+
+                            {% if object.status == 'dropped' %}
+                                <span class="d-block fs-6">{% trans "Drop reason" %}: {{object.drop_reason}}</span>
+                            {% endif %}
+
+                            <span class="d-block fs-6">{% trans "Grade level" %}: {{object.grade.title}}</span>
+                            <span class="d-block fs-6">{% trans "Enrolled" %}: {{object.created_at|date}}</span>
+                            <span class="d-block fs-6">{% trans "Course" %}: {{object.course.title}}</span>
+                            <hr>
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                <a href="#" class="nav-link active bg-secondary">Overview</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="#">Activity</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="#">Documents</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card rounded-5">
+            <div class="card-body">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3>{% trans "Overview" %}</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card rounded-5">
+            <div class="card-body">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3>{% trans "Learn Activity" %}</h3>
+                        <p>Hours per month</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %} <div class="col-12">
+        <div class="card rounded-5">
+            <div class="card-body">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3>{% trans "Activity" %}</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card rounded-5">
+            <div class="card-body">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3>{% trans "Documents" %}</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+</div>
+
+{% endblock layout %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                      
+<script>
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    
+    data: {
+        labels: ['Jan', 'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: '# of Hours',
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            borderWidth: 1
+        }]
+    }
+});
+</script>
+{% endblock js %}
