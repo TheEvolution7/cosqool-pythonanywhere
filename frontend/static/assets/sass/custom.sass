@@ -1,0 +1,2690 @@
+$color-dark-blue: #43539a
+$color-blue: #7da7d9
+$color-yellow: #ffcb05
+// html
+//     overflow-x: hidden
+b, strong
+    font-family: var(--fonttitle) 
+.section-full
+    height: 100vh
+    width:  100%
+    overflow: hidden!important
+.color-blue
+    color: $color-blue
+.color-yellow
+    color: $color-yellow
+.color-white
+    color: #fff
+.section-title
+    h1,h2,h3,h4 
+        span 
+            color: #7da6d7
+.site-branding 
+    .brand-logo 
+        height: 100px
+        @media screen and ( max-width: 767.82px )
+            height: 80px
+            
+        img
+            height: 100%
+            object-fit: contain
+.header-navigation
+    .site-branding 
+        .brand-logo 
+            position: relative
+            transition: all .3s ease
+            .logo-first
+                transition: all .3s ease
+            .logo-on-scroll
+                opacity: 0
+                position: absolute
+                width: 100%
+                height: 100%
+                top: 0
+                left: 0
+                transition: all .3s ease
+    &.sticky
+        .site-branding 
+            .brand-logo 
+                max-width: 70px
+                height: 70px
+                @media screen and ( max-width: 767.82px )
+                    height: 50px
+                .logo-first
+                    opacity: 0
+                .logo-on-scroll
+                    opacity: 1
+.theme-header
+    position: fixed
+    top: 0
+    width: 100vw
+    z-index: 1000
+    background-color: #fff
+    .menu-page
+        display: flex
+        align-items: center
+.section-title-yellow
+    h2,h3,h4
+        color: $color-yellow
+    p 
+        color: #fff
+    .sub-title
+        color: #fff
+    .st-one
+        &::after
+            background: url(../images/border-2.png) no-repeat 
+            background-size: 100% 100%
+.section-title-blue
+    h2,h3,h4
+        color: $color-blue
+    p 
+        color: #fff
+    .sub-title
+        color: #fff
+    .st-one
+        &::after
+            background: url(../images/border-2.png) no-repeat 
+            background-size: 100% 100%
+.hero-banner-v1
+    padding: 100px 0
+    padding-top: 150px
+    &::after
+        background: linear-gradient(to right, #4b5da9 30%, #7da6d7 100%)
+        opacity: 1
+        display: none
+    #tsparticles-banner
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+    
+    .hero-content 
+        h1
+            color: #fff
+            font-weight: 300
+            font-family: var(--fontbody)
+            margin-bottom: 15px
+            b 
+               font-family: var(--fonttitle) 
+        h2 
+            color: var(--sub-color)
+            margin-bottom: 15px
+        h3 
+            color: var(--sub-color)
+            margin-bottom: 15px
+        p 
+            color: #fff
+        &.home-text
+            max-width: 515px
+            h1
+                font-size: 58px
+                @media screen and ( max-width: 991.82px )
+                    font-size: 55px
+                @media screen and ( max-width: 575.82px )
+                    font-size: 45px
+            h2 
+                font-size: 43px
+                @media screen and ( max-width: 991.82px )
+                    font-size: 40px
+                @media screen and ( max-width: 575.82px )
+                    font-size: 35px
+            p
+                font-size: 19px
+                @media screen and ( max-width: 575.82px )
+                    font-size: 18px
+
+    .banner-img
+        text-align: center
+        img
+            padding: 0 15px
+            max-width: 400px
+            margin: auto
+            @media screen and ( max-width: 575.82px )
+                max-width: 400px
+        &.about-1
+            img 
+                max-width: unset
+        &.about-2
+            margin-left: -25%
+            position: relative
+            height: 160px
+            img 
+                width: auto
+                height: 160px
+                max-width: unset
+                margin-right: 0
+                right: 0
+                position: absolute
+                object-position: left
+    .ab-banner-2
+        padding-top: 40vh
+        padding-bottom: 10vh
+        .hero-content
+            text-align: right
+    .intro-area-v1
+        margin-top: 80px
+        .play-button
+            z-index: 3
+            position: relative
+            h2
+                font-size: 55px
+                color: #fff
+                margin-bottom: 15px
+                position: absolute
+                bottom: 100%
+                left: 50%
+                transform: translateX(-50%)
+                white-space: nowrap
+                @media screen and ( max-width: 575.82px )
+                    font-size: 32px
+        .play-content 
+            padding: 180px 0
+            .bg
+                overflow: hidden
+                &::after
+                    position: absolute
+                    content: ''
+                    top: 0
+                    left: 0
+                    width: 100%
+                    height: 100%
+                    background-color: rgba(#000,0.1)
+.btn--link
+    border-radius: 50px
+    border: 5px solid $color-dark-blue
+    position: relative
+    padding: 0 20px
+    line-height: 42px
+    height: 50px
+    background-color: $color-blue
+    font-family: var(--fonttitle)
+    color: #fff
+    transition: all .5s ease
+    &:hover
+        background-color: $color-yellow
+        color: $color-dark-blue
+.btn-cos
+    border-radius: 50px
+    border: 5px solid $color-dark-blue
+    position: relative
+    padding: 0 20px
+    padding-right: 50px
+    line-height: 42px
+    height: 50px
+    background-color: $color-blue
+    font-family: var(--fonttitle)
+    color: #fff
+    transition: all .5s ease
+    &::after
+        position: absolute
+        height: 40px
+        content: ''
+        background-color: #fff
+        width: 40px
+        top: 0
+        right: 0
+        border-radius: 50%
+        transition: all .5s ease
+    &:hover 
+        padding-right: 20px
+        padding-left: 50px
+        color: $color-yellow
+        &::after
+            background-color: $color-yellow
+            right: calc( 100% - 40px )
+    &.btn-yellow
+        border-color: #d1d1d1
+    &.with-hand
+        font-size: 30px
+        font-weight: 500
+        font-family: var(--fonttitle)
+        background-color: $color-dark-blue
+        padding-right: 60px
+        line-height: 52px
+        height: 60px
+        @media screen and ( max-width: 767.82px )
+            padding-right: 50px
+            line-height: 42px
+            height: 50px
+            font-size: 20px
+        &::after
+            width: 50px
+            height: 50px
+            @media screen and ( max-width: 767.82px )
+                width: 40px
+                height: 40px
+        &::before
+            top: 38%
+            transform: translateY(-50%)
+            left: 90%
+            content: ''
+            position: absolute
+            background-image: url(../images/hand.svg)
+            width: 100vw
+            height: 170px
+            background-size: cover 100%
+            background-position: left
+            background-repeat: no-repeat
+            z-index: 2
+            transition: all .6s ease-in-out
+            pointer-events: none
+            @media screen and ( max-width: 767.82px )
+                width: 400px
+                height: 100px 
+        &:hover 
+            padding-left: 60px
+            padding-right: 20px
+            @media screen and ( max-width: 767.82px )
+                padding-left: 50px
+                padding-right: 20px
+            &::before
+                left: 150%
+                opacity: 0
+            &::after
+                right: calc( 100% - 50px )
+                @media screen and ( max-width: 767.82px )
+                    right: calc( 100% - 40px )
+
+
+
+
+.preloader
+    svg,img,object
+        max-width: 550px
+        padding: 25px
+        position: relative
+        overflow: unset
+        
+.portfolio-filter-button 
+    .filter-btn 
+        li
+            border-radius: 50px
+            border: 5px solid $color-dark-blue
+            position: relative
+            padding: 0 20px
+            padding-right: 50px
+            line-height: 42px
+            height: 50px
+            background-color: $color-blue
+            min-width: 100px
+            color: #fff
+            transition: all .5s ease
+            &::after
+                position: absolute
+                height: 40px
+                content: ''
+                background-color: #fff
+                width: 40px
+                top: 0
+                right: 0
+                border-radius: 50%
+                transition: all .5s ease
+            &:hover,&.active 
+                padding-right: 20px
+                padding-left: 50px
+                color: $color-yellow
+                background-color: $color-blue
+                &::after
+                    background-color: $color-yellow
+                    right: calc( 100% - 40px )
+      
+.img-av
+    width: 100%
+    max-width: 100px    
+.icon-lg-anim
+    border-radius: 50px
+    border: 7px solid $color-dark-blue
+    position: relative
+    line-height: 42px
+    height: 60px
+    background-color: $color-blue
+    width: 94px
+    color: #fff
+    transition: all .5s ease
+    &::after
+        position: absolute
+        height: 45px
+        content: ''
+        background-color: #fff
+        width: 45px
+        top: 0
+        right: 0
+        border-radius: 50%
+        animation: ani-icon 3s infinite
+        transition: all .5s ease
+    
+@keyframes ani-icon
+    0%
+        right: 0
+        background-color: #fff
+    50%
+        right: calc( 100% - 45px )
+        background-color: $color-yellow
+    100%
+        right: 0
+        background-color: #fff
+.cta-area-v1 
+    .cta-wrapper
+        border-radius: 30px
+.section-course
+    padding: 100px 10px
+    .accordion
+        background-color: #f0f0f0
+        padding: 15px 0
+        border-radius: 10px
+        box-shadow: 0px 10px 60px 0px rgba(#000,0.1)
+    .card
+        border: none
+        border-radius: 0
+        background: none
+        border-bottom: 1px solid rgba(0,0,0,.125)
+        &:last-child
+            border-bottom: none
+            .card-body,.card-header
+                border-bottom: none
+    
+    .card-header
+        background: none
+        border: none
+        @media (max-width: 767px)
+            padding: .75rem 0rem
+    .card-body
+        @media (max-width: 767px)
+            padding: 10px
+    .btn-link
+        padding: 0
+        display: flex
+        justify-content: space-between
+        text-decoration: unset
+        font-size: 20px
+        @media (max-width: 767px)
+            font-size: 18px
+        &::after
+            display: none
+        &:active,&:focus
+            outline: none
+            box-shadow: none
+        .ct
+            display: flex
+            align-items: center
+        .icon-c
+            flex: 0 0 50px
+            width: 50px
+            height: 50px
+            margin-right: 10px
+            border-radius: 5px 10px 5px 10px
+            background-color: #ffca05
+            display: flex
+            align-items: center
+            justify-content: center
+            img 
+                object-fit: contain
+                width: 65%
+        .btn-acco
+            flex: 0 0 70px
+            margin-right: 10px
+            align-self: center
+            justify-self: flex-end
+            border-radius: 50px
+            border: 5px solid $color-dark-blue
+            position: relative
+            line-height: 42px
+            height: 40px
+            background-color: $color-blue
+            width: 70px
+            color: #fff
+            transition: all .5s ease
+            &::after
+                position: absolute
+                height: 30px
+                content: ''
+                background-color: #fff
+                width: 30px
+                top: 0
+                right: 0
+                border-radius: 50%
+                transition: all .5s ease
+        &:not(.collapsed)
+            color: $color-yellow
+            .btn-acco
+                &::after
+                    background-color: $color-yellow
+                    right: calc( 100% - 30px )
+    .list-course
+        columns: 2
+        li
+            padding: 5px
+            font-size: 18px
+            line-height: 1.4
+            display: flex
+            margin-bottom: 10px
+            @media (max-width: 767px)
+                font-size: 16px
+            @media (max-width: 575px)
+                font-size: 14px
+                margin-bottom: 5px
+            &::before
+                content: '\f518'
+                font-family: "Font Awesome 5 Pro"
+                width: 30px
+                font-weight: 100
+            b
+                font-weight: 700
+                font-family: var(--fonttitle)
+    .list-part
+        display: flex
+        > ul
+            display: flex
+            // @media (max-width: 575px)
+            //     columns: 1
+            margin: 0 -10px
+            flex-wrap: wrap
+            h3
+                font-size: 20px
+                margin-bottom: 10px
+            > li 
+                width: 100%
+                margin-bottom: 10px
+                padding: 0 10px
+                flex: 0 0 50%
+                max-width: 50%
+        .list-course
+            columns: 1
+.cta-area-v2 
+    .cta-wrapper    
+        background: linear-gradient(30deg, #4b5da9, #7da6d7)     
+        @media screen and ( max-width: 767.82px )
+            border-radius: 20%
+                 
+.testimonial-area
+    // background: linear-gradient(to right, #ffca05 0%, #ffca05 50%, #fcb116 150%)
+    position: relative
+    background: none
+    @media screen and ( max-width: 575.82px )
+        padding-top: 50px
+        
+    #tsparticles
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        canvas 
+            display: block
+            vertical-align: bottom
+    .img-av-b
+        width: 30%
+        position: absolute
+        max-width: 250px
+        right: 10%
+        top: calc(100% - 50px)
+        img 
+            max-width: 250px
+    .img-testimonial
+        position: relative
+        padding-bottom: 130%
+        border-radius: 300px
+        border: 15px solid #4b5da9
+        overflow: hidden
+        img 
+            position: absolute
+            width: 100%
+            height: 100%
+            object-fit: cover
+            top: 0
+            left: 0
+            border-radius: 0
+    &.testimonial-area-v1 
+        overflow: hidden
+        .testimonial-item 
+            .testimonial-content 
+                h3
+                    color: var(--blue-dark)
+                h4 
+                    color: var(--blue-dark)
+                i 
+                    color: var(--blue-dark)
+                .author-title 
+                    p, h4
+                        color: var(--blue-dark)
+        .shape-img
+            top: -5%
+            right: 5%
+            width: 100%
+            max-width: 360px
+            span
+                display: block
+            img 
+                width: 100%
+            &::after
+                display: none
+    .testimonial-slider-one 
+        .slick-dots 
+            li 
+                button
+                    background-color: var(--blue-dark)
+                    &::after
+                        border-color: var(--blue-dark)
+
+
+.footer-area
+    // background: linear-gradient(to right, #4b5da9 30%, #7da6d7 100%)
+    background-color: #4b5da9
+    overflow: hidden
+    color: #7da6d7
+    padding-top: 60px
+    @media screen and ( max-width: 575.82px )
+        padding-top: 50px
+    #tsparticles-footer
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+    .footer-logo
+        max-width: 150px
+        img 
+            width: 100%
+    ul.social-link 
+        margin-top: 10px
+        li
+            a
+                background-color: #7da6d7
+                width: 35px
+                height: 35px
+                display: flex
+                align-items: center
+                justify-content: center
+                border-radius: 50%
+                color: #fff
+                font-size: 18px
+                &:hover 
+                    background-color: #ffcb05
+    a
+        &:hover 
+            color: #ffcb05
+    h4,h3
+        color: #7da6d7
+    
+    .footer-widget 
+        .widget
+            &.social-widget 
+                .social-nav 
+                    li 
+                        a 
+                            line-height: 1
+                            i
+                                color: #fff
+                            &:hover 
+                                color: #ffcb05
+            &.footer-nav-widget 
+                .widget-nav 
+                    li 
+                        a
+                            &:hover 
+                                color: #ffcb05
+                                text-decoration: none
+            h4
+                &.widget-title
+                    font-size: 20px
+    .footer-copyright
+        border-color: #7da6d7
+        border-width: 0.25px 
+        .footer-nav 
+            ul 
+                li
+                    margin-left: 0
+                    margin-right: 30px
+                    &:not(first-child)
+                        margin-left: 0px
+                    a
+                        color: #ffcb05
+                        &:hover 
+                            color: #fff
+        
+
+.cta-section
+    padding: 100px 0
+    padding-top: 20px 
+    overflow: hidden
+    // background-color: #fff
+    @media screen and ( max-width: 575.82px )
+        padding: 60px 0
+        padding-top: 20px
+    .button-box
+        margin-top: 40px
+        text-align: center
+        @media screen and ( max-width: 767.82px )
+            margin-top: 20px
+.faq-section
+    padding: 20px 0 80px
+    .card-header
+        background-color: unset
+        border: unset
+        padding: 10px 0
+    .card
+        border: unset
+        background-color: unset
+        border-bottom: 1px solid #7c7c7c!important
+        border-radius: 0!important
+        &:last-child
+            border: none!important
+    .btn-link
+        padding: 0
+        text-decoration: none
+        color: #7c7c7c
+        position: relative
+        padding-right: 25px
+        border-radius: 0
+        font-size: 20px
+        &:active,&:focus
+            outline: none
+            box-shadow: none
+            
+        &::after,&::before
+            content: ''
+            position: absolute
+            width: 10px
+            height: 2px
+            background-color: #7c7c7c
+            right: 0
+            top: 50%
+            transition: all .3s ease
+        &::before
+            transform: rotate(90deg)
+        &:not(.collapsed)
+            &::before
+                transform: rotate(0deg)
+
+            
+            
+    .card-body
+        padding: 10px 0 20px 
+    .img-faq
+        padding: 0 30px
+
+.box-news
+    .news-item 
+        border-bottom: 1px solid #7c7c7c
+        display: block
+        margin-bottom: 20px
+        padding-bottom: 20px
+        &:last-child
+            border-bottom: none
+        .title 
+            padding-bottom: 10px
+            transition: all .3s ease
+            font-size: 20px
+            
+        .date 
+            font-family: var(--fonttitle)
+            i 
+                color: #ffcb05
+                margin-right: 15px
+        // &:hover 
+        //     color: #7c7c7c
+        //     .title 
+        //         color: #ffcb05
+.btn-login
+    display: block!important
+    @media screen and ( min-width: 768px )
+        display: none!important
+.right-menu
+    display: flex
+    @media screen and ( max-width: 1199.82px )
+        padding-right: 20px
+    > ul 
+        display: flex
+        align-items: center
+        
+        > li 
+            margin-left: 10px
+            @media screen and ( max-width: 767.82px )
+                display: none
+            a
+                font-weight: 200
+                font-family: var(--fonttitle)
+            .nav-link
+                padding: 5px
+    .menu-language
+        cursor: pointer
+        position: relative
+        @media screen and ( max-width: 767.82px )
+            display: block
+        .nav-link
+            font-family: var(--fontbody)
+            padding: 20px 5px
+            &::after
+                content: "\f107"
+                font-family: "Font Awesome 5 Pro"
+                font-weight: 600
+                display: inline-block
+                color: #162542
+                font-size: 14px
+                margin-left: 5px
+                float: right
+        > ul 
+            opacity: 0
+            visibility: hidden
+            position: absolute
+            top: 100%
+            right: 0
+            background-color: #fff
+            padding: 8px 10px
+            border-radius: 10px
+            box-shadow: 0 5px 10px rgba(#000,0.1)
+            
+        &:hover 
+            > ul 
+                opacity: 1
+                visibility: visible
+
+
+.section-about-2 
+    padding: 50px 0
+    padding-bottom: 100px
+    .success-container
+        padding-bottom: 10vh
+        padding-top: 30vh
+    .what-we-do-container
+        padding-bottom: 10vh
+        padding-top: 30vh
+    .box-card
+        width: 100%
+        margin-top: 30px 
+        // padding: 40px
+        // background-color: #739cce   
+        // color: #fff
+        // border: 7px solid #4b5eaa
+        // border-radius: 50px
+        padding-right: 30px
+        @media screen and ( max-width: 767.82px )
+            padding-right: 0px
+        
+            
+        h3 
+            color: #7da6d7
+            margin-bottom: 15px
+            font-size: 45px
+        .icon 
+            height: 100px
+            margin-bottom: 25px
+            img 
+                max-height: 100%
+    .we-do-content
+        margin-top: 20px
+        position: relative
+        .content 
+            display: flex
+            justify-content: space-between
+            margin: 0 0px
+            position: relative
+            z-index: 2
+            top: 20px
+        .slide-bg
+            position: absolute
+            width: 100px
+            transition: all 2s ease
+            background-color: #7da6d7
+            height: 100px
+            top: 20px
+            left: 0
+            z-index: 1
+            border-radius: 80px
+            border: 8px solid #4b63a0
+            @media screen and ( max-width: 767.82px )
+                width: 55px
+                height: 50px
+                border-width: 4px
+
+        .dot-active
+            position: absolute
+            width: 70px
+            height: 70px
+            border-radius: 50%
+            content: ''
+            background-color: #ffcb05
+            top: 35px
+            left: 50px
+            z-index: 3
+            transform: translateX(-50%)
+            // transition: left 2s linear
+            @media screen and ( max-width: 767.82px )
+                width: 35px
+                height: 35px
+                left: 27.5px
+                top: 27.5px
+
+            
+        .item-we-do
+            margin: 0 15px
+            position: relative
+            z-index: 2
+            padding-top: 15px
+            opacity: 0
+            transition: opacity 0.5s ease
+            @media screen and ( max-width: 767.82px )
+                padding-top: 7.5px
+                margin: 0 10px
+            .dot
+                background-color: #fff
+                width: 70px
+                height: 70px
+                border-radius: 50%
+                margin: auto
+                @media screen and ( max-width: 767.82px )
+                    width: 35px
+                    height: 35px
+            h4 
+                margin-top: 30px
+                position: absolute
+                white-space: nowrap
+                left: 50%
+                transform: translateX(-50%)
+                @media screen and ( max-width: 767.82px )
+                    font-size: 14px
+                    
+                    white-space: pre-wrap
+            &:first-child
+                h4 
+                    left: 0
+                    transform: translateX(0%)
+            &:last-child
+                h4 
+                    left: unset
+                    right: 0
+                    transform: translateX(0%)
+        &.aos-animate
+            .slide-bg
+                // width: 100%
+                animation: slide-bg 5s ease forwards
+                @media screen and ( max-width: 767.82px )
+                    animation: slide-bg-mb 5s ease forwards
+            .dot-active
+                animation: dot-active 5s ease forwards
+                @media screen and ( max-width: 767.82px )
+                    animation: dot-active-mb 5s ease forwards!important
+            .item-we-do
+                opacity: 1
+                // transform: translateX(0)
+                &:nth-of-type(2)
+                    transition-delay: 1s
+                &:nth-of-type(3)
+                    transition-delay: 3s
+                &:nth-of-type(4)
+                    transition-delay: 5s
+@keyframes dot-active 
+    0% 
+        left: 50px
+    20%
+        left: calc(33.333333% + 16px)
+    40%
+        left: calc(33.333333% + 16px)
+    60%
+        left: calc(66.6666666% - 16.5px)
+    80%
+        left: calc(66.6666666% - 16.5px)
+    100%
+        left: calc(100% - 50px)
+
+@keyframes slide-bg
+    0% 
+        width: 100px
+    20%
+        width: calc(33.333333% + 70px)
+    40%
+        width: calc(33.333333% + 70px)
+    60%
+        width: calc(66.666666% + 35px)
+    80%
+        width: calc(66.666666% + 35px)
+    100%
+        width: 100%
+@keyframes slide-bg-mb
+    0% 
+        width: 55px
+    20%
+        width: calc(33.333333% + 35px)
+    40%
+        width: calc(33.333333% + 35px)
+    60%
+        width: calc(66.666666% + 17.5px)
+    80%
+        width: calc(66.666666% + 17.5px)
+    100%
+        width: 100%
+@keyframes dot-active-mb 
+    0% 
+        left: 27.5px
+    20%
+        left: calc(33.333333% + 9px)
+    40%
+        left: calc(33.333333% + 9px)
+    60%
+        left: calc(66.6666666% - 9px)
+    80%
+        left: calc(66.6666666% - 9px)
+    100%
+        left: calc(100% - 27.5px)
+
+@keyframes dot-active-rtl
+    0% 
+        right: 15px
+    20%
+        right: calc(33.333333% + 16px)
+    40%
+        right: calc(33.333333% + 16px)
+    60%
+        right: calc(66.6666666% - 16.5px)
+    80%
+        right: calc(66.6666666% - 16.5px)
+    100%
+        right: calc(100% - 50px)
+@keyframes dot-active-mb-rtl
+    0% 
+        right: 10px
+    20%
+        right: calc(33.333333% + 9px)
+    40%
+        right: calc(33.333333% + 9px)
+    60%
+        right: calc(66.6666666% - 9px)
+    80%
+        right: calc(66.6666666% - 9px)
+    100%
+        right: calc(100% - 27.5px)
+// @media screen and ( max-width: 1199.8px )
+//     @keyframes dot-active 
+//         0% 
+//             left: 15px
+//         20%
+//             left: calc(39.03% - 85px)
+//         40%
+//             left: calc(39.03% - 85px)
+//         60%
+//             left: calc(69.51% - 85px)
+//         80%
+//             left: calc(69.51% - 85px)
+//         100%
+//             left: calc(100% - 50px)
+//     @keyframes dot-active-rtl
+//         0% 
+//             right: 15px
+//         20%
+//             right: calc(39.03% - 85px)
+//         40%
+//             right: calc(39.03% - 85px)
+//         60%
+//             right: calc(69.51% - 85px)
+//         80%
+//             right: calc(69.51% - 85px)
+//         100%
+//             right: calc(100% - 50px)
+//     @keyframes slide-bg
+//         0% 
+//             width: calc(185px - 85px)
+//         20%
+//             width: calc(46.4% - 85px)
+//         40%
+//             width: calc(46.4% - 85px)
+//         60%
+//             width: calc(76.9% - 85px)
+//         80%
+//             width: calc(76.9% - 85px)
+//         100%
+//             width: 100%
+    
+           
+.section-certificate
+    padding: 60px 0
+    position: relative
+    .certi-box
+        .img
+            position: relative
+            padding-bottom: 76%
+            img 
+                position: absolute
+                width: 100%
+                height: 100%
+                object-fit: contain
+                top: 0
+                left: 0
+        .content
+            text-align: center
+            padding: 15px
+    .swiper-certi
+        margin: auto
+        margin-top: 60px
+        padding-bottom: 50px
+        .swiper-pagination-bullet
+            background-color: #ffcb05
+            transition: all .3s ease
+            border-radius: 15px
+            &.swiper-pagination-bullet-active
+                width: 40px
+.bg-particle
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0 
+.section-team
+    padding: 30vh 0 10vh
+    position: relative
+    h2,h3
+        color: var(--sub-color)
+        margin-bottom: 15px
+    p
+        font-weight: 900
+    .hero-content
+        color: #fff
+        h4 
+            color: #fff
+            margin-bottom: 15px
+.section-end-about
+    padding: 30vh 0 0
+    .section-title
+        h2
+            font-size: 40px
+    .about-3
+        padding: 5px 15px
+        max-width: 270px
+        margin: auto
+    
+.breadcrumb-container
+    padding-top: 116px
+    background-color: #f2f2f2
+    padding-bottom: 20px
+    .breadcrumbs-link 
+        li
+            display: inline-block
+            font-size: 18px
+            font-weight: 700
+            a
+                text-decoration: none
+            &.active
+                color: var(--blue-dark)
+    
+            &:after
+                display: inline-block
+                content: '\f105'
+                font-family: 'Font Awesome 5 Pro'
+                font-weight: 400
+                margin-left: 15px
+                margin-right: 12px
+            &:last-child
+                &:after
+                    display: none
+.section-page
+    background-color: #fff
+    padding: 60px 0 
+    h2 
+        color: #7da6d7
+
+.contact-section
+    
+    .info-list
+        li 
+            display: flex
+            border-top: 1px solid #7da6d7
+            padding-top: 20px
+            margin-top: 20px
+            align-items: center
+            .icon
+                flex: 0 0 40px
+                height: 40px
+                margin-right: 25px
+                margin-left: 25px
+                img 
+                    max-width: 100%
+                    max-height: 100%
+            .content 
+                h4 
+                    font-size: 20px
+    .hr-color
+        margin: 40px 0
+        width: 100%
+        height: 3px
+        background: linear-gradient(to right, #ffcb05 0%, #ffcb05 8%, #fff 8%, #fff 10%, #4b5eaa 10% ,#4b5eaa 100% )
+.form-control
+    border-radius: 30px
+    padding: 15px 25px  
+    height: unset     
+    &::placeholder
+        color: #c4c4c4   
+.blog-section
+    .other-course
+        background-color: #fff
+        padding: 30px
+        border-radius: 20px
+        margin-bottom: 30px
+        h4 
+            font-size: 20px
+            margin-bottom: 20px
+        .list-course
+            display: grid
+            grid-template-columns: 1fr 1fr 1fr
+            margin: 0 -6px
+            li 
+                margin: 0 6px
+                a 
+                    width: 100%
+                    display: block
+                    text-align: center
+                    border-radius: 8px
+                    background-color: #f2f2f2
+                    padding: 5px 10px
+                    font-size: 16px
+                    &:hover 
+                        background-color: #ffca05
+                        color: #7c7c7c
+
+    .title-course
+        background-color: #fff
+        padding: 30px
+        border-radius: 20px
+        margin-bottom: 30px
+        h1 
+            font-size: 26px
+            margin-bottom: 10px
+        p
+            font-size: 16px
+            line-height: 1.6
+            margin-bottom: 20px
+        h4 
+            font-size: 24px
+            margin-bottom: 20px
+        .box-link-c
+            padding: 5px 0
+            border-radius: 10px
+            display: flex
+            flex-wrap: wrap
+            margin: 0 -10px
+            .summary-item
+                display: flex
+                justify-content: space-between
+                align-items: center
+                padding-bottom: 10px
+                padding-top: 10px
+                border-top: 1px solid #d9dbe4
+                position: relative
+                margin: 0 10px
+                flex: 0 0 calc(100% - 20px)
+                width: 100%
+                // &::before
+                //     content: ''
+                //     position: absolute
+                //     top: 0
+                //     left: -10px
+                //     right: -10px
+                //     bottom: 0
+                //     background-color: #ffca05
+                //     z-index: 0
+                //     border-radius: 10px
+                //     opacity: 0
+                &:first-child
+                    border-top: none
+                &:last-child
+                    border-bottom: none
+                    margin-bottom: 0
+                    padding-bottom: 0
+                &.active
+                    &::before
+                        opacity: 1
+            .content
+                display: flex
+                align-items: center
+                z-index: 1
+                margin-top: 0
+                .icon
+                    flex: 0 0 25px
+                    height: 25px
+                    width: 25px
+                    margin-right: 10px
+                    position: relative
+                    img
+                        width: 100%
+                        height: 100%
+                        object-fit: contain
+                        position: absolute
+                .desc
+                    font-size: 16px
+            .number
+                z-index: 1
+        .list-detail
+            // margin: -20px 0
+            .summary-item
+                display: flex
+                justify-content: space-between
+                align-items: center
+                padding-bottom: 10px
+                padding-top: 10px
+                border-bottom: 1px solid #4b5da9
+                position: relative
+                &::before
+                    content: ''
+                    position: absolute
+                    top: 0
+                    left: -10px
+                    right: -10px
+                    bottom: 0
+                    background-color: #ffca05
+                    z-index: 0
+                    border-radius: 10px
+                    opacity: 0
+                &:last-child
+                    border-bottom: none
+                    margin-bottom: 0
+                    padding-bottom: 0
+                &.active
+                    &::before
+                        opacity: 1
+            .content
+                display: flex
+                align-items: center
+                z-index: 1
+                font-family: var(--fonttitle)
+                .icon
+                    flex: 0 0 30px
+                    height: 30px
+                    width: 30px
+                    margin-right: 15px
+                    position: relative
+                    img
+                        top: 0
+                        position: absolute
+                        box-sizing: border-box
+                        width: 100%
+                        height: 100%
+                        object-fit: contain
+                .desc
+                    font-size: 16px
+            .number
+                z-index: 1
+    .comparison-module
+        background-color: #f0f0f0
+        padding: 30px 40px
+        border-radius: 10px
+        // box-shadow: 0px 10px 60px 0px rgba(#000,0.1)
+        @media screen and ( max-width: 767.82px )
+            padding: 20px
+            
+        .section-course
+            padding: 0
+        .ct 
+            display: flex
+            width: 100%
+            align-content: center
+            .text 
+                display: flex
+                color: #4b5eaa
+                align-items: center
+                .icon 
+                    width: 25px
+                    i 
+                        transition: all .3s ease
+                        transform: rotate(180deg)
+            .icon-c
+                flex: 0 0 50px
+                width: 50px
+                height: 50px
+                margin-right: 10px
+                border-radius: 5px 10px 5px 10px
+                background-color: #ffca05
+                display: flex
+                align-items: center
+                justify-content: center
+                img 
+                    object-fit: contain
+                    width: 65%
+            &._faq 
+                .text
+                    align-items: center
+                    .icon 
+                        margin-left: 20px
+       
+        .list-course
+            display: flex
+            justify-content: space-between
+            width: 100%
+            flex-wrap: wrap
+            li
+                padding: 5px
+                font-size: 18px
+                line-height: 1.4
+                display: flex
+                margin-bottom: 10px
+                @media (max-width: 767px)
+                    font-size: 16px
+                @media (max-width: 575px)
+                    font-size: 14px
+                    margin-bottom: 5px
+                &::before
+                    content: '\f518'
+                    font-family: "Font Awesome 5 Pro"
+                    width: 30px
+                    font-weight: 100
+                b
+                    font-weight: 700
+                    font-family: var(--fonttitle)
+        h4 
+            font-size: 19px
+            margin-bottom: 20px
+        .box-alert
+            display: flex
+            align-items: center
+            background: #fff
+            border: 1px solid #d1d7dc
+            padding: 15px
+            margin-bottom: 20px
+            border-radius: 10px
+            i
+                width: 30px
+                font-size: 30px
+                margin-right: 15px
+        i 
+            width: 20px
+            margin-right: 10px
+        .fa-check
+            color: #4b5eaa
+        .fa-times
+            color: #ff4747
+    // .box-video 
+    //     .video-more
+    //         display: none
+    .video-thumb
+        position: relative
+        padding-bottom: 55.5%
+        overflow: hidden
+        display: block
+        border-radius: 20px
+        margin-bottom: 30px
+        img 
+            position: absolute
+            width: 100%
+            height: 100%
+            top: 0
+            left: 0
+            object-fit: cover
+            z-index: 1
+        &::before
+            position: absolute
+            width: 100%
+            height: 100%
+            top: 0
+            left: 0
+            background: linear-gradient(180deg,rgba(28,29,31,0) 0%,rgba(28,29,31,0.9) 100%)
+            content: ''
+            z-index: 2
+        .play-btn 
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%,-50%)
+            font-size: 60px
+            color: #fff
+            z-index: 3
+            text-align: center
+            p 
+                margin-top: 20px
+                font-size: 20px
+    .detail-courses
+        margin-bottom: 40px
+        box-shadow: 0 5px 10px rgba(0,0,0,.2)
+        @media screen and ( max-width: 575.82px )
+            font-size: 14px 
+        
+        .tab-content>.tab-pane
+            padding: 10px 50px
+            @media screen and ( max-width: 575.82px )
+                padding: 10px 20px
+        .content
+            margin-top: 30px
+            // background-color: #fff
+            // box-shadow: 0 0 15px rgba(#000,0.1)
+            // border-radius: 30px
+            .tab-content
+                // padding: 0px 25px 15px
+                p 
+                    margin-bottom: 15px
+                    font-size: 16px
+                    line-height: 1.5
+        .courses-list-content
+            
+            &.__2 
+                margin: 0 -50px
+                @media screen and ( max-width: 575.82px )
+                    margin: 0 -20px
+                .card
+                    border: unset
+                .accordion
+                    border: unset
+                .card-header
+                    border-bottom: 5px solid #fff
+            .avatar-instructor
+                display: flex
+                .img
+                    width: 120px
+                    margin-right: 15px
+                .list-group-flush
+                    >.list-group-item
+                        padding: 5px 10px
+                        padding-left: 0
+                        font-size: 14px
+                        i 
+                            width: 20px
+            .content-more
+                
+                // .text
+                //     max-height: 300px
+                //     -webkit-mask-image: linear-gradient(#ffffff,#ffffff,rgba(255,255,255,0))
+                //     overflow: hidden
+                //     margin-bottom: 20px
+                //     &.active 
+                //         max-height: unset
+                //         overflow: visible
+                //         -webkit-mask-image: unset
+            .content-drop-list
+                display: flex
+                width: 100%
+                justify-content: space-between
+                @media screen and ( max-width: 575.82px )
+                    flex-direction: column
+                .toggle-accordion
+                    padding-left: 20px
+                    color: #ffcb05
+                    font-family: var(--fonttitle)
+                    @media screen and ( max-width: 575.82px )
+                        padding-left: 0
+                        margin-bottom: 15px
+            h3 
+                margin: 15px 0
+                font-size: 24px
+            
+            .btn-link
+                text-decoration: unset
+                font-family: var(--fonttitle)
+                padding: 0
+                color: #7c7c7c
+                border-radius: 0
+                border: unset
+                display: flex
+                width: 100%
+                justify-content: space-between
+                align-items: center
+                @media screen and ( max-width: 575.82px )
+                    font-size: 14px
+                .ct 
+                    
+                    .text 
+                        display: flex
+                        color: #4b5eaa
+                        font-size: 16px
+                        .icon 
+                            width: 25px
+                            i 
+                                transition: all .3s ease
+                                transform: rotate(180deg)
+                    &._faq 
+                        width: 100%
+                        .text
+                            align-items: center
+                            display: flex
+                            justify-content: space-between
+                            width: 100%
+                            .icon 
+                                margin-left: 20px
+
+                .btn-acco
+                    flex: 0 0 56px
+                    margin-right: 10px
+                    align-self: center
+                    justify-self: flex-end
+                    border-radius: 50px
+                    border: 4px solid $color-dark-blue
+                    position: relative
+                    line-height: 36px
+                    height: 32px
+                    background-color: $color-blue
+                    width: 56px
+                    color: #fff
+                    transition: all .5s ease
+                    &::after
+                        position: absolute
+                        height: 24px
+                        content: ''
+                        background-color: #fff
+                        width: 24px
+                        top: 0
+                        right: 0
+                        border-radius: 50%
+                        transition: all .5s ease
+                &:not(.collapsed)
+                    color: $color-yellow
+                    .btn-acco
+                        &::after
+                            background-color: $color-yellow
+                            right: calc( 100% - 24px )
+                &::after
+                    display: none
+                &:focus,&:active
+                    box-shadow: unset
+                    outline: none
+                &.collapsed
+                    .ct 
+                        .text
+                            color: #7c7c7c
+                            .icon 
+                                i 
+                                    transform: rotate(0deg)
+            .card-header 
+                background-color: #EAEEF5
+                padding: 8px 50px
+                @media screen and ( max-width: 575.82px )
+                    padding: 8px 15px
+                    
+            .card-body 
+                padding: 8px 50px
+                @media screen and ( max-width: 575.82px )
+                    padding: 8px 15px
+                .list-course
+                    li 
+                        display: flex
+                        justify-content: space-between
+                        margin: 10px 0
+                        .desc
+                            display: flex
+                            align-items: center
+                            font-size: 16px
+                            line-height: 1.4
+                            .icon-file
+                                width: 15px
+                                flex: 0 0 15px
+                                height: 15px
+                                margin-top: 2px
+                                margin-right: 10px
+                                position: relative
+                                img 
+                                    position: absolute
+                                    width: 100%
+                                    height: 100%
+                                    top: 0
+                                    left: 0
+                                    object-fit: contain
+                        .icon-lock
+                            margin-top: 4px
+                            width: 20px
+                            height: 18px
+                            margin-right: 10px
+                            position: relative
+                            img 
+                                position: absolute
+                                width: 100%
+                                height: 100%
+                                top: 0
+                                left: 0
+                                object-fit: contain
+
+        .nav-tabs
+            &.tab-body-header
+                border-radius: 50px
+                background: linear-gradient(to bottom, #fcfdff -10% , #dadbdb)
+                border: none
+                margin-bottom: 30px
+                justify-content: space-between
+                display: flex
+                flex-wrap: nowrap
+                overflow-y: hidden
+                overflow-x: scroll
+                width: auto
+                .nav-item 
+                    flex: 0 0 33.333333%
+                    width: 100%
+                .nav-link
+                    font-family: 'avenirblack'
+                    font-weight: 600
+                    border: none
+                    border-radius: 50px
+                    font-size: 16px
+                    padding: 0.5rem 2rem
+                    white-space: nowrap
+                    text-align: center
+                    @media screen and ( max-width: 575.82px )
+                        padding: 0.3rem .5rem
+                        font-size: 14px
+                        
+                    &.active
+                        background-color: #ffca05
+                        color: #7c7c7c
+                        &:hover
+                            color: #7c7c7c
+                    &:hover
+                        color: #ffca05
+ 
+    .detail-content
+        img 
+            overflow: hidden
+            border-radius: 10px
+            margin-bottom: 20px
+        p 
+            margin-bottom: 15px
+        .title 
+            h1 
+                font-size: 45px
+                line-height: 1.3 
+                margin-bottom: 15px
+            .date 
+                font-size: 20px
+                margin-bottom: 20px
+                i 
+                    margin-right: 10px
+            .img  
+                width: 100%
+                position: relative
+                display: block
+                padding-bottom: 60%
+                overflow: hidden
+                border-radius: 10px
+                margin-bottom: 20px
+                img 
+                    position: absolute
+                    width: 100%
+                    height: 100%
+                    object-fit: cover
+                    top: 0
+                    left: 0
+                    transition: all .3s ease
+    .blog-item 
+        display: flex
+        width: 100%
+        border-radius: 10px
+        overflow: hidden
+        box-shadow: 10px 10px 30px rgba(#000,0.2)
+        margin-bottom: 30px
+        flex-direction: column
+        .img 
+            width: 100%
+            position: relative
+            display: block
+            padding-bottom: 60%
+            overflow: hidden
+            img 
+                position: absolute
+                width: 100%
+                height: 100%
+                object-fit: cover
+                top: 0
+                left: 0
+                transition: all .3s ease
+            &:hover 
+                img 
+                    transform: scale(1.05)
+        .content
+            padding: 25px
+            display: flex
+            justify-content: space-between
+            flex-direction: column
+            flex: 1 0 auto
+            .date 
+                margin-bottom: 10px
+                font-size: 14px
+                i 
+                    margin-right: 10px
+            .title 
+                display: block
+                h3 
+                    font-size: 20px
+                    line-height: 1.5
+                    overflow: hidden
+                    text-overflow: ellipsis
+                    display: -webkit-box
+                    -webkit-line-clamp: 2
+                    -webkit-box-orient: vertical
+                    margin-bottom: 15px
+                    transition: all .3s ease
+                &:hover 
+                    h3 
+                        color: #ffcb05
+            .desc 
+                p 
+                    font-size: 16px
+                    overflow: hidden
+                    text-overflow: ellipsis
+                    display: -webkit-box
+                    -webkit-line-clamp: 3
+                    -webkit-box-orient: vertical
+                    margin-bottom: 15px
+                    line-height: 1.5
+    .sidebar-widget-area
+        background-color: #e7ebf2
+        border-radius: 10px
+        padding: 30px
+        margin-bottom: 30px
+        .box-price
+            // padding: 50px 30px
+            display: flex
+            width: 100%
+            flex-direction: column
+            .title
+                margin-bottom: 20px
+                // flex: 1 0 auto
+                h3 
+                    font-size: 30px
+                p 
+                    font-size: 16px
+                    color: #7da6d7
+            .list-courses
+                margin-bottom: 15px
+                flex: 1 0 auto
+                hr 
+                    margin: 15px 0
+                    clear: both
+                    border-color: red
+                    background: red
+                .nice-select
+                    width: 100%
+                    padding-left: 18px
+                    .list
+                        width: 100%
+                        max-height: 200px
+                        overflow: auto
+                    .option:hover, .option.focus, .option.selected.focus
+                        background-color: #e7eef7
+            .price 
+                color: #4b5da9
+                font-family: var(--fonttitle)
+                margin-bottom: 15px
+                sup
+                    line-height: 1
+                    top: -10px
+                    font-size: 25px
+                span 
+                    display: inline-block
+                    line-height: 1
+                    font-size: 38px
+                    font-family: var(--fonttitle)
+            .btn 
+                margin-bottom: 15px
+                text-align: unset
+                padding: 0
+            .billing
+                border-bottom: 2px solid #4b5da3
+                margin-bottom: 15px
+                p 
+                    color: #4b5da3
+                    margin-bottom: 20px
+                    font-size: 14px
+            .desc
+                p 
+                    font-size: 14px
+                    line-height: 1.4
+            .billing
+                .input-price
+                    display: flex
+                    margin: 0 -5px
+                    justify-content: space-between
+                    flex-wrap: wrap
+                    li 
+                        margin: 0 5px
+                        margin-bottom: 10px
+                        // flex: 0 0 calc(50% - 10px)
+                        width: auto
+                        input 
+                            display: none
+                            &:checked
+                                + label 
+                                    &::before
+                                        background-color: #7da6d7
+                        label 
+                            display: flex
+                            align-items: center
+                            line-height: 1
+                            cursor: pointer
+                            font-size: 15px
+                            &::before
+                                display: block
+                                width: 15px
+                                height: 15px
+                                border-radius: 3px 
+                                border: 1px solid #7c7c7c
+                                content: ''
+                                margin-right: 10px
+                                margin-top: -2px
+        .list-detail
+            // margin: -20px 0
+            .summary-item
+                display: flex
+                justify-content: space-between
+                align-items: center
+                padding-bottom: 15px
+                padding-top: 15px
+                border-bottom: 1px solid #4b5da9
+                position: relative
+                &::before
+                    content: ''
+                    position: absolute
+                    top: 0
+                    left: -10px
+                    right: -10px
+                    bottom: 0
+                    background-color: #ffca05
+                    z-index: 0
+                    border-radius: 10px
+                    opacity: 0
+                &:last-child
+                    border-bottom: none
+                    margin-bottom: 0
+                    padding-bottom: 0
+                &.active
+                    &::before
+                        opacity: 1
+            .content
+                display: flex
+                align-items: center
+                z-index: 1
+                font-family: var(--fonttitle)
+                .icon
+                    flex: 0 0 30px
+                    height: 30px
+                    width: 30px
+                    margin-right: 15px
+                    position: relative
+                    img
+                        top: 0
+                        position: absolute
+                        box-sizing: border-box
+                        width: 100%
+                        height: 100%
+                        object-fit: contain
+                .desc
+                    font-size: 18px
+            .number
+                z-index: 1
+        .widget
+            padding: 0
+            border: none
+            &.search-widget 
+                form 
+                    .form_control
+                        height: 50px
+                        padding: 10px 20px
+                        border-radius: 30px
+                        border-color: #ffcb05
+                        border-width: 3px
+                        font-size: 16px
+                    .search-btn 
+                        width: 50px
+                        height: 50px
+                        top: 0
+                        right: 10px
+                        img 
+                            padding: 12px
+            &.category-widget
+                padding: 0
+                border: none
+                .category-nav 
+                    li 
+                        a
+                            border-bottom: none
+                            padding-bottom: 0
+                            
+            h4
+                &.widget-title
+                    padding-bottom: 15px
+                    border-bottom: 1px solid #7da6d7
+                    margin-bottom: 20px
+                    &::after
+                        display: none
+            &.tag-cloud-widget 
+                a
+                    background-color: #fff
+                    &:hover 
+                        background-color: #ffcb05
+    .recent-post-widget 
+        .recent-post-list 
+            .post-thumbnail-content
+                border-bottom: 1px solid #7da6d7
+                margin-bottom: 10px
+                padding-bottom: 10px
+                &:last-child
+                    border-bottom: none
+                .post-title-date 
+                    h6
+                        font-size: 16px
+                        font-weight: 300
+                        margin-bottom: 10px
+                    .posted-on
+                        font-size: 14px
+                        display: block
+                        line-height: 1
+                > a 
+                    flex: 0 0 90px
+                    margin-right: 10px
+                img
+                    width: 100%
+                    margin-right: 0px
+                    height: 80px
+                    object-fit: cover
+                    border-radius: 5px
+    
+.pagination
+    margin: 0 -5px
+    li 
+        margin: 0 5px
+        a
+            border-radius: 50%
+            width: 40px
+            height: 40px
+            display: flex
+            align-items: center
+            justify-content: center
+            line-height: 35px
+            font-size: 18px
+            &:hover 
+                background-color: #ffcb05
+                color: #808285
+.member-section
+    .hr-bottom
+        position: absolute
+        bottom: 0%
+        width: 105%
+        height: 3px 
+        background-color: #4b5da9
+        content: ''
+        left: 50%
+        transform: translateX(-50%)
+        z-index: 2
+    .swiper-pricing
+        display: flex
+        // border-bottom: 2px solid #4b5da9
+        .swiper-pagination-bullet
+            background-color: #ffcb05
+            transition: all .3s ease
+            border-radius: 15px
+            &.swiper-pagination-bullet-active
+                width: 40px
+            
+        .swiper-wrapper 
+            display: flex
+            .swiper-slide 
+                display: flex
+                height: auto
+                .box-price
+                    background-color: rgba(125, 166, 215,0.2)
+                &:nth-of-type(2n+ 2)
+                    .box-price
+                        background-color: #edf1f8
+                &:nth-of-type(3n+ 3)
+                    .box-price
+                        background-color: rgba(125, 166, 215,0.4)
+                // &:nth-of-type(4n+ 4)
+                //     .box-price
+                //         background-color: rgba(125, 166, 215,0.2)
+
+                    
+                    
+    .box-price
+        text-align: center
+        
+        padding: 50px 30px
+        padding-top: 50px
+        border-radius: 200px 200px 0 0 
+        display: flex
+        width: 100%
+        flex-direction: column
+        .title
+            margin-bottom: 20px
+            // flex: 1 0 auto
+            h3 
+                font-size: 30px
+            p 
+                font-size: 16px
+                color: #7da6d7
+        .list-courses
+            margin-bottom: 15px
+            flex: 1 0 auto
+            hr 
+                margin: 15px 0
+                clear: both
+                border-color: red
+                background: red
+            .nice-select
+                width: 100%
+                padding-left: 18px
+                .list
+                    width: 100%
+                    max-height: 200px
+                    overflow: auto
+                .option:hover, .option.focus, .option.selected.focus
+                    background-color: #e7eef7
+        .price 
+            color: #4b5da9
+            font-family: var(--fonttitle)
+            sup
+                line-height: 1
+                top: -10px
+                font-size: 25px
+            span 
+                display: inline-block
+                line-height: 1
+                font-size: 38px
+                font-family: var(--fonttitle)
+        .btn 
+            margin-bottom: 15px
+        .billing
+            border-bottom: 2px solid #4b5da3
+            margin-bottom: 15px
+            padding-bottom: 15px
+            p 
+                color: #4b5da3
+                margin-bottom: 20px
+                font-size: 14px
+        .desc
+            p 
+                font-size: 14px
+                line-height: 1.4
+        .billing
+            .input-price
+                display: flex
+                margin: 0 -5px
+                justify-content: space-between
+                flex-wrap: wrap
+                li 
+                    margin: 0 5px
+                    margin-bottom: 10px
+                    // flex: 0 0 calc(50% - 10px)
+                    width: auto
+                    input 
+                        display: none
+                        &:checked
+                            + label 
+                                &::before
+                                    background-color: #7da6d7
+                    label 
+                        display: flex
+                        align-items: center
+                        line-height: 1
+                        cursor: pointer
+                        font-size: 15px
+                        &::before
+                            display: block
+                            width: 15px
+                            height: 15px
+                            border-radius: 3px 
+                            border: 1px solid #7c7c7c
+                            content: ''
+                            margin-right: 10px
+                            margin-top: -2px
+
+body 
+    position: relative
+    background: linear-gradient(to right, #4b5da9 0%, #7da6d7 20%, #fff 40% , #fff 60%, #ffca05 80%, #ffca05 100%, #fcb116 120%)
+    background-size: 600% 100%
+    transition: all 1s ease
+    &.color-section-banner,&.color-section-about-team
+        background-position: 0% 100%
+    &.color-section-white,&.color-section-about-2,&.color-section-about-certi
+        background-position: 50% 100%
+    &.color-section-yellow
+        background-position: 100% 100%  
+
+.tabs-btn
+    display: flex
+    margin-bottom: 50px
+    a
+        color: var(--title-color)
+        font-family: var(--fonttitle)
+        font-size: 20px
+        display: inline-flex
+        width: 50%
+        border-radius: 50px
+        box-shadow: 0 0 4px 0px rgba(#000,0.25)
+        justify-content: center
+        align-items: center
+        height: 50px
+        background: rgb(255,255,255)
+        background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(190,188,188,1) 60%, rgba(233,233,233,1) 100%)
+        z-index: 0
+        &.active
+            transform: scale(1.2)
+            background: #ffcb05
+            z-index: 1
+            box-shadow: 3px 2px 4px 1px rgba(#000,0.35)
+
+.vjs-playlist .vjs-playlist-title-container
+    position: relative
+.vjs-playlist-vertical img
+    width: 100px
+    height: 70px
+    min-height: 70px
+    object-fit: cover
+    flex: 0 0 100px
+.vjs-playlist-vertical .vjs-playlist-thumbnail
+    display: flex
+.vjs-playlist .vjs-selected .vjs-playlist-now-playing-text
+    display: none
+.vjs-playlist .vjs-selected img
+    opacity: 1
+.vjs-playlist img
+    opacity: 0.2
+.vjs-fluid:not(.vjs-audio-only-mode)
+    padding-top: 0
+
+.modal-video
+    .box-video
+        margin-top: 0px
+        h5 
+            margin-bottom: 15px
+        .vid-list-container
+            display: flex
+            flex-direction: column
+            a
+                display: flex
+                align-items: center
+                margin-bottom: 10px
+                padding: 10px
+                background-color: #f2f2f2
+                .thumb-video
+                    .vid-thumb
+                        margin-right: 15px
+                        img 
+                            width: 90px
+                            height: 60px
+                            object-fit: cover
+                .desc
+                    padding-right: 20px
+                    width: 100%
+                &.active
+                    background-color: #7da7d9
+                    color: #fff
+
+    .frame-video
+        position: relative
+        > img 
+            z-index: 3
+            position: relative
+        .img-video
+            position: absolute
+            left: 25%
+            right: 30%
+            top: 5%
+            bottom: 38%
+            z-index: 2
+            img
+                position: absolute
+                width: 100%
+                height: 100%
+                object-fit: cover
+                top: 0
+                left: 0
+                filter: grayscale(1)
+        .play-video-btn
+            position: absolute
+            left: 41.5%
+            top: 26%
+            z-index: 4
+            width: 100px
+            height: 100px
+            background-color: rgba(#fff, 0.8)
+            border-radius: 50%
+            color: red
+            display: flex
+            align-items: center
+            justify-content: center
+            transition: all .3s ease
+            font-size: 24px
+            @media screen and ( max-width: 767.82px )
+                left: 39%
+                font-size: 18px
+                top: 22%
+                width: 80px
+                height: 80px
+            &:hover
+                background-color: rgba(#000,0.8)
+                color: #fff
+            &::before,&::after
+                position: absolute
+                content: ''
+                width: 100%
+                height: 100%
+                border-radius: 100%
+                border: 0.5px solid rgba(#fff, 0.8)
+                
+            &::before
+                animation: zoom1 3s linear infinite
+            &::after  
+                animation: zoom2 3s linear infinite
+                animation-delay: .3s
+    .modal-dialog
+        max-width: 600px
+    .vid-container
+        position: relative
+        padding-bottom: 60%
+        overflow: hidden
+        margin-bottom: 15px
+        iframe,video
+            position: absolute
+            height: 100%
+            width: 100%
+            object-fit: cover
+            top: 0
+            left: 0
+    .modal-header
+        display: flex
+        flex-direction: column
+        padding-right: 50px
+        h5
+            font-size: 16px
+            margin-bottom: 10px
+        h1 
+            font-size: 24px
+        .btn-close
+            position: absolute
+            top: 10px
+            right: 10px
+            background: unset
+.modal-pdf
+    .modal-header
+        display: flex
+        flex-direction: column
+        padding-right: 50px
+        h3
+            font-size: 16px
+            margin-bottom: 10px
+        h2 
+            font-size: 24px
+        .btn-close
+            position: absolute
+            top: 10px
+            right: 10px
+            background: unset
+.detail-courses
+    background-color: #fff
+    border-radius: 30px
+    padding-bottom: 10px
+    .box-link-c
+        background-color: #fff
+        padding: 5px 0
+        border-radius: 10px
+        display: flex
+        flex-wrap: wrap
+        .summary-item
+            display: flex
+            justify-content: space-between
+            align-items: center
+            padding-bottom: 10px
+            padding-top: 10px
+            border-top: 1px solid #d9dbe4
+            position: relative
+            margin: 0 10px
+            flex: 0 0 calc(50% - 20px)
+            width: 100%
+            // &::before
+            //     content: ''
+            //     position: absolute
+            //     top: 0
+            //     left: -10px
+            //     right: -10px
+            //     bottom: 0
+            //     background-color: #ffca05
+            //     z-index: 0
+            //     border-radius: 10px
+            //     opacity: 0
+            &:first-child,&:nth-child(2)
+                border-top: none
+            &:last-child
+                border-bottom: none
+                margin-bottom: 0
+                padding-bottom: 0
+            &.active
+                &::before
+                    opacity: 1
+        .content
+            display: flex
+            align-items: center
+            z-index: 1
+            margin-top: 0
+            .icon
+                flex: 0 0 25px
+                height: 25px
+                width: 25px
+                margin-right: 10px
+                position: relative
+                img
+                    width: 100%
+                    height: 100%
+                    object-fit: contain
+                    position: absolute
+            .desc
+                font-size: 16px
+        .number
+            z-index: 1
+.bg-cosqool-2
+    background-color: #ebeff6
+    position: relative
+    &::before
+        content: ''
+        position: absolute
+        top: 9%
+        width: 306px
+        max-width: 60%
+        background-image: url(../images/el-bg.svg)
+        height: 450px
+        right: 0
+        background-size: contain
+        background-repeat: no-repeat
+        z-index: 0
+
+.layout-rtl
+    direction: rtl
+    text-align: right
+    .blog-section 
+        .title-course 
+            .box-link-c 
+                .content 
+                    .icon
+                        margin-right: 0
+                        margin-left: 10px
+        .detail-courses 
+            .courses-list-content 
+                .card-body 
+                    .list-course 
+                        li 
+                            .desc 
+                                .icon-file
+                                    margin-right: 0
+                                    margin-left: 10px
+                            .icon-lock
+                                margin-right: 0
+                                margin-left: 10px
+    .list-style-one 
+        li
+            &::before
+                margin-right: unset
+                margin-left: 15px
+    .post-author-box 
+        .author-thumb
+            margin-right: unset
+            margin-left: 35px
+    .comments-area 
+        .comments-list 
+            .comment 
+                .comment-wrap 
+                    .comment-author-content 
+                        .reply 
+                            i
+                                margin-left: unset
+                                margin-right: 10px
+                        .author-name 
+                            span
+                                &.date
+                                    float: left
+                .comment-avatar
+                    margin-left: 30px
+                    margin-right: unset
+                &:nth-child(even)
+                    margin-left: unset
+                    margin-right: 70px
+                    @media (max-width: 767px)
+                        margin-right: 20px
+    .hero-banner-v1
+        // direction: ltr
+        @media (max-width: 767px)
+            padding-top: 220px
+            padding-bottom: 120px
+        .hero-content
+            .shape-one
+                top: -20%
+                right: -10%
+                @media (max-width: 767px)
+                    right: 0
+                    top: -25%
+            p
+                padding-right: 0
+                padding-left: 30%
+                @media (max-width: 767px)
+                    padding-left: 0
+        .img-banner 
+            max-width: 400px
+            margin: auto
+            .hero-img-two
+                margin-top: -100px
+                @media (max-width: 1199px)
+                    margin-top: 70px
+                span
+                    padding-bottom: 145%
+                    position: relative
+                    img 
+                        position: absolute
+                        width: 100%
+                        height: 100%
+                        object-fit: cover
+                        top: 0
+                        left: 0
+            .hero-img-three
+                position: absolute
+                right: -15%
+                bottom: 0
+                top: unset
+                left: unset
+                @media (max-width: 767px)
+                    right: 0
+                    bottom: -20%
+        .banner-img
+            &.about-2
+                margin-left: unset
+                margin-right: -25%
+                
+                img 
+                    right: unset
+                    left: 0
+                    transform: rotate(180deg)
+    .section-about-2 
+        .we-do-content 
+            .content
+            .item-we-do
+                &:first-child 
+                    h4
+                        left: unset
+                        right: 0
+                &:last-child 
+                    h4
+                        left: 0
+                        right: unset
+            .slide-bg
+                right: 0
+            &.animated 
+                .dot-active
+                    animation: dot-active-rtl 5s ease forwards
+                    @media screen and ( max-width: 767.82px )
+                        animation: dot-active-mb-rtl 5s ease forwards!important
+    .member-section 
+        .box-price 
+            .billing 
+                .input-price 
+                    li 
+                        label     
+                            &::before
+                                margin-right: unset
+                                margin-left: 5px  
+    .blog-section 
+        .blog-item 
+            .content 
+                .date
+                    i 
+                        margin-right: unset
+                        margin-left: 10px
+        .sidebar-widget-area 
+            .widget
+                &.search-widget 
+                    form 
+                        .search-btn
+                            right: unset
+                            left: 10px
+        .recent-post-widget 
+            .recent-post-list 
+                .post-thumbnail-content
+                    > a
+                        margin-right: unset 
+                        margin-left: 10px
+    .section-course 
+        .btn-link 
+            text-align: right!important
+            .icon-c
+                margin-right: 0
+                margin-left: 10px
+    .btn-link
+        &::after
+            margin-left: 0
+            margin-right: 10px
+    .cta-area-v1 
+        .cta-img
+            right: unset
+            left: 90px
+    .post-meta 
+        ul 
+            li 
+                span 
+                    i
+                        margin-right: 0
+                        margin-left: 7px
+    .blog-area-v3 
+        .blog-post-item 
+            .entry-content 
+                .icon-btn
+                    right: unset 
+                    left: 30px
+    .testimonial-area-v1 
+        .shape-img
+            right: unset 
+            left: 5%
+    .testimonial-area 
+        .img-av-b
+            right: unset
+            left: 10%
+    .contact-area-v1 
+        .img-holder
+            margin-right: unset
+            margin-left: -105px
+            text-align: left
+            @media (max-width: 991px)
+                margin-left: 0
+                text-align: center
+            .shape
+                &.shape-icon-one 
+                    right: unset 
+                    left: 0
+                &.shape-icon-two
+                    right: unset 
+                    left: -50px
+    .information-style-one 
+        .icon 
+            span 
+                i
+                    margin-right: unset 
+                    margin-left: 10px
+
+    .btn-cos 
+        &.with-hand
+            padding: 0 20px
+            padding-left: 60px
+            @media screen and ( max-width: 767.82px )
+                padding-left: 50px
+            &::after
+                right: unset
+                left: 0
+            &::before
+                top: 65%
+                transform: translateY(-50%)
+                left: unset
+                right: 90%
+                content: ''
+                position: absolute
+                background-image: url(../images/hand-2.svg)
+                z-index: 2
+                transition: all .6s ease-in-out
+                pointer-events: none
+                background-position: right
+            &:hover 
+                padding-left: 20px
+                padding-right: 60px
+                @media screen and ( max-width: 767.82px )
+                    padding-right: 50px
+                    padding-left: 20px
+                &::before
+                    left: unset
+                    right: 150%
+                    opacity: 0
+                &::after
+                    right: unset
+                    left: calc( 100% - 50px)
+                    @media screen and ( max-width: 767.82px )
+                        left: calc( 100% - 40px)
+    .footer-widget 
+        .widget
+            &.newsletter-widget 
+                .newsletter-content 
+                    form 
+                        .main-btn
+                            right: unset
+                            left: 10px
+            &.social-widget 
+                .social-nav 
+                    li 
+                        a 
+                            i
+                                margin-right: unset
+                                margin-left: 10px
+    .nav-menu 
+        .nav-search 
+            .form_group 
+                .search-btn
+                    right: unset 
+                    left: 20px
+    .header-navigation 
+        .main-menu 
+            ul 
+                li 
+                    > a
+                        text-align: right
+    .footer-area 
+        .footer-copyright 
+            .footer-nav 
+                ul 
+                    li
+                        margin-right: 0
+                        margin-left: 30px
+    .box-news 
+        .news-item 
+            .date 
+                i
+                    margin-right: 0
+                    margin-left: 15px
+    .faq-section 
+        .btn-link
+            padding-right: 0
+            padding-left: 25px
+            text-align: right!important
+            &::before,&::after
+                right: unset
+                left: 0
+.team-item
+    text-align: center
+    color: #fff
+    margin-bottom: 30px
+    .img 
+        position: relative
+        padding-bottom: 100%
+        margin-bottom: 20px
+        img 
+            position: absolute
+            width: 100%
+            height: 100%
+            object-fit: cover
+            top: 0
+            left: 0
+    .content
+        h3 
+            margin-bottom: 5px
+        

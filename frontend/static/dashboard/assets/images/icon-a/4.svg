@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216.48 216.48">
+  <g id="a938f25e-2279-4856-a288-47c04eb3d9f0" data-name="Layer 2">
+    <g id="a39e0b09-2bbc-492d-949c-c10b824e747c" data-name="Layer 1">
+      <g>
+        <path d="M216.48,108.24A108.24,108.24,0,1,1,108.24,0,108.24,108.24,0,0,1,216.48,108.24" style="fill: #4c5ea8"/>
+        <path d="M202.36,108.24a94.12,94.12,0,1,1-94.12-94.12,94.12,94.12,0,0,1,94.12,94.12" style="fill: #8781bd"/>
+        <path d="M92.29,117.39V129.9h16V98.75c-8.86.06-16,8.38-16,18.64" style="fill: #4c5ea8"/>
+        <path d="M124.53,117.39c0-10.33-7.26-18.7-16.21-18.64h0V129.9h16.21Z" style="fill: #7da4d5"/>
+        <path d="M139.54,99.56h0c0,.17,0,.33,0,.49a9.64,9.64,0,1,0,19.28,0c0-.16,0-.32,0-.49h0V74.69h0a9.62,9.62,0,0,0-19.18,0h-.05Z" style="fill: #010101"/>
+        <path d="M156.57,98.75a7.39,7.39,0,1,0-7.39,7.49,7.44,7.44,0,0,0,7.39-7.49" style="fill: #fff"/>
+        <line x1="158.32" y1="76.65" x2="164.83" y2="76.65" style="fill: none;stroke: #010101;stroke-linecap: round;stroke-linejoin: round;stroke-width: 0.9079999923706055px"/>
+        <line x1="158.32" y1="82.17" x2="164.83" y2="82.17" style="fill: none;stroke: #010101;stroke-linecap: round;stroke-linejoin: round;stroke-width: 0.9079999923706055px"/>
+        <path d="M75.84,99.56h0c0,.17,0,.33,0,.49a9.64,9.64,0,1,1-19.28,0c0-.16,0-.32,0-.49h0V74.69h0a9.62,9.62,0,0,1,19.18,0h0Z" style="fill: #010101"/>
+        <path d="M58.82,98.75a7.39,7.39,0,1,1,7.38,7.49,7.43,7.43,0,0,1-7.38-7.49" style="fill: #fff"/>
+        <line x1="57.07" y1="76.65" x2="50.55" y2="76.65" style="fill: none;stroke: #010101;stroke-linecap: round;stroke-linejoin: round;stroke-width: 0.9079999923706055px"/>
+        <line x1="57.07" y1="82.17" x2="50.55" y2="82.17" style="fill: none;stroke: #010101;stroke-linecap: round;stroke-linejoin: round;stroke-width: 0.9079999923706055px"/>
+        <path d="M153.25,46.59h-8.14a3.44,3.44,0,0,0,0,6.87h8.14a3.44,3.44,0,0,0,0-6.87" style="fill: #010101"/>
+        <path d="M70.27,46.59H62.13a3.44,3.44,0,0,0,0,6.87h8.14a3.44,3.44,0,0,0,0-6.87" style="fill: #010101"/>
+        <path d="M50.91,128.53a16,16,0,0,0,0,32h57.32v-32Z" style="fill: #fff"/>
+        <path d="M165.57,128.53a16,16,0,0,1,0,32H108.26v-32Z" style="fill: #ededee"/>
+        <rect x="50.5" y="142.85" width="116.18" height="3.38" style="fill: #7da4d5"/>
+        <path d="M165.11,130.93h-.19a13.6,13.6,0,0,0,0,27.19h.19a13.61,13.61,0,0,0,0-27.21" style="fill: #fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
