@@ -35,7 +35,7 @@ CSRF_TRUSTED_ORIGINS = ["https://cosqool.up.railway.app"]
 # Application definition
 
 INSTALLED_APPS = [
-    "modeltranslation",
+    # "modeltranslation",
     "dashboards",
     "auth.apps.AuthConfig",
     # 'contents',
