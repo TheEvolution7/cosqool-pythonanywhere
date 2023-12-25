@@ -4,6 +4,7 @@ from courses.views import *
 from playlists.views import *
 from subscriptions.views import *
 from reporterror.views import *
+from testpreps.views import *
 
 app_name = "dashboards"
 
@@ -40,6 +41,8 @@ urlpatterns = [
         ),
     ),
     path("playlists/", include("content.urls")),
+    
+    
     path(
         "my-course/",
         include(
@@ -115,29 +118,8 @@ urlpatterns = [
                     CourseDetailVideoView.as_view(),
                     name="course-detail-video",
                 ),
-                path(
-                    "testprep/<uuid:pk>", TestPrepView.as_view(), name="testprep-detail"
-                ),
-                path(
-                    "testprep/part/<uuid:pk>",
-                    TestPrepPartView.as_view(),
-                    name="testprep-part-detail",
-                ),
-                path(
-                    "testprep/part/<uuid:pk>/questions",
-                    TestPrepPartQuestionsView.as_view(),
-                    name="testprep-part-questions",
-                ),
-                path(
-                    "testprep/result/<uuid:pk>",
-                    TestPrepResultView.as_view(),
-                    name="testprep-result-detail",
-                ),
-                path(
-                    "testprep/result/part/<uuid:pk>",
-                    PartResultDetailView.as_view(),
-                    name="part-result-detail",
-                ),
+                path("testpreps/", include('testpreps.urls')),
+                path("testprep/", include('testprep.urls')),
             ],
         ),
     ),

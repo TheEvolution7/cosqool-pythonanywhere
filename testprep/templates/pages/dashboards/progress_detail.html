@@ -1,0 +1,136 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block content %}
+
+<div class="container-xxl">
+                
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h2>{% translate "My Progress" %}</h2>
+                <div class="title-detail-process">
+                    <h1>{{object.subject.title}} - {{object.title}}</h1>
+                    <div class="time-spent">
+                        <span>Time Spent</span>
+                        <span class="time">500h</span>
+                    </div>
+                </div>
+
+                <hr>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="detail-progress-container">
+                <div class="row">
+                    <div class="col-md-7 col-lg-8">
+                        <div class="content">
+                            <h4>Course completion</h4>
+                            <h3>GREAT JOB!</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-lg-4">
+                        <div id="math-proress"></div>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="content">
+                            <h4>Course summary</h4>
+                        </div>
+                        <div class="table-container table-summary">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Assignment type</th>
+                                        <th>Weight</th>
+                                        <th>Grade</th>
+                                        <th>Weighted grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th data-label="Assignment type">Quizzes</th>
+                                        <td data-label="Weight">30%</td>
+                                        <td data-label="Grade">91%</td>
+                                        <td data-label="Weighted grade">27%</td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="Assignment type">Midterm Exam</th>
+                                        <td data-label="Weight">30%</td>
+                                        <td data-label="Grade">91%</td>
+                                        <td data-label="Weighted grade">27%</td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="Assignment type">Final Exam</th>
+                                        <td data-label="Weight">30%</td>
+                                        <td data-label="Grade">91%</td>
+                                        <td data-label="Weighted grade">27%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="hidden-on-mobile">Your current weighted grade summary</td>
+                                        <td class="summary-total" colspan="3" data-label="Your current weighted grade summary">100%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content mb-4">
+                            <h4>Detailed grades</h4>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="box-detail-grade">
+                            {% for section in course.sections %}
+                                <div class="name-detail">
+                                    <h6>{% translate "CHAPTER" %} {{forloop.counter}} : {{section.title}}</h6>
+                                    <h6>{% translate "Score" %}</h6>
+                                </div>
+                                {% for item in section.items %}
+                                    <div class="accordion accordion-course" id="accordion-{{item.pk}}">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="heading-{{item.pk}}">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{item.pk}}" aria-expanded="true" aria-controls="collapse-{{item.pk}}">
+                                                    <span>{{item|verbose_name}}: {{item.title}}</span>
+                                                    <div class="score-text">
+                                                        {{item.get_total_score_lesson_by_user}}/{{item.get_total_score_lesson}} {% if item|verbose_name|slugify == 'quiz' %}{{item.get_total_score_quiz}}{% endif %}
+                                                    </div>
+                                                </button>
+                                            </h2>
+                                            <div id="collapse-{{item.pk}}" class="accordion-collapse collapse" aria-labelledby="heading-{{item.pk}}" data-bs-parent="#accordion-{{item.pk}}">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        {% for lesson in item.get_lessons %}
+                                                        <li>{{lesson|verbose_name}}: {{lesson.title}}: {{lesson.get_learnscore_by_user}}/{{lesson.score}}</li>
+                                                        {% endfor %}
+                                                    </ul>
+
+                                                    {% if item|verbose_name|slugify == 'quiz' %}
+                                                    <ul>
+                                                        {% for question in item.get_questions %}
+                                                        <li>{{question|verbose_name}}: {{question.title}}: 0/{% if question.score %}{{question.score}}{% else %}0{% endif %}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    
+</div>
+{% endblock %}

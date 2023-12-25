@@ -1,0 +1,22 @@
+{% extends "layout/default.html" %}
+{% load static i18n dashboard %}
+
+{% block content %}
+
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h2>{{object.testprep_item.title|title}}</h2>
+                <h1>{{object}}</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

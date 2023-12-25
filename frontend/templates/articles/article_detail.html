@@ -42,7 +42,10 @@
                             <h3 class="title">{{object}}</h3>
                             <p>{{object.description}}</p>
                             <div class="content-img">
-                                <img src="{{object.thumbnail.url}}" alt="{{object}}">
+                                {% if object.image %}
+                                <img src="{{object.image.url}}" alt="{{object}}">
+                                {% endif %}
+                               
                             </div>
                             {{object.content}}
                             <div class="post-share-tag mb-30">

@@ -1,0 +1,100 @@
+{% load i18n dashboard frontend_extras testprep %}
+
+<li>
+    <div class="row w-100 text-center gy-4">
+        <div class="col-lg-5">
+            <div class="d-flex justify-content-start align-items-center h-100 gap-2">
+                <img src="/static/dashboard/assets/images/icon-courses/1.svg" width="20">
+                <div class="d-flex flex-column text-start">
+                    <b>
+                        <a role="button">{% if item|verbose_name == 'Section' %}{{ item.title|title }} {% trans "Section" %}{% else %}{% trans "Breake" %}{% endif %}</a>
+                    </b>
+                    {% if item|verbose_name == 'Section' %}
+                        <span>
+                            {% if testprep_item_result %}
+                                {% if testprep_item_result.status == "completed" or testprep_item_result.status == "cancelled" %}
+                                    {{testprep_item_result.status|title}} {{testprep_item_result.completed_at}}
+                                {% else %}
+                                    {{total_questions_complete}} {% trans "of" %} {{item.get_total_questions}} {% trans "questions complete" %}
+                                {% endif %}
+                            {% else %}
+                                {% if item.get_total_questions %}0 {% trans "of" %} {{item.get_total_questions}} {% trans "questions complete" %}{% endif %}
+                            {% endif %}
+                        </span>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                    {% if testprep_item_result %}
+                        <div class="progress w-100 p-0 m-0">
+                            {% if testprep_item_result.status == "completed" %}
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;background-color: #4b5da9;">100%</div>
+                                {% endif %}
+
+                            {% if testprep_item_result.status == "in-process" %}
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{precent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{precent}}%;background-color: #4b5da9;">{{precent}}%</div>
+                            {% endif %}
+
+                            {% if testprep_item_result.status == "cancelled" %}
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{precent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{precent}}%;background-color: #4b5da9;">{{precent}}%</div>
+                            {% endif %}
+
+                        </div>
+                    {% else %}
+                        <div class="progress w-100 p-0 m-0">
+                            <div class="progress-bar text-dark" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background-color: #4b5da9;">0%</div>
+                        </div>
+                    {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                {% if testprep_item_result %}
+                    {% if testprep_item_result.status == "completed" %}
+                        <b>{{total_seconds_section_complete}}</b>&nbsp;{% trans "of" %} {{item.time|duration_to_min}}
+                    {% else %}
+                        <b>{{total_seconds_section_complete}}</b>&nbsp;{% trans "of" %} {{item.time|duration_to_min}}
+                    {% endif %}
+                {% else %}
+                    {{item.time|duration_to_min}}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center align-items-center text-center">
+                {% if testprep_item_result %}
+                    {% if testprep_item_result.status == "completed" or testprep_item_result.status == "cancelled" %}
+                        {% if item|verbose_name == 'Section' %}
+                            <a href="{% url "dashboards:testpreps:section-result-detail" testprep_item_result.pk %}" class="btn--link w-100">{% trans "View" %}</a>
+                        {% endif %}
+                        {% if item|verbose_name == 'Breake' %}
+                            <a href="{% url "dashboards:testpreps:breake-result-detail" testprep_item_result.pk %}" class="btn--link w-100">{% trans "View" %}</a>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if testprep_item_result.status == "in-process" %}
+                        {% if item|verbose_name == 'Section' %}
+                            <a href="{% url "dashboards:testpreps:section-detail" item.pk %}" class="btn--link w-100">{% trans "Continue" %}</a>
+                        {% endif %}
+                        {% if item|verbose_name == 'Breake' %}
+                            <a href="{% url "dashboards:testpreps:breake-detail" item.pk %}" class="btn--link w-100">{% trans "Continue" %}</a>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    {% if show %}
+                        {% if item|verbose_name == 'Section' %}
+                            <a href="{% url "dashboards:testpreps:section-detail" item.pk %}" class="btn--link w-100">{% trans "Start" %}</a>
+                        {% endif %}
+                        {% if item|verbose_name == 'Breake' and not breake_result %}
+                            <a href="{% url "dashboards:testpreps:breake-detail" item.pk %}" class="btn--link w-100">{% trans "Start" %}</a>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</li>
+

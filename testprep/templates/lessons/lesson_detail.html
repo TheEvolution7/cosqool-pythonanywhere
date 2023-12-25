@@ -1,0 +1,81 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n frontend_extras%}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="title">
+            <h2>{{object.lesson.section.course|verbose_name}}: {{object.lesson.section.course.title}} - {{object.lesson.section|verbose_name}}: {{object.lesson.section.title}}</h2>
+            <h4>{{object.lesson|verbose_name}}: {{object.lesson.title}}</h4>
+        </div>
+    </div>
+</div>
+<div class="row row-detail">
+    <div class="col-md-4 col-lg-3">
+        <div class="sticky-md-top">
+            <div class="menu-courses">
+                <h4>{{object.lesson.section.course.title}}</h4>  
+                {% if object.lessons.all %}
+                <div class="box-link-c mb-3">
+                    {% for lesson in object.lessons.all %}
+                    {% comment %} {% with object.lesson.section.course  as obj %}
+                        {% if lesson|verbose_name == 'Learn'  %}
+                        <a href="{% url 'dashboards:lessons:learn-detail' lesson.pk %}" class="summary-item">
+                        {% else %}
+                        <a href="{% url 'dashboards:practice-detail' lesson.pk %}" class="summary-item">
+                        {% endif %}
+                    {% endwith %} {% endcomment %}
+                    <a href="{% url 'dashboards:lessons:learn-detail' lesson.pk %}" class="summary-item">
+                            <div class="content">
+                                <div class="icon">
+                                    <img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/6.svg" alt="">
+                                </div>
+                                <div class="desc">
+                                    {{lesson|verbose_name}}: {{lesson.title}}
+                                </div>
+                            </div>
+                        </a>
+                    {% empty %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% comment %} <div class="btn-group-nav mb-3">
+                    <a href="#" class="btn--link"><i class="icofont-long-arrow-left"></i> Previous</a>
+                    <a href="#" class="btn--link">Next <i class="icofont-long-arrow-right"></i></a>
+                </div> {% endcomment %}
+                <div class="btn-group-nav">
+                    {% with object.lesson.section.course as obj %}
+                    <a href="{% url 'dashboards:course-detail' obj.slug %}" class="btn--link __full"><i class="icofont-long-arrow-left"></i> {% translate "Back to course" %}</a>
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+      
+    <div class="col-md-8 col-lg-9">
+        <div class="courses-detail-content">
+            {% with object.get_section as learn %}
+            <h4>{{lesson.title}}</h4>
+            <div class="content-box">
+                <div class="box-video">
+                    {% if lesson.media %}
+                    <iframe width="100%" height="450" src="{{lesson.media.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                    {% else %}
+                    <img src="{% get_static_prefix %}dashboard/assets/images/icon-d/2_1.svg" class="mx-auto d-block img-fluid" style="max-height: 250px;">
+                    {% endif %}
+                </div>
+                <ul class="nav nav-tabs tab-body-header d-inline-flex mt-4" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#nav-1" role="tab">{% translate "About" %}</a></li>
+                </ul>
+                
+                <div class="tab-content mt-4">
+                    <div class="tab-pane fade show active" id="nav-1" role="tabpanel">
+                        {{lesson.content|safe}}
+                    </div>
+                </div>
+            </div>
+            {% endwith %}
+        </div>
+    </div>
+</div>
+{% endblock %}

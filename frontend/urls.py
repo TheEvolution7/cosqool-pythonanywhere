@@ -13,6 +13,7 @@ urlpatterns = [
         name="article-category",
     ),
     path("articles/<slug:slug>", ArticleDetailView.as_view(), name="article-detail"),
+    path("faqs/<slug:slug>", ArticleDetailView.as_view(), name="faq-detail"),
     path("<slug:slug>/", PageView.as_view(), name="page-detail"),
     # path('about-us/', AboutUsView.as_view(), name="about-us"),
     # path('courses/', CoursesView.as_view(), name="courses"),

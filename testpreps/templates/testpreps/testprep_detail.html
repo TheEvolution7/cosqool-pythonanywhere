@@ -1,0 +1,64 @@
+{% extends "layout/default.html" %} {% load static i18n dashboard frontend_extras testprep %} {% block content %}
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="title">
+			<h1>{{ object.title }}</h1>
+			<hr>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-8">
+        <h3>{% trans "Your Test Preps" %}</h3>
+		{% for item in object.get_items %}
+		<div class="py-2">
+			<div class="card rounded-4 p-4">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-3">
+							<h5 class="card-header d-flex flex-column justify-content-center align-items-center h-100">
+								{% if item|verbose_name == 'Section' %}0 of{% endif %} {{item.time|duration_to_min}}
+							</h5>
+						</div>
+						<div class="col-6">
+							<div class="d-flex flex-column justify-content-center align-items-center h-100">
+								<h6 class="card-title p-0 m-0">
+									{% if item|verbose_name == 'Section' %}{{ item.title|title }}  {% trans "Section" %} #{{item.get_order}}{% else %}{% trans "Breake" %}{% endif %}
+								</h6>
+								{% if item.get_total_questions %}<p class="card-text">0 {% trans "of" %} {{item.get_total_questions}} {% trans "questions complete" %}</p>{% endif %}
+							</div>
+						</div>
+						<div class="col-3 text-center">
+							{% if item|verbose_name == 'Section' %}{% testprep_section item %}{% else %}<a href="{% url "dashboards:testpreps:section-detail" item.pk %}" class="btn--link">{% trans "Start" %}</a>{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="col-lg-4">
+        <h3>{% trans "Your Test Prep Timeline" %}</h3>
+        <div class="py-2">
+			<div class="card rounded-4 p-4">
+				<div class="card-body">
+					<div class="timeline">
+						{% for timeline in timeline_list %}
+							<div class="timeline-item">
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h5 class="timeline-title"><span class="badge bg-secondary">{{timeline.status|title}}</span> - {{timeline.section.title}} </h5>
+										<p>{{timeline.content}}</p>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+                        
+                    </div>                    
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+{% endblock %}

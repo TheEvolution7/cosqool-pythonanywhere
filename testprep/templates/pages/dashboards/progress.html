@@ -1,0 +1,129 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="title">
+            <h1>My Progress</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="col-12">
+    </div>
+</div>
+{% for subject in subjects %}
+    
+    <div style="margin-left: -35px;">
+        <div class="row">
+            {% for course in subject.courses %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="box-progress">
+
+                        <div class="content text-center">
+                            <div id="chart-{{course.id}}" data-value="100"></div>
+                            <h4>{{course.title}}</h4>
+                            <a href="{% url 'dashboards:process-detail' course.slug %}" class="btn--link-2">See more</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
+
+{% block js %}
+{% for subject in subjects %}
+<script>
+    $(document).ready(function () {
+        var options = {
+            chart: {
+                width: 280,
+                // left: 30,
+                height: 300,
+                type: 'radialBar',
+                toolbar: {
+                    show: false
+                }
+            },
+            fill: {
+                type: 'solid',
+                colors: '#ffca05',
+                opacity: 1,
+            },
+
+            series: [{{subject|get_progress_by_subject}}],
+            stroke: {
+                lineCap: 'round',
+            },
+            colors: ['#ffca05'],
+            plotOptions: {
+                radialBar: {
+                    startAngle: 0,
+                    endAngle: 360,
+                    hollow: {
+                        margin: 0,
+                        size: '45%',
+                        background: '#fff',
+
+                        position: 'front',
+
+                        dropShadow: {
+                            enabled: true,
+                            top: 0,
+                            left: 0,
+                            blur: 4,
+                            color: '#313131',
+                            opacity: 0.2
+
+                        }
+                    },
+                    track: {
+                        background: '#7da4d5',
+                        strokeWidth: '200%',
+                        margin: 0, // margin is in pixels
+                        dropShadow: {
+                            enabled: true,
+                            top: 5,
+                            left: -5,
+                            blur: 10,
+                            opacity: 0.1
+                        }
+                    },
+
+                    dataLabels: {
+                        showOn: 'always',
+                        name: {
+                            offsetY: -15,
+                            show: false,
+                            color: '#313131',
+                            fontSize: '17px',
+                            fontFamily: 'avenirbook'
+                        },
+                        value: {
+                            formatter: function (val) {
+                                return val + "%";
+                            },
+                            color: '#313131',
+                            offsetY: 8,
+                            fontSize: '20px',
+                            fontFamily: 'avenirbook',
+                            show: true,
+                        }
+                    }
+                }
+            },
+
+        }
+        var chart = new ApexCharts(
+            document.querySelector("#chart-{{subject.id}}"),
+            options
+        );
+        chart.render();
+    });
+</script>
+{% endfor %}
+{% endblock  %}

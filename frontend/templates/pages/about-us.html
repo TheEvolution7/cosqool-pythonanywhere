@@ -1,26 +1,21 @@
-{% extends 'layouts/default.html' %} {% load static %} {% block content %}
+{% extends 'layouts/default.html' %} {% load static %} 
+{% block content %}
 <!--====== Start Hero Section ======-->
-<section class="hero-banner-v1 position-relative section-color" id="color-section-banner">
-
-        
+<section
+	class="hero-banner-v1 position-relative section-color"
+	id="color-section-banner"
+>
 	<div id="tsparticles-banner"></div>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-md-7 col-12 align-self-center">
-				<div class="hero-content">
-					
-					<h3 class="wow fadeInUp" data-wow-delay=".5s">who we are</h3>
-					<h1 class="wow fadeInUp" data-wow-delay=".5s"><b>We believe we can affect the lives ofothers with just one click.</b></h1>
-					<p class="wow fadeInDown" data-wow-delay=".6s">We are cosqool, the world’s ﬁrst English & Arabic based online tutoring and learning platform with a unique mission. We step up the game by offering a full range of educational services to empower students and pave a path to success. We are committed to <b>accessible learning</b> for everyone, from young children to college students and instructors. </p>
-				 
-				</div>
+				<div class="hero-content">{{fields.26.content}}</div>
 			</div>
 			<div class="col-md-5 col-12">
 				<div class="banner-img about-1 wow fadeInRight">
-					<img src="{%get_static_prefix%}assets/images/about/ab-1.svg" alt="">
+					<img src="{{fields.26.file}}" alt="{{fields.26}}" />
 				</div>
-				
 			</div>
 		</div>
 	</div>
@@ -28,27 +23,19 @@
 		<div class="row">
 			<div class="col-md-7 col-12 align-self-center order-0 order-md-1">
 				<div class="hero-content">
-					
 					<!-- <h3 class="wow fadeInUp" data-wow-delay=".5s">who we are</h3> -->
-					<h1 class="wow fadeInUp" data-wow-delay=".5s"><b>We tailor one’s expertise, and teaching style.</b></h1>
-					<p class="wow fadeInDown mb-0" data-wow-delay=".6s">We provide innovative resources for tutors and educators, equipping them with all the tools they need to deliver a seamless experience. Explore our one-stop-shop for every subject and curriculum. </p>
-				 
+					{{fields.27.content}}
 				</div>
 			</div>
 			<div class="col-md-5 col-12 order-1 order-md-0 align-self-center">
 				<div class="banner-img about-2 wow fadeInRight">
-					<img src="{%get_static_prefix%}assets/images/about/hand.svg" alt="">
+					<img src="{{fields.27.file}}" alt="{{fields.27}}" />
 				</div>
-				
 			</div>
 		</div>
 	</div>
-	
 </section>
 <!--====== End Hero Section ======-->
-
-
-
 
 <section class="section-about-2 section-color" id="color-section-about-2">
 	<div class="container success-container">
@@ -56,41 +43,20 @@
 			<div class="col-12">
 				<div class="text-wrapper">
 					<div class="section-title section-title-yellow">
-						<h3 class="wow fadeInUp" data-wow-delay=".5s">your success <br>is our success.</h3>
+						{{fields.28.content}}
 					</div>
 				</div>
 			</div>
-			
 		</div>
 		<div class="row">
+			{% for field in fields.28.children %}
 			<div class="col-md-4 d-flex">
 				<div class="box-card wow fadeInUp" data-wow-delay=".5s">
-					<!-- <div class="icon">
-						<img src="{%get_static_prefix%}assets/images/about/ic-1.svg" alt="">
-					</div> -->
-					<h3>Education.</h3>
-					<p>We are passionate about creating a space where students can learn and grow without any burden or frustration. Cosqool inherits the core methodologies of the best teaching establishments. Knowledge and application are essential in young minds.</p>
+					<h3>{{field.title}}</h3>
+					{{field.content}}
 				</div>
 			</div>
-			<div class="col-md-4 d-flex">
-				<div class="box-card wow fadeInUp" data-wow-delay=".5s">
-					<!-- <div class="icon">
-						<img src="{%get_static_prefix%}assets/images/about/ic-2.svg" alt="">
-					</div> -->
-					<h3>Engage.</h3>
-					<p>All lesson plans found on Cosqool have seen optimization for maximum engagement, where interactions and results are our top priority. Our curated framework develops around the concept of educational adaptability and enhanced engagement.</p>
-				</div>
-			</div>
-			<div class="col-md-4 d-flex">
-				<div class="box-card wow fadeInUp" data-wow-delay=".5s">
-					<!-- <div class="icon">
-						<img src="{%get_static_prefix%}assets/images/about/ic-3.svg" alt="">
-					</div> -->
-					<h3>Professional.</h3>
-					<p>Cosqool believes in maintaining a high standard of professionalism for every educational channel. All of our academics maintain a professional touch.</p>
-				</div>
-			</div>
-
+			{% endfor %}
 		</div>
 	</div>
 
@@ -99,7 +65,7 @@
 			<div class="col-12">
 				<div class="text-wrapper">
 					<div class="section-title section-title-yellow">
-						<h3 class="wow fadeInUp" data-wow-delay=".5s">what we do</h3>
+						{{fields.32.content}}
 					</div>
 				</div>
 			</div>
@@ -108,25 +74,13 @@
 					<div class="slide-bg"></div>
 					<div class="dot-active"></div>
 					<div class="content">
+						{% for field in fields.32.children %}
 						<div class="item-we-do">
 							<div class="dot"></div>
-							<h4>we construct.</h4>
+							{{field.content}}
 						</div>
-						<div class="item-we-do">
-							<div class="dot"></div>
-							<h4>we connect.</h4>
-						</div>
-						<div class="item-we-do">
-							<div class="dot"></div>
-							<h4>we engage.</h4>
-						</div>
-						<div class="item-we-do">
-							<div class="dot"></div>
-							<h4>we pay attention.</h4>
-						</div>
+						{% endfor %}
 					</div>
-					
-					
 				</div>
 			</div>
 		</div>
@@ -134,92 +88,68 @@
 </section>
 
 <!-- <section class="section-certificate section-color" id="color-section-about-certi">
-	
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="text-wrapper">
-					<div class="section-title text-center section-title-yellow">
-						<h2 class="wow fadeInUp" data-wow-delay=".5s">Course Certificate</h2>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-		<div class="row">
-			<div class="col-12 wow fadeInUp" data-wow-delay=".5s">
-				<div class="swiper swiper-container swiper-certi">
-					<div class="swiper-wrapper">
-					   
-						<div class="swiper-slide">
-							<div class="certi-box">
-								<div class="img">
-									<img src="{%get_static_prefix%}assets/images/about/c-1.svg" alt="">
-								</div>
-								<div class="content">
-									<p>Microsoft Certified</p>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-					<div class="swiper-pagination"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-wrapper">
+                    <div class="section-title text-center section-title-yellow">
+                        <h2 class="wow fadeInUp" data-wow-delay=".5s">Course Certificate</h2>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-12 wow fadeInUp" data-wow-delay=".5s">
+                <div class="swiper swiper-container swiper-certi">
+                    <div class="swiper-wrapper">
+                       
+                        <div class="swiper-slide">
+                            <div class="certi-box">
+                                <div class="img">
+                                    <img s{{get_static_prefix}}ssets/images/about/c-1.svg" alt="">
+                                </div>
+                                <div class="content">
+                                    <p>Microsoft Certified</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section> -->
-
 
 <section class="section-team section-color" id="color-section-about-team">
 	<!-- <div id="tsparticles" class="bg-particle"></div> -->
-	
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-12 align-self-center">
-				<div class="hero-content">
-					
-					<h2 class="wow fadeInUp" data-wow-delay=".5s">Our Team</h2>
-				 
-				</div>
-			</div>
-			
+                <div class="hero-content">
+                    <h2 class="wow fadeInUp" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">{{fields.54.title}}</h2>
+                </div>
+            </div>
 		</div>
-		<div class="row mt-5">
-			<div class="col-md-4 col-12">
-				<div class="team-item wow fadeInUp" data-wow-delay=".5s">
-					<div class="img">
-						<img src="{%get_static_prefix%}assets/images/about/av-1.svg" alt="">
-					</div>
-					<div class="content">
-						<h3>Jad N.</h3>
-						<p>Co-founder/Manager Director</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-12">
-				<div class="team-item wow fadeInUp" data-wow-delay=".5s">
-					<div class="img">
-						<img src="{%get_static_prefix%}assets/images/about/av-2.svg" alt="">
-					</div>
-					<div class="content">
-						<h3>Helmy M.</h3>
-						<p>Co-founder/Technical Director</p>
+        <div class="row mt-5">
+			{% for field in fields.54.children %}
+				<div class="col-md-4 col-12">
+					<div class="team-item wow fadeInUp" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+						<div class="img">
+							<img src="{{field.file}}" alt="">
+						</div>
+						<div class="content">
+							<h3>{{field.title}}</h3>
+							<p>{{field.content}}</p>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-4 col-12">
-				<div class="team-item wow fadeInUp" data-wow-delay=".5s">
-					<div class="img">
-						<img src="{%get_static_prefix%}assets/images/about/av-3.svg" alt="">
-					</div>
-					<div class="content">
-						<h3>Sarah Naaman</h3>
-						<p>Creative Director</p>
-					</div>
-				</div>
-			</div>
-		</div>
+			{% endfor %}
+        </div>
 	</div>
 </section>
 
@@ -247,48 +177,41 @@
 	</div>
 </section>
 
-
-
-
 <section class="section-end-about section-color" id="color-section-white">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
 				<div class="section-title text-center wow fadeInLeft">
 					<!-- <span class="sub-title st-one">Testimonials</span> -->
-					<h2 class="wow fadeInUp" data-wow-delay=".5s">Cosqool brings the best range of creativeand educational interactive content at the touch of a button.</h2>
-					
+					{{fields.38.content}}
 				</div>
 			</div>
 			<div class="col-12">
 				<div class="banner-img about-3 wow fadeInRight">
-					<img src="{%get_static_prefix%}assets/images/about/ab-3.svg" alt="">
+					<img src="{{fields.38.file}}" alt="{{fields.38}}" />
 				</div>
-				
 			</div>
 		</div>
 	</div>
-	
 </section>
 
-
-
 <!--====== Start CTA Section ======-->
-<section class="cta-section wow fadeInDown section-color" id="color-section-white">
+<section
+	class="cta-section wow fadeInDown section-color"
+	id="color-section-white"
+>
 	<div class="container">
 		<div class="cta-wrapper">
 			<div class="row align-items-center">
 				<div class="col-lg-12">
 					<div class="text-wrapper">
-						<div class="section-title text-center">
-							<h2>click it. get into action</h2>
-						</div>
+						<div class="section-title text-center">{{fields.39.content}}</div>
 					</div>
 				</div>
 				<div class="col-lg-12">
 					<div class="button-box wow fadeInLeft">
-						<a href="#" class="btn-cos with-hand">
-							Subscribe now
+						<a href="#{{fields.39.slug}}" class="btn-cos with-hand">
+							{{fields.40.content}}
 						</a>
 					</div>
 				</div>
@@ -297,4 +220,5 @@
 	</div>
 </section>
 <!--====== End CTA Section ======-->
+
 {% endblock %}

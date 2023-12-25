@@ -1,0 +1,68 @@
+{% extends "layout/default.html" %}
+{% load parler_tags %}
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block content %}
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h1>{% translate "List Course" %}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row gx-lg-5 py-20 gx-30">
+        {% for subject in subjects %}
+            {% if subject.grades  %}
+            
+                {% comment %} <div class="row">
+                    <div class="col-md-12">
+                        <div class="title">
+                            <h2>{{subject.title}}</h2>
+                            <hr>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+                
+                    {% for course in subject.courses %}
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex">
+                        {% for section in course.sections %}
+                            {% if forloop.first %}
+                                {% for item in section.items %}
+                                    {% if forloop.first %}
+                                        {% for lesson in item.get_lessons %}
+                                            {% if forloop.first %}
+                                                <a href="{% url 'dashboards:course-detail-video' course.pk  lesson.pk %}" class="box-link-2">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                            <div class="img">
+                                <img src="{% get_static_prefix %}dashboard/assets/images/icon-d/2_1.svg" alt="">
+                            </div>
+                            <div class="content">
+                                <div class="number">{{course|title}}</div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                
+            
+            {% endif %}
+        {% endfor %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex">
+            <a href="/dashboards/my-course/testprep/0af078a8-7cf0-41d9-a09b-05fe7dac20e2" class="box-link-2">
+                <div class="img">
+                    <img src="{% get_static_prefix %}dashboard/assets/images/icon-d/2_1.svg" alt="">
+                </div>
+                <div class="content">
+                    <div class="number">{{course|title}}</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

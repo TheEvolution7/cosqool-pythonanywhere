@@ -1,0 +1,162 @@
+{% extends "layout/default.html" %}
+{% block content %}
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h2>{{object.title}}</h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="sticky-md-top">
+                <div class="sidebar-widget-wrapper pr-0">
+                    <div class="sidebar-widget">
+                        <div class="sidebar-widget-content">
+                            <div class="sidebar-entry-course-info p-0">
+                                <div class="learn-wrapper">
+                                    <div class="chapter-course __2">
+                                        <ul class="chapter-sections">
+                                            <li class="single-chapter-section">
+                                                <div class="section-header">
+                                                    <div class="section-left">
+        
+                                                        <h5 class="title">Quiz navigation</h5>
+                                                        <div class="progress w-100 mb-0">
+                                                            <div class="progress-fill" style="width: 10%;"></div>
+                                                            <span class="progress-text">10%</span>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="section-question">
+                                                    <!-- Add class has-answer to 'a' tag if question has answerd -->
+                                                    <li class="wrong-answer"><a href="#quest-1" data-name="quest-1">1</a></li>
+                                                    <li class="right-answer"><a href="#quest-2" data-name="quest-2">2</a></li>
+                                                    <li class=""><a href="#" data-name="quest-3">3</a></li>
+                                                    <li><a href="#" data-name="quest-4">4</a></li>
+                                                    <li><a href="#" data-name="quest-5">5</a></li>
+                                                    <li><a href="#" data-name="quest-6">6</a></li>
+                                                    <li><a href="#" data-name="quest-7">7</a></li>
+                                                    <li><a href="#" data-name="quest-8">8</a></li>
+                                                    <li><a href="#" data-name="quest-9">9</a></li>
+                                                    <li><a href="#" data-name="quest-10">10</a></li>
+                                                    
+                                                </ul>
+                                            </li>
+                                            <li class="single-chapter-section">
+                                
+                                                <div class="btn-group">
+                                                    <button type="submit" class="btn--link _yellow">Back</button>
+                                                </div>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-8">
+            <div class="learn-wrapper">
+                <div class="chapter-course">
+                    <ul class="chapter-sections quest-list review-page">
+                        <li class="single-chapter-section">
+                            <div class="section-header">
+                                <div class="section-left">
+
+                                    <h5 class="title">Review Quiz</h5>
+                                    <p class="section-desc">Infomation</p>
+
+                                </div>
+                            </div>
+                            <ul class="section-content box-info-list">
+                                {% with taken_quiz as obj %}
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>Started on</span>{{obj.started_at}}</span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>State</span></span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>Completed on</span>{{obj.completed_at}}</span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>Time taken</span></span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>Marks</span></span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>Grade</span></span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name">
+                                            <span>Feedback</span> 
+                                            <div class="content">
+                                            </div>
+                                            
+                                        </span>
+                                    </div>
+                                </li>
+                                {% endwith %}
+                            </ul>
+                        </li>
+                        {% for question in object.questions %}
+                        <li class="single-chapter-section" id="quest-1">
+                            <div class="section-header">
+                                <div class="section-left">
+                                    <p class="section-desc">Question 1</p>
+                                    <h5 class="sub-title">{{question.content|safe}}</h5>
+
+                                </div>
+                            </div>
+                            <ul class="section-content">
+                                {% for answer in question.answers %}
+                                    <li class="course-item">
+                                        <div class="section-item-link __radio">
+                                            <input type="radio" name="chap-1" id="q-1">
+                                            <label for="q-1">{{answer.title}}</label>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                        
+
+                        <!-- <li class="single-chapter-section">
+                            <div class="btn-group">
+                                <a href="#" class="btn--link _blue">Back</a>
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+{% endblock %}

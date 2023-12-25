@@ -1,0 +1,55 @@
+{% load static i18n dashboard %}
+<div class="sidebar px-4 py-4 py-md-4  me-0">
+    <div class="d-flex flex-column h-100">
+        <a href="{% url 'dashboards:index' %}" class="mb-0 brand-icon">
+            <img class="logo-big" src="{% get_static_prefix %}dashboard/assets/images/logo-1.svg" alt="">
+            <img class="logo-mini" src="{% get_static_prefix %}dashboard/assets/images/logo-dot.svg" alt="">
+        </a>
+        <!-- Menu: main ul -->
+        <ul class="menu-list mt-3">
+            {% for link in linklist %}
+                <li>
+                    <a class="m-link {% if request.path|slugify == link.get_absolute_url|slugify %}active{% endif %}" href="{{link.get_absolute_url}}">
+                        <img class="icon-menu me-3" src="{{link.media.url}}">
+                        <span class="me-3">{{link.title|title}}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        <hr class="hr-menu">
+        <ul class="menu-list mt-3">
+            <li>
+                <a class="m-link" href="#">
+                    <img class="icon-menu me-3" src="{% get_static_prefix %}dashboard/assets/images/icon-menu-new/7.svg" alt="">
+                    <span class="me-3">{% translate "FAQ" %}</span>
+                </a>
+            </li>
+            <li>
+                <a class="m-link" href="#">
+                    <img class="icon-menu me-3" src="{% get_static_prefix %}dashboard/assets/images/icon-menu-new/8.svg" alt="">
+                    <span class="me-3">{% translate "Contact Us" %}</span>
+                </a>
+            </li>
+            <li>
+                <a class="m-link" href="#">
+                    <img class="icon-menu me-3" src="{% get_static_prefix %}dashboard/assets/images/icon-menu-new/9.svg" alt="">
+                    <span class="me-3">{% translate "News and Blogs" %}</span>
+                </a>
+            </li>
+        </ul>
+        <!-- Theme: Switch Theme -->
+        <!-- <ul class="list-unstyled mb-0">
+         
+            <li class="d-flex align-items-center justify-content-center">
+                <div class="form-check form-switch theme-rtl">
+                    <input class="form-check-input" type="checkbox" id="theme-rtl">
+                    <label class="form-check-label" for="theme-rtl">Enable RTL Mode!</label>
+                </div>
+            </li>
+        </ul> -->
+        <!-- Menu: menu collepce btn -->
+        <button type="button" class="btn btn-link sidebar-mini-btn">
+            <span><i class="icofont-bubble-right"></i></span>
+        </button>
+    </div>
+</div>

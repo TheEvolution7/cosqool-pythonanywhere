@@ -1,0 +1,13 @@
+{% load testprep %}
+<li class="course-item">
+    <div class="section-item-link __radio">
+        <div class="form-check d-flex gap-2 justify-content-center align-items-center">
+            <input class="form-check-input p-0 m-0" type="radio" name="{{question.pk}}" id="{{question.pk}}-{{answer.pk}}" value="{{answer.pk}}" {% if checked %}checked{% endif %}>
+            <label class="form-check-label" for="{{question.pk}}-{{answer.pk}}">
+                <div class="p-0 m-0 d-flex gap-2 justify-content-center align-items-center">
+                    <b>{{ 1|to_letter }}</b>{{answer.content|safe}}
+                </div>
+            </label>
+        </div>
+    </div>
+</li>

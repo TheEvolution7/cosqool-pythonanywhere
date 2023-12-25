@@ -1,0 +1,167 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n frontend_extras %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="title">
+            <h1>{{object.title}}</h1>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="row playlist-detail d-flex align-items-start" style="max-width: 1000px;">
+    <div class="col-12">
+        <div class="box-video">
+            <div class="row">
+              <div class="col-12">
+                <div class="p-0">
+                    {% for video in page_obj %}
+                    <iframe width="100%" height="450" src="{{video.media.url}}" frameborder="0" loading="lazy" style="border-radius: 20px;"></iframe>
+
+                    {% empty %}
+                    <img src="{% get_static_prefix %}dashboard/assets/images/bg-list.png" width="100%" height="450">
+                    {% endfor %}
+                </div>
+                <h3 class="title-video">{% for video in page_obj %}{{video.title}}{% endfor %}</h3>
+              </div>
+              <div class="col-12">
+                <h5>Playlist:</h5>
+                <div class="vid-list-container">
+                    {% for video_object in videos %}
+                        <a class="active" href="javascript:;" onclick="document.getElementById('vid_frame').src='{{video.media.url}}'" tabindex="0" data-video-title="{{video_object.title}}">
+                            <div class="desc"><span>{{forloop.counter}}.</span>{{video_object.title}}</div>
+                            <div class="time">{{video_object.media|get_duration_video}}</div>
+                            <div class="icon-del">
+                                <button data-bs-toggle="tooltip" data-bs-original-title="Remove">
+                                    <img src="{%get_static_prefix%}dashboard/assets/images/icon-courses/7_1.svg" alt="">
+                                </button>
+                            </div>
+                        </a>
+                    {%empty%}
+                    <div class="d-flex align-items-center justify-content-center">
+                        <span><b>{% translate "No Video" %}</b></span>
+                    </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+{% comment %} <div class="row">
+    <div class="col-12">
+        <div class="section-title mb-50">
+            <h1>{% for video in page_obj %}{{video.title}}{% endfor %}</h1>
+            <br>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-8 col-lg-7">
+        <div class="box-video">
+            {% for video in page_obj %}
+            <iframe width="100%" height="450" src="{{video.media.url}}" frameborder="0" loading="lazy"></iframe>
+            {% endfor %}
+        </div>
+
+        <div class="detail-courses">
+
+            <div class="content">
+                {% for video in page_obj %}
+                <ul class="nav nav-tabs tab-body-header">
+                    <li class="nav-item">
+                        <a class="nav-link active">
+                            <img src="{% get_static_prefix %}dashboard/assets/images/icon-menu-new/1.svg" class="me-2">
+                            <span class="me-2">{{object.user.get_full_name}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <img src="{% get_static_prefix %}dashboard/assets/images/icon-menu-new/5.svg" class="me-2"> 
+                            <span class="me-2">{{video.created_at|timesince}} {% translate "ago" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link"></a></li>
+                    <li class="nav-item"><a class="nav-link"></a></li>
+                    <li class="nav-item"><a class="nav-link"><img src="{% get_static_prefix %}dashboard/assets/images/icon-menu-new/12.svg" alt=""></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active">
+                        <div class="courses-list-content">
+                            <p>
+                            {% if video.description %}
+                            {{video.description|safe}}
+                            {% else %}
+                            {% translate "No Video Description" %}
+                            {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-5">
+        <div class="sticky_column">
+            <h4>{{object.title}}</h4>
+            <h5>{{object.user.get_full_name}} - {{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</h5>
+            <div class="menu-courses">
+                <div class="box-link-c mb-3">
+                    {% for video in videos %}
+                        <a href="#" class="summary-item d-flex justify-content-between align-items-center {% if forloop.counter|slugify == request.GET.page|slugify %}active{% endif %} {% if forloop.first and not request.GET.page %}active{% endif %}">
+                            <div class="content">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="me-2">
+                                        <span>{{forloop.counter}}</span>
+                                    </div>
+                                    <div class="me-2">
+                                        <img src="{%get_static_prefix%}assets/images/icon-courses/6.svg" width="50px">
+                                    </div>
+                                    <div class="me-2">
+                                        <span>{{video.title|title}}</span><br>
+                                        <b>{{video.teacher.user.get_full_name|title}} - {{video.media|get_duration_video}}</b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{%get_static_prefix%}dashboard/assets/images/icon-menu-new/12.svg" width="25" height="25">
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <li>
+                                        <button class="btn dropdown-item" type="button"><span>{% translate "Save to playlist" %}</span></button>
+                                    </li>
+                                    <li>
+                                        <button class="btn dropdown-item" type="button"><span>{% translate "Remove from playlist" %}</span></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-nav mb-3">
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn--link"><i class="icofont-long-arrow-left"></i>{% translate "Previous" %}</a>
+                {% else %}
+                <a class="btn disabled btn--link"><i class="icofont-long-arrow-left"></i>{% translate "Previous" %}</a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn--link">{% translate "Next" %}<i class="icofont-long-arrow-right"></i></a>
+                {% else %}
+                <a class="btn disabled btn--link">{% translate "Next" %}<i class="icofont-long-arrow-right"></i></a>
+                {% endif %}
+            </div>
+
+            
+        </div>
+
+    </div>
+
+</div> {% endcomment %}
+
+
+{% endblock %}

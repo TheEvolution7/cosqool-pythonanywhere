@@ -5,7 +5,7 @@
             <div class="section-left">
                 <div class="d-flex justify-content-between">
                     <h5 class="title">Part {{part.title}}: </h5>
-                    {% get_partresult_by_part part.pk %}
+                    {% comment %} {% get_partresult_by_part part.pk %} {% endcomment %}
                 </div>
 
                 <p class="section-desc">1 of {{ part_result.part.get_questions.count }} questions are answered correctly</p>

@@ -1,0 +1,14 @@
+{% load static i18n dashboard %}
+{% for question in questions %}
+<li class="single-chapter-section">
+    <div class="section-header">
+        <div class="section-left">
+            <p class="section-desc">{% translate "Question" %} {{forloop.counter}}</p>
+            <h5 class="sub-title">{{question.content|safe}}</h5>
+        </div>
+    </div>
+    <ul class="section-content pb-4">
+        {% get_answer_by_question question.pk %}
+    </ul>
+</li>
+{% endfor %}

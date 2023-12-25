@@ -1,0 +1,158 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n dashboard frontend_extras %}
+{% block content %}
+<div class="row d-flex align-items-start" style="max-width: 1000px;">
+    <div class="col-12 mb-3">
+        <div class="card info-card">
+            <div class="card-body p-4 d-flex align-items-center">
+                <div class="d-flex align-items-center flex-column flex-md-row flex-fill">
+                    <div class="avt _icon">
+                        <img src="{%get_static_prefix%}dashboard/assets/images/icon-d/8.svg" alt="" class="">
+                    </div>
+
+                    <div class="media-body title-index text-md-start text-center">
+                        <h3>{% translate "Home" %}</h3>
+                        <h2 class="font-weight-bold">{% translate "Hello" %}, {{user.student.get_full_name}}</h2>
+                        
+                        <!-- <div class="color-blue-text mb-2">Grade 1</div> -->
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mb-4">
+        <div class="box-video-thumb">
+            <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="640"
+            height="264"
+            poster="{%get_static_prefix%}dashboard/assets/images/icon-d/bg.jpg"
+            data-setup="{}"
+        >
+            <source src="{%get_static_prefix%}dashboard/assets/video/2.mp4" type="video/mp4" />
+            <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank"
+                >supports HTML5 video</a
+            >
+            </p>
+        </video>
+        </div>
+    </div>
+    <div class="col-12 dash-col">
+        <div class="dash-item">
+            {% for type in types %}
+                <div class="dash-title">
+                    <h3>{{type.description|title}}</h3>
+                </div>
+                {% for notification in type.get_notifications %}
+                    <div class="dash-content">
+                        <div class="content">
+                            <p><b>{{notification.title|title}}</b></p>
+                            <p><b>{% translate "Date" %}:</b> {{notification.created_at}}</p>
+                        {{notification.content|safe}}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        
+        
+    </div>
+</div>
+{% comment %} <div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <div class="d-md-flex justify-content-between align-items-center">
+                    <h2>Home</h2>
+                </div>
+                
+                <hr>
+            </div>
+            
+        </div>
+        <div class="col-12">
+            <div class="card info-card">
+                <div class="card-body p-4 d-flex align-items-center">
+                    <div class="d-flex align-items-center flex-column flex-md-row flex-fill">
+                        <div class="avt">
+                            <img src="{{user.avatar.url|user_img_url}}" alt="" class="rounded-circle">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#edit-avatar"><img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/8_1.svg" alt=""></button>
+                        </div>
+
+                        <div class="media-body ms-md-5 m-0 mt-4 mt-md-0 text-md-start text-center">
+                            <h5 class="font-weight-bold mb-3 ">{{user.get_full_name}}</h5>
+                            <div class="mb-2">
+                                Email: {{user.email}}<br>
+                                Birth: {{user.date_of_birth}}
+                            </div>
+                            <div class="color-blue-text mb-2">Grade 1</div>
+                            <div class="btn-group mt-2">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#edit-info" class="btn btn-outline-primary">Edit Info</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#change-pass" class="btn btn-outline-primary">Change Password</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="box-purcharge row">
+                <div class="col-md-6 col-lg-7">
+                    <h3>{{types.0.description}}:</h3>
+                    <div class="package-item">
+                        <div class="content-package">
+                            {% for notification in types.0.get_notifications %}
+                            <div class="content">
+                                <p><b>{{notification.title|title}}</b></p>
+                                <p><b>{% translate "Date" %}:</b> {{notification.created_at}}</p>
+                                {{notification.content|safe}}
+                             
+                            </div>
+                            {% endfor %}
+                            <div class="btn-group">
+                                <a href="#" class="btn--link">Click here for more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <h3>{{types.1.description}}:</h3>
+                    <div class="package-item _tip-box" style="border: 4px solid #4b5da9;">
+                        <div class="content-package">
+                            {% for notification in types.1.get_notifications %}
+                            <div class="content">
+                                {{notification.content|safe}}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="box-purcharge mt-0 pt-0">
+                <h3>{{types.2.description}}:</h3>
+                <div class="row">
+                    {% for notification in types.2.get_notifications %}
+                        <div class="col-md-6 col-lg-7">
+                            <div class="box-video-thumb">
+                                <iframe class="w-100" height="450" src="{{notification.media.url}}" frameborder="0" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div> {% endcomment %}
+    
+{% endblock %}

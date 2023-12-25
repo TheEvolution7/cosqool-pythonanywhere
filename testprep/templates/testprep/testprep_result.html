@@ -1,0 +1,120 @@
+
+{% extends "layout/default.html" %}
+{% load static i18n dashboard %}
+
+{% block content %}
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h1>{{ object.testprep.title|title }}</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="sticky-md-top">
+                <div class="sidebar-widget-wrapper pr-0">
+                    <div class="sidebar-widget">
+                        <div class="sidebar-widget-content">
+                            <div class="sidebar-entry-course-info p-0">
+                                <div class="learn-wrapper">
+                                    <div class="chapter-course __2">
+                                        <ul class="chapter-sections">
+                                            <li class="single-chapter-section">
+                                                <div class="section-header">
+                                                    <div class="section-left text-center">
+                                                        <h5 class="title">Your Score {% get_percent_answer_correct_by_testprep_result %}% </h5>
+                                                            <p class="section-desc">{% get_total_answer_correct_by_testprep_result %} of {% get_total_question_by_testprep_result %}  questions are answered correctly</p>
+                                                            <div class="progress w-100 mb-0">
+                                                                <div class="progress-fill" style="width: {% get_percent_answer_correct_by_testprep_result %}%;"></div>
+                                                                <span class="progress-text">{% get_percent_answer_correct_by_testprep_result %}%</span>
+
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="single-chapter-section">
+
+                                                <div class="btn-group">
+                                                    <a href="{% url 'dashboards:testpreps:testprep-detail' object.testprep.pk %}" class="btn--link _yellow">{% translate "Back" %}</a>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="learn-wrapper">
+                <div class="chapter-course">
+                    <ul class="chapter-sections quest-list review-page">
+                        <li class="single-chapter-section">
+                            <div class="section-header">
+                                <div class="section-left">
+                                    <h5 class="title">{% translate 'Testprep results' %}</h5>
+
+                                </div>
+                            </div>
+                            <ul class="section-content box-info-list">
+
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>{% translate 'Started on' %}</span>{{ object.get_part_results.first.created_at }}</span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>{% translate 'State' %}</span>{{ object.status|title }}</span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>{% translate 'Completed on' %}</span>{{ object.get_part_results.last.updated_at }}</span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>{% translate 'Time taken' %}</span>0</span>
+                                    </div>
+                                </li>
+                                <li class="course-item">
+                                    <div class="section-item-link no-icon">
+                                        <span class="item-name"><span>{% translate 'Marks' %}</span>{% get_percent_answer_correct_by_testprep_result %}%</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        {% for part in object.testprep.get_parts %}
+                            <li class="single-chapter-section">
+                                <div class="section-header">
+                                    <div class="section-left">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="title">Part {{part.get_order}} - {{part.subject.title}}</h5>
+                                            {% get_partresult_by_part part.pk %}
+                                        </div>
+                                        <p class="section-desc"> {% get_total_answer_correct_by_part part.pk %} of {{ part.get_questions.count }} questions are answered correctly</p>
+                                        <div class="progress w-100 mb-0">
+                                            <div class="progress-fill" style="width: {% get_percent_by_part part.pk %}%;"></div>
+                                            <span class="progress-text">{% get_percent_by_part part.pk %}%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

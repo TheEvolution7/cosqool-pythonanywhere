@@ -1,0 +1,134 @@
+{% extends "layout/default.html" %}
+{% load static i18n dashboard %}
+{% load tz %}
+{% block content %}
+
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h2>{{object.testprep.title|title}}</h2>
+                <h1>{{object}}</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        {% if breake_result %}
+            <div class="card text-center rounded-4 p-4 mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans "Remaining Time" %}</h5>
+                    <div id="clock">{{time_remaining|timezone:'UTC'|date:'Y/m/d H:i:s'}}</div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="leave"/>
+                        <button type="submit" class="btn--link w-100 _yellow">{% trans "Leave Breake" %}</button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <div class="card text-center rounded-4 p-4">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans "Remaining Time" %}</h5>
+                    <p>{{object.time}}</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="begin"/>
+                        <button type="submit" class="btn--link w-100 _yellow">{% trans "Begin Breake" %}</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block js %}
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<script src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js" integrity="sha512-lteuRD+aUENrZPTXWFRPTBcDDxIGWe5uu0apPEn+3ZKYDwDaEErIK9rvR0QzUGmUQ55KFE2RqGTVoZsKctGMVw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var getSeconds = new Date().getTime() + parseInt($('#clock').text()* 1000);
+    var clock = $('#clock')
+    
+    var finalDate = moment.tz(clock.html(), "UTC");
+    
+    clock.countdown(finalDate.toDate())
+    .on('update.countdown', function(event) {
+        var format = '';
+        if(event.offset.seconds > 0) {
+            format = '%-S seconds  ' + format;
+        }
+        if(event.offset.minutes > 0) {
+            format = '%-M minute%!M ' + format;
+        }
+        if(event.offset.hours > 0) {
+            format = '%-H hour%!H ' + format;
+        }
+        if(event.offset.totalDays > 0) {
+            format = '%-d day%!d ' + format;
+        }
+        if(event.offset.weeks > 0) {
+            format = '%-w week%!w ' + format;
+        }
+        $(this).html(event.strftime(format));
+    })
+    .on('finish.countdown', function(event) {
+        $(this).html('Expired!');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn--link _yellow',
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Info!',
+            text: 'Not all questions were answered, are you sure you want to submit?',
+            icon: 'info',
+            confirmButtonText: '{{next_url.text}}',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{next_url.url}}";
+            }
+          })
+    });
+
+    $('#myForm').submit(function(event) {
+        event.preventDefault();
+        
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn--link _yellow me-2',
+              cancelButton: 'btn--link me-2'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "Not all questions were answered, are you sure you want to submit?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, submit it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $("#myForm").get(0).submit();
+            }
+          })
+    });
+
+    let $modal = $("#calculator-modal");
+    $modal.draggable({
+        handle: ".modal-header",
+    });
+    $modal.resizable();
+</script>
+
+{% endblock %}

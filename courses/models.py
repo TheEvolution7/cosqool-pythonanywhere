@@ -28,6 +28,9 @@ class Grade(TranslatableModel, BaseModel):
         on_delete=models.DO_NOTHING
     )
 
+    def get_subjects(self):
+        return self.subject_set.filter(status=True).all()
+    
     class Meta:
         verbose_name = _("Grade")
         verbose_name_plural = _("Grades")

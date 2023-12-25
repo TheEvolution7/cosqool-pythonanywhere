@@ -8,8 +8,15 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" /> 
     {% block extrastyle %}{% endblock %} {% block extrahead %}{% endblock %}
+    {% if LANGUAGE_BIDI %}
+    <link href="{% get_static_prefix %}assets/plugins/custom/prismjs/prismjs.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{% get_static_prefix %}assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{% get_static_prefix %}assets/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    {% else %}
     <link href="{% get_static_prefix %}assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="{% get_static_prefix %}assets/css/style.bundle.css" rel="stylesheet" type="text/css" /> {% static 'core/assets/media/logos/favicon.ico' as favicon %}
+    <link href="{% get_static_prefix %}assets/css/style.bundle.css" rel="stylesheet" type="text/css" /> 
+    {% endif %}
+    {% static 'core/assets/media/logos/favicon.ico' as favicon %}
     <link rel="shortcut icon" href="{{ site.favicon.url|default:favicon }}" /> 
     {% block responsive %}<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">{% endblock %}
     {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE"> {% endblock %} 
@@ -17,6 +24,10 @@
     <script>
       const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     </script>
+    
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
   </head>
   <body> 
     {% include './partials/theme-mode/_init.html' %}
@@ -26,3 +37,4 @@
     {% block extrajs %}{% endblock %}
   </body>
 </html>
+

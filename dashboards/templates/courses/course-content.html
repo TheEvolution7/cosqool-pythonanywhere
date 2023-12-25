@@ -35,29 +35,49 @@
 								{% get_first_item_by_lessonitem item %}
 							</div>
 						</li>
-						{% endfor %} {% if forloop.last %}
-						<li class="d-flex flex-column">
-							{% for testprep in object.lesson.section.course.testpreps.all %}
+						{% endfor %}{% if forloop.last %}
+						<li class="d-flex flex-column m-1">
 							<div
 								class="d-flex justify-content-between align-items-center"
-								href="{% url 'dashboards:testprep-detail' testprep.pk %}"
-								style="height: 30px">
+								href="/dashboards/my-course/testprep/0af078a8-7cf0-41d9-a09b-05fe7dac20e2"
+								>
 								<div class="d-flex">
 									<img
 										src="{% get_static_prefix %}dashboard/assets/images/icon-courses/2.svg"
 										width="20"
 										class="me-2" />
-									<h6 style="display: contents">
-										{% translate "Test Prep" %}: {{testprep.title|title}}
+									<h6 class="p-0 m-0">
+										{% translate "Test Prep" %}: اختبار التحصيلي التجريبي
 									</h6>
 								</div>
 								<a
-									href="{% url 'dashboards:testprep-detail' testprep.pk %}"
+									href="/dashboards/my-course/testprep/0af078a8-7cf0-41d9-a09b-05fe7dac20e2"
 									class="btn--link"
-									>{% trans "Start Exam" %}</a
+									>{% trans "Test Prep" %}</a
 								>
 							</div>
-							{% endfor %}
+						</li>
+						
+						<li class="d-flex flex-column m-1">
+							<div
+								class="d-flex justify-content-between align-items-center"
+								href="/dashboards/my-course/testpreps"
+								>
+								<div class="d-flex">
+									<img
+										src="{% get_static_prefix %}dashboard/assets/images/icon-courses/2.svg"
+										width="20"
+										class="me-2" />
+									<h6 class="p-0 m-0">
+										{% translate "Test Prep" %}: Qudrat
+									</h6>
+								</div>
+								<a
+									href="/dashboards/my-course/testpreps"
+									class="btn--link"
+									>{% trans "Test Prep" %}</a
+								>
+							</div>
 						</li>
 						{% endif %}
 					</ul>

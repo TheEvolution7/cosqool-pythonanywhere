@@ -1,0 +1,41 @@
+<div class="courses-list-content mb-4">
+    <div class="box-content">
+        <h3>Report an error</h3>
+        <form method="post" action="{% url 'dashboards:reporterror' %}" id="reporterror_form">
+            {% csrf_token %}
+            {{reporterror_form.content}}
+            <button type="submit" class="btn-cos mt-3">Submit</button>
+        </form>
+    </div>
+</div>
+<script>
+    const form = document.getElementById('reporterror_form');
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const formDataJSON = {};
+        formData.forEach((value, key) => {
+            formDataJSON[key] = value;
+        });
+
+        const request = new Request(
+            form.getAttribute('action'),
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify(formDataJSON),
+            }
+        );
+        fetch(request)
+        .then(function(response) {
+            Swal.fire('Your report error was sent successfully!', '', 'success')
+            form.reset()
+        });
+    });
+</script>

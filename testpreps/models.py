@@ -1,32 +1,73 @@
-from ckeditor import fields
-from core.fields import Select2Field
+from sqlite3 import complete_statement
 from accounts.models import *
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from core.models import *
 from courses.models import Course
 
 from django.db.models import Sum, Count
-from django.utils.html import strip_tags
-from django.utils.text import Truncator
-from quizzes.models import Question
+from quizzes.models import Question, Quiz
+import random
+import uuid
+from polymorphic.models import PolymorphicModel
+from ckeditor_uploader.fields import RichTextUploadingField
 
-class TestPrep(TranslatableModel, BaseModel):
+
+class BaseModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    translations = translations()
-    course = models.ForeignKey(
-        Course, models.DO_NOTHING, null=True, blank=True, related_name="testpreps"
+
+    position = models.IntegerField(_("Position"), null=True, default=0)
+    status = models.BooleanField(default=True)
+
+    created_by = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name="%(class)s_created_by",
+        default=1,
     )
+    updated_by = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name="%(class)s_updated_by",
+        default=1,
+    )
+    created_at = models.DateTimeField(_("created at"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("updated at"), auto_now=True)
+
+    class Meta:
+        abstract = True
+        ordering = ["created_at"]
+
+
+class TestPrep(BaseModel):
+    title = models.CharField(_("title"), max_length=255)
+    slug = models.SlugField(
+        _("slug"), unique=True, blank=True, max_length=255, allow_unicode=True
+    )
+
+    description = models.TextField(_("description"), null=True, blank=True)
+    content = RichTextUploadingField(_("content"), null=True, blank=True)
+    position = models.IntegerField(_("Position"), null=True, default=0)
+
+    course = models.ForeignKey(
+        Course, models.CASCADE, null=True, blank=True, related_name="testpreps"
+    )
+    time = models.DurationField(default=0)
 
     class Meta:
         verbose_name = _("Test Prep")
         verbose_name_plural = _("Test Preps")
 
-    def get_parts(self):
-        return self.parts.filter(status=True).all()
+    def get_items(self):
+        return self.items.filter(status=True).order_by("position")
+
+    def get_sections(self):
+        return self.items.instance_of(Section).filter(status=True).all()
 
     def get_total_questions(self):
         return self.get_parts().aggregate(Count("questions"))["questions__count"]
+
+    def get_total_time(self):
+        return self.items.aggregate(Sum("time"))["time__sum"]
 
     def get_total_duration_parts(self):
         return self.get_parts().aggregate(total_duration_part=Sum("time"))[
@@ -51,25 +92,83 @@ class TestPrep(TranslatableModel, BaseModel):
         verbose_name = _("TestPrep")
         verbose_name_plural = _("TestPreps")
 
+    def __str__(self):
+        return f"{self.title}"
+
+
+class TestPrepItem(PolymorphicModel, BaseModel):
+    testprep = models.ForeignKey(
+        TestPrep, on_delete=models.CASCADE, related_name="items"
+    )
+    time = models.DurationField(default=0)
+
+
+class Section(TestPrepItem):
+    title = models.CharField(_("title"), max_length=255)
+
+    def get_parts(self):
+        return self.parts.filter(status=True)
+
+    def get_order(self):
+        return self._order + 1
+
+    def get_total_questions(self):
+        return self.get_parts().aggregate(Sum("max_questions"))["max_questions__sum"]
+
+    class Meta:
+        verbose_name = _("Section")
+        verbose_name_plural = _("Sections")
+        order_with_respect_to = "testprep"
+
+    def __str__(self):
+        return f"{self.title}"
+
+
+class Breake(TestPrepItem):
+    class Meta:
+        verbose_name = _("Breake")
+        verbose_name_plural = _("Breakes")
+
+    def __str__(self):
+        return f"Breake for {self.testprep.title}"
+
 
 class Part(BaseModel):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    testprep = models.ForeignKey(
-        TestPrep, on_delete=models.DO_NOTHING, related_name="parts"
-    )
-    time = models.DurationField(
-        help_text="Duration of the quiz in seconds", default="1"
-    )
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name="parts")
 
-    subject = models.ForeignKey("courses.Subject", on_delete=models.DO_NOTHING)
+    # subject = models.ForeignKey(
+    #     "courses.Subject", on_delete=models.CASCADE, blank=True, null=True
+    # )
     status = models.BooleanField(default=True)
-    questions = models.ManyToManyField(Question)
+
+    quizzes = models.ManyToManyField(Quiz, blank=True)
+    questions = models.ManyToManyField(Question, blank=True)
+
+    max_questions = models.PositiveIntegerField(
+        default=1,
+        verbose_name=_("Max Questions"),
+        help_text=_("Number of questions to be answered on each attempt."),
+    )
 
     def get_part_results_by_user(self):
-        return self.part_results.filter().all()
+        return self.part_results.filter()
 
-    def get_questions(self):
-        return self.questions.filter().all()
+    def get_random_questions(self):
+        quiz_ids = self.quizzes.filter().values_list("pk", flat=True)
+        questions = Question.objects.filter(quiz__in=list(quiz_ids)).values_list(
+            "pk", flat=True
+        )
+
+        items = list(questions)
+        limit = min(self.max_questions, questions.count())
+
+        if limit == 0:
+            return Question.objects.none()
+
+        random_items = random.sample(items, limit)
+        random_objects = Question.objects.filter(pk__in=random_items).order_by("?")
+
+        return random_objects
 
     def get_order(self):
         return self._order + 1
@@ -80,124 +179,22 @@ class Part(BaseModel):
     class Meta:
         verbose_name = _("Part")
         verbose_name_plural = _("Parts")
-        order_with_respect_to = "testprep"
-
-# class PartQuestion(models.Model):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-#     part = models.ForeignKey(Part, on_delete=models.CASCADE)
-#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-#     status = models.BooleanField(default=True)
-# class Question(TranslatableModel):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-#     translations = TranslatedFields(
-#         content=RichTextUploadingField(_("content"), null=True, blank=True),
-#     )
-
-#     part = models.ForeignKey(
-#         Part, on_delete=models.DO_NOTHING, related_name="questions"
-#     )
-#     position = models.IntegerField(_("Position"), null=True, default=0)
-#     status = models.BooleanField(default=True)
-#     score = models.PositiveIntegerField(default=1)
-
-#     created_at = models.DateTimeField(_("created at"), auto_now_add=True)
-#     updated_at = models.DateTimeField(_("updated at"), auto_now=True)
-
-#     TYPES = [
-#         (
-#             _("Multiple Choice Questions"),
-#             (
-#                 ("single_select", _("Single Select")),
-#                 ("multi_select", _("Multi-Select")),
-#                 ("dropdown", _("Dropdown Menu")),
-#                 ("star_rating", _("Star Rating")),
-#                 ("text_slider", _("Text Slider")),
-#                 ("numeric_slider", _("Numeric Slider")),
-#                 ("thumbs_up_down", _("Thumbs Up/Down")),
-#                 ("matrix_table", _("Matrix Table")),
-#                 ("rank_order", _("Rank Order")),
-#                 ("image_based", _("Image/Picture Based")),
-#             ),
-#         ),
-#         ("TF", _("True/False")),
-#         ("SHORT", _("Short Answer")),
-#         ("ESSAY", _("Essay")),
-#     ]
-
-#     # test  = Select2Field(max_length=14, choices=TYPES, default=TYPES[0][0])
-#     type = models.CharField(max_length=14, choices=TYPES, default=TYPES[0][0])
-
-#     class Meta:
-#         verbose_name = _("Question")
-#         verbose_name_plural = _("Questions")
-
-#     def get_answers(self):
-#         return self.answers.filter(status=True).all()
-
-#     def get_order(self):
-#         return self._order + 1
-
-#     def __str__(self):
-#         content = self.content
-#         content = Truncator(self.content)
-#         content = strip_tags(content)
-#         return f"{content}"
-
-#     class Meta:
-#         order_with_respect_to = "part"
-#         verbose_name = _("Question")
-#         verbose_name_plural = _("Questions")
+        order_with_respect_to = "section"
 
 
-# class Answer(TranslatableModel):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-#     translations = TranslatedFields(
-#         content=fields.RichTextField(
-#             _("content"), null=True, blank=True, config_name="ckeditor"
-#         ),
-#     )
-#     correct = models.BooleanField(default=False)
-#     question = models.ForeignKey(
-#         Question, on_delete=models.DO_NOTHING, related_name="answers"
-#     )
-#     position = models.IntegerField(_("Position"), null=True, default=0)
-#     status = models.BooleanField(default=True)
-
-#     def get_result_by_user(self):
-#         return self
-
-#     class Meta:
-#         verbose_name = _("Answer")
-#         verbose_name_plural = _("Answers")
-#         order_with_respect_to = "question"
-
-#     # def __str__(self):
-#     #     return f"{strip_tags(self.content)}"
-
-#     class Meta:
-#         verbose_name = _("Answer")
-#         verbose_name_plural = _("Answers")
-
-
-class TestprepResult(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+class TestprepResult(BaseModel):
     testprep = models.ForeignKey(
-        TestPrep, on_delete=models.DO_NOTHING, related_name="testprep_results"
+        TestPrep, on_delete=models.CASCADE, related_name="testprep_results"
     )
     total_score = models.PositiveIntegerField(default=0)
-
+    results = models.JSONField(blank=True, null=True)
     STATUS = (
-        ("pending", "Pending"),
-        ("scored", "Scored"),
-        ("released", "Released"),
+        ("initialized", "Initialized"),
+        ("in-progress", "In Progress"),
+        ("completed", "Completed"),
         ("cancelled", "Cancelled"),
-        ("pending_review", "Pending Review"),
     )
     status = models.CharField(max_length=14, choices=STATUS, default=STATUS[0][0])
-
-    created_at = models.DateTimeField(_("created at"), auto_now_add=True)
-    updated_at = models.DateTimeField(_("updated at"), auto_now=True)
 
     def get_parts(self):
         return self.testprep.parts.filter().all()
@@ -227,46 +224,73 @@ class TestprepResult(models.Model):
         verbose_name_plural = _("Testprep Results")
 
 
-class PartResult(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+class TestprepItemResult(PolymorphicModel, BaseModel):
+    testprep_item = models.ForeignKey(
+        TestPrepItem,
+        on_delete=models.CASCADE,
+        related_name="%(class)s_testprep_item",
+    )
     testprep_result = models.ForeignKey(
-        TestprepResult, on_delete=models.DO_NOTHING, related_name="part_results"
+        TestprepResult,
+        on_delete=models.CASCADE,
+        related_name="%(class)s_testprep_result",
+    )
+
+    total_score = models.PositiveIntegerField(default=0)
+    results = models.JSONField(blank=True, null=True)
+    STATUS = (
+        ("in-process", "In Process"),
+        ("completed", "Completed"),
+        ("cancelled", "Cancelled"),
+    )
+    status = models.CharField(max_length=14, choices=STATUS, default=STATUS[0][0])
+    completed_at = models.DateTimeField(null=True, blank=True)
+
+
+class BreakeResult(TestprepItemResult):
+    pass
+
+
+class SectionResult(TestprepItemResult):
+    pass
+
+
+class PartResult(BaseModel):
+    section_result = models.ForeignKey(
+        SectionResult,
+        on_delete=models.CASCADE,
+        related_name="testprepresult_partresults",
     )
     part = models.ForeignKey(
-        Part, on_delete=models.DO_NOTHING, related_name="part_part_results"
+        Part, on_delete=models.CASCADE, related_name="part_partresults"
     )
     content = models.JSONField(null=True, blank=True)
 
-    total_score = models.PositiveIntegerField(default=0)
-
     STATUS = (
-        ("pending", _("Pending")),
-        ("in_progress", _("In Progress")),
-        ("completed", _("Completed")),
+        ("pending", "Pending"),
+        ("scored", "Scored"),
+        ("released", "Released"),
+        ("cancelled", "Cancelled"),
+        ("completed", "Completed"),
     )
-    status = models.CharField(max_length=11, choices=STATUS, default=STATUS[0][0])
-
-    created_at = models.DateTimeField(_("created at"), auto_now_add=True)
-    updated_at = models.DateTimeField(_("updated at"), auto_now=True)
+    status = models.CharField(max_length=14, choices=STATUS, default=STATUS[0][0])
+    question_random_list = models.JSONField(null=True, blank=True)
+    user_answers = models.JSONField(null=True, blank=True)
 
     class Meta:
         verbose_name = _("Part Result")
         verbose_name_plural = _("Part Results")
 
-    def __str__(self):
-        return f"#{self.pk}"
 
-
-class Bookmark(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+class Bookmark(BaseModel):
     question = models.ForeignKey(
-        Question, on_delete=models.DO_NOTHING, related_name="bookmark_questions"
+        Question, on_delete=models.CASCADE, related_name="bookmark_questions"
     )
     part = models.ForeignKey(
-        Part, on_delete=models.DO_NOTHING, related_name="bookmark_parts"
+        Part, on_delete=models.CASCADE, related_name="bookmark_parts"
     )
     user = models.ForeignKey(
-        User, on_delete=models.DO_NOTHING, related_name="bookmark_users"
+        User, on_delete=models.CASCADE, related_name="bookmark_users"
     )
     status = models.BooleanField(default=True)
 

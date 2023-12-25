@@ -1,0 +1,155 @@
+{% extends "layout/default.html" %} {% load static i18n dashboard testprep %} {% block content %}
+{% load tz %}
+<div class="row">
+    <div class="col-md-12">
+        <h3>{{ object.testprep.title }}</h3>
+        <h1>{{ object.title }}</h1>
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+        <div class="row gy-4">
+            <h3>{% trans "Intro" %}</h3>
+                {% for part in part_list %}
+                    <div class="col-md-6">
+                        <div class="card text-center rounded-4 p-4">
+                            <div class="card-body d-flex flex-column justify-content-center" style="min-height:150px">
+                                <h4 class="card-title">
+                                    {% trans "Part" %} #{{ forloop.counter }}
+                                </h4>
+                                {% if section_result %}
+                                    {% get_part_result_for_testprepitem part %}
+                                {% else %}
+                                    <p class="card-text">{{part.max_questions}} {% trans "questions" %}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+        </div>
+	</div>
+    <div class="col-md-4">
+        {% if section_result %}
+            <div class="card text-center rounded-4 p-4 mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans "Remaining Time" %}</h5>
+                    <div id="clock">{{time_remaining|timezone:'UTC'|date:'Y/m/d H:i:s'}}</div>
+                    
+                    {% comment %} <h5 class="card-title">
+                        {% trans "Section is paused" %}
+                    </h5>
+                    <h6 class="card-subtitle">{% trans "Remaining Time" %}</h6>
+                    <p>00:04:47</p> {% endcomment %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="resume"/>
+                        <button type="submit" class="btn--link w-100 _yellow">{% trans "Resume Section" %}</button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <div class="card text-center rounded-4 p-4">
+                <div class="card-body">
+                    <h5 class="card-title">{% trans "Remaining Time" %}</h5>
+                    <p>{{object.time}}</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="begin"/>
+                        <button type="submit" class="btn--link w-100 _yellow">{% trans "Begin Section" %}</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<script src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js" integrity="sha512-lteuRD+aUENrZPTXWFRPTBcDDxIGWe5uu0apPEn+3ZKYDwDaEErIK9rvR0QzUGmUQ55KFE2RqGTVoZsKctGMVw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var getSeconds = new Date().getTime() + parseInt($('#clock').text()* 1000);
+    var clock = $('#clock')
+    
+    var finalDate = moment.tz(clock.html(), "UTC");
+    
+    clock.countdown(finalDate.toDate())
+    .on('update.countdown', function(event) {
+        var format = '';
+        if(event.offset.seconds > 0) {
+            format = '%-S seconds  ' + format;
+        }
+        if(event.offset.minutes > 0) {
+            format = '%-M minute%!M ' + format;
+        }
+        if(event.offset.hours > 0) {
+            format = '%-H hour%!H ' + format;
+        }
+        if(event.offset.totalDays > 0) {
+            format = '%-d day%!d ' + format;
+        }
+        if(event.offset.weeks > 0) {
+            format = '%-w week%!w ' + format;
+        }
+        $(this).html(event.strftime(format));
+    })
+    .on('finish.countdown', function(event) {
+        $(this).html('Expired!');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn--link _yellow',
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Info!',
+            text: 'Not all questions were answered, are you sure you want to submit?',
+            icon: 'info',
+            confirmButtonText: '{{next_url.text}}',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{next_url.url}}";
+            }
+          })
+    });
+
+    $('#myForm').submit(function(event) {
+        event.preventDefault();
+        
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn--link _yellow me-2',
+              cancelButton: 'btn--link me-2'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "Not all questions were answered, are you sure you want to submit?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, submit it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $("#myForm").get(0).submit();
+            }
+          })
+    });
+
+    let $modal = $("#calculator-modal");
+    $modal.draggable({
+        handle: ".modal-header",
+    });
+    $modal.resizable();
+</script>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block content %}
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h2>{{object.title}}</h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 sticky-top">
+            <div class="sidebar-widget-wrapper pr-0">
+                <div class="sidebar-widget">
+                    <div class="sidebar-widget-content">
+                        <div class="sidebar-entry-course-info p-0">
+                            <div class="learn-wrapper">
+                                <div class="chapter-course __2">
+                                    <div class="list-menu-quiz">
+                                        <div class="question-list-nav">
+                                            {% if page_obj.has_previous %}
+                                                <a class="nav-btn" href="?page={{ page_obj.previous_page_number }}"><i class="far fa-chevron-double-left"></i></a>
+                                            {% endif %}
+
+                                            <div class="content-question">
+                                                Question {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                                            </div>
+
+                                            {% if page_obj.has_next %}
+                                                <a class="nav-btn" href="?page={{ page_obj.next_page_number }}"><i class="far fa-chevron-double-right"></i></a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="learn-wrapper">
+            <div class="chapter-course">
+                {% if results.next_page and page_obj.has_next %}
+                    <form action="{% url 'dashboards:quiz' object.pk %}?page={{ page_obj.next_page_number }}" method="post">
+                {% else %}
+                    <form action="{% url 'dashboards:quiz' object.pk %}?page={{ page_obj.number }}" method="post">
+                {% endif %}
+                    {% csrf_token %}
+                    {% for item in page_obj %}
+                    <ul class="chapter-sections quest-list quest-box active" id="quest-{{forloop.counter}}">
+                        <li class="single-chapter-section">
+                            <div class="section-header">
+                                <div class="section-left">
+                                    <h5 class="sub-title">{{item.title|safe}}</h5>
+                                    {{item.content|safe}}
+                                </div>
+                            </div>
+                            <ul class="section-content">
+                                {% for answer in item.answers %}
+                                    <li class="course-item">
+                                        <div class="section-item-link __radio">
+                                            <input type="radio" name="answer" id="answer-{{ forloop.counter }}" value="{{answer.pk}}" {% if request.POST.answer|slugify == answer.pk|slugify %}checked{% endif %} required>
+                                            {% if answer.content %}
+                                            <label for="answer-{{ forloop.counter }}">{{answer.content|safe}}</label>
+                                            {% else %}
+                                            <label for="answer-{{ forloop.counter }}">{{answer.title}}</label>
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="single-chapter-section btn-bottom">
+                            <div class="btn-group">
+                                {% if request.POST and not results.next_page %}
+                                    <button type="submit" class="btn--link _yellow">{% translate "Try again" %}</button>
+                                {% elif results.next_page and page_obj.has_next %}
+                                    <a href="?page={{ page_obj.next_page_number }}" class="btn--link _yellow">{% translate "Next Question" %}</a>
+                                {% elif results.show_summary %}
+                                <a href="{% url 'dashboards:quiz-results' object.slug %}" class="btn--link _yellow">{% translate "Show Summary" %}</a>
+                                {% else %}
+                                    <button type="submit" class="btn--link _yellow">{% translate "Check" %}</button>
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% load i18n %}
+<div class="">
+    {% if section_results %}
+    <a href="{% url "dashboards:testpreps:result-detail" obj.pk %}" class="btn--link">{% trans "View Results" %}</a>
+    {% else %}
+    <a href="{% url "dashboards:testpreps:section-detail" obj.pk %}" class="btn--link">{% trans "Start" %}</a>
+    {% endif %}
+</div>
+
+

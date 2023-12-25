@@ -2,1035 +2,171 @@
 {% load frontend_extras %}
 {% load i18n static %}
 
-
 {% block content %}
 <!--====== Start Hero Section ======-->
 <section class="hero-banner-v1 position-relative section-color" id="color-section-banner">
-
-        
-  <div id="tsparticles-banner"></div>
-
-  <div class="container">
+    <div id="tsparticles-banner"></div>
+    <div class="container">
       <div class="row">
-          <div class="col-md-7 col-12 align-self-center">
-              <div class="hero-content home-text">
-                  <h1 class="wow fadeInUp" data-wow-delay=".5s">click it. <b>be ahead</b></h1>
-                  <h2 class="wow fadeInUp" data-wow-delay=".5s">Broaden your horizon at the click of a button</h2>
-                  <p class="wow fadeInDown" data-wow-delay=".6s">We are cosqool, the world’s first English & Arabic-based online tutoring and learning platform with a unique mission.</p>
-               
-              </div>
+        <div class="col-md-7 col-12 align-self-center">
+          <div class="hero-content home-text">
+            {{fields.1.content}} 
           </div>
-          <div class="col-md-5 col-12">
-              <div class="banner-img wow fadeInRight">
-                  <img src="{%get_static_prefix%}assets/images/new/testimonial/2.svg" alt="">
-              </div>
-              
+        </div>
+        <div class="col-md-5 col-12">
+          <div class="banner-img wow fadeInRight">
+            <img loading="lazy" src="{{fields.4.file}}" alt="{{fields.4.title}}">
           </div>
+        </div>
       </div>
-  </div>
-  <div class="intro-area intro-area-v1">
+    </div>
+    <div class="intro-area intro-area-v1">
       <div class="container">
-          <div class="row justify-content-center">
-              <div class="col-lg-10">
-                  <div class="play-content bg_cover text-center wow fadeInUp">
-                      <div class="bg">
-                          <img src="{%get_static_prefix%}assets/video/video-thumb.jpg" alt="">
-                      </div>
-                      <div class="play-button">
-                          <h2>how it work?</h2>
-                          <a href="assets/video/2.mp4" class="video-popup"><i class="fas fa-play"></i></a>
-                      </div>
-                      
-                  </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="play-content bg_cover text-center wow fadeInUp">
+              <div class="bg">
+                <img loading="lazy" src="{{fields.5.file}}" alt="{{fields.5.title}}">
               </div>
-              <div class="col-12 text-center mt-5 wow fadeInUp">
-                  <a href="#" class="btn--link">join us now</a>
+              <div class="play-button">
+                <h2>{{fields.6.content}}</h2>
+                <a href="{{fields.7.file}}" class="video-popup">
+                  <i class="fas fa-play"></i>
+                </a>
               </div>
+            </div>
           </div>
+          <div class="col-12 text-center mt-5 wow fadeInUp">
+            <a href="#{{fields.8.slug}}" class="btn--link">{{fields.8.content}}</a>
+          </div>
+        </div>
       </div>
-  </div>
+    </div>
+  </section>
   
-</section>
-<!--====== End Hero Section ======-->
-
-<div class="section-color" id="color-section-white">
+  <!--====== End Hero Section ======-->
+  <div class="section-color" id="color-section-white">
+  
   <section class="section-course" id="section-course">
-      <div class="container">
-          <div class="row accordion wow fadeInUp" id="list-1">
-              <div class="col-lg-6">
-                  <div class="card">
-                      <div class="card-header" id="course-g-1">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-g-1" aria-expanded="true"
-                                  aria-controls="course-content-g-1">
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Elementary School: Grade 1
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-
-                      <div id="course-content-g-1" class="collapse" aria-labelledby="course-1"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Science</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-g-2">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-g-2" aria-expanded="true"
-                                  aria-controls="course-content-g-2">
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Elementary School: Grade 2
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-
-                      <div id="course-content-g-2" class="collapse" aria-labelledby="course-2"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Science</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-g-3">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-g-3" aria-expanded="true"
-                                  aria-controls="course-content-g-3">
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Elementary School: Grade 3
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-
-                      <div id="course-content-g-3" class="collapse" aria-labelledby="course-2"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Science</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-g-4">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-g-4" aria-expanded="true"
-                                  aria-controls="course-content-g-4">
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Elementary School: Grade 4
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-
-                      <div id="course-content-g-4" class="collapse" aria-labelledby="course-2"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Science</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Computer Skills</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-g-5">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-g-5" aria-expanded="true"
-                                  aria-controls="course-content-g-5">
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Elementary School: Grade 5
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-
-                      <div id="course-content-g-5" class="collapse" aria-labelledby="course-2"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Science</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Computer Skills</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-g-6">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-g-6" aria-expanded="true"
-                                  aria-controls="course-content-g-6">
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Elementary School: Grade 6
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-
-                      <div id="course-content-g-6" class="collapse" aria-labelledby="course-2"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Science</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Computer Skills</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-1">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-1" aria-expanded="true"
-                                  aria-controls="course-content-1">
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Middle School: Grade 7
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-
-                      <div id="course-content-1" class="collapse" aria-labelledby="course-1"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Science</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Computer Skills</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-2">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-2" aria-expanded="false"
-                                  aria-controls="course-content-2">
-                                  
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Middle School: Grade 8
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-                      <div id="course-content-2" class="collapse" aria-labelledby="course-2"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Science</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Computer Skills</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  
-              </div>
-              <div class="col-lg-6">
-                  <div class="card">
-                      <div class="card-header" id="course-3">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-3" aria-expanded="false"
-                                  aria-controls="course-content-3">
-                                  
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Middle School: Grade 9
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-                      <div id="course-content-3" class="collapse" aria-labelledby="course-3"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Science</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Computer Skills</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="card">
-                      <div class="card-header" id="course-4">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-4" aria-expanded="false"
-                                  aria-controls="course-content-4">
-                                  
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          High School: Grade 10
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-                      <div id="course-content-4" class="collapse" aria-labelledby="course-4"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Physics</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Chemistry</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Biology</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Geology</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Digital Technology</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="card">
-                      <div class="card-header" id="course-5">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-5" aria-expanded="false"
-                                  aria-controls="course-content-5">
-                                  
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          High School: Grade 11
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-                      <div id="course-content-5" class="collapse" aria-labelledby="course-5"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Physics</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Chemistry</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Biology</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Geology</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Digital Technology</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-6">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-6" aria-expanded="true"
-                                  aria-controls="course-content-6">
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          High School: Grade 12
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-
-                      <div id="course-content-6" class="collapse" aria-labelledby="course-6"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">English</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Arabic</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Physics</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Chemistry</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Biology</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Geology</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Digital Technology</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-7">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-7" aria-expanded="false"
-                                  aria-controls="course-content-7">
-                                  
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          University General Courses
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-                      <div id="course-content-7" class="collapse" aria-labelledby="course-7"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Precalculus</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Calculus 1</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Calculus 2</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Calculus 3</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Calculus 4</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Linear Algebral 1</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Linear Algebral 2</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Discrete Math Matics</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Chemistry 1</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Chemistry 2</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Physics 1</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Physics 2</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Statistics 1</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Statistics 2</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card">
-                      <div class="card-header" id="course-8">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-8" aria-expanded="false"
-                                  aria-controls="course-content-8">
-                                  
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Tahsili (SAAT) Test Prep
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-                      <div id="course-content-8" class="collapse" aria-labelledby="course-8"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <ul class="list-course">
-                                  <li>
-                                      <a href="#">Chemistry</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Biology</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Physics</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Math</a>
-                                  </li>
-                                  <li>
-                                      <a href="#">Simulated Exam</a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="card">
-                      <div class="card-header" id="course-9">
-                          <h2 class="mb-0">
-                              <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                  data-toggle="collapse" data-target="#course-content-9" aria-expanded="false"
-                                  aria-controls="course-content-9">
-                                  
-                                  <div class="ct">
-                                      <div class="icon-c">
-                                          <img src="{%get_static_prefix%}assets/images/icon-school/6.svg" alt="">
-                                      </div>
-                                      <div class="text">
-                                          Qudrat (GAT) Test Prep
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="btn-acco"></div>
-                              </button>
-                          </h2>
-                      </div>
-                      <div id="course-content-9" class="collapse" aria-labelledby="course-9"
-                          data-parent="#list-1">
-                          <div class="card-body">
-                              <div class="list-part">
-                                  <ul>
-                                      <li>
-                                          <h3>Part 1</h3>
-                                          <ul class="list-course">
-                                              <li>
-                                                  <a href="#">Reading comprehension</a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Sentence compietion</a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Verbal analogy</a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Contextual Error</a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Relationship and differance</a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Simulated Exam</a>
-                                              </li>
-                                              
-                                          </ul>
-                                      </li>
-                                      <li>
-                                          <h3>Part 2</h3>
-                                          <ul class="list-course">
-                                              <li>
-                                                  <a href="#">Arithmetic</a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Geometry</a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Algebra</a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Statistical and analytical</a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Simulated Exam</a>
-                                              </li>
-                                          </ul>
-                                      </li>
-                                  </ul>
-                              </div>
-                              
-                              
-                          </div>
-                      </div>
-                  </div>
-
-                 
-              </div>
-          </div>
-      </div>
+    {%get_course_list%}
   </section>
-
   
-  <section class="faq-section">
+    
+    <section class="faq-section">
       <div class="container">
-          <div class="row">
-              <div class="col-lg-4">
-                  <div class="section-title mb-30 wow fadeInLeft">
-                      <h2>FAQ</h2>
-                  </div>
-                  <div class="accordion wow fadeInLeft" id="faq">
-                      <div class="card">
-                        <div class="card-header" id="heading-1">
-                          <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-                              1/ Are all courses aimed for saudi schools and universities?     
-                            </button>
-                          </h2>
-                        </div>
-                    
-                        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#faq">
-                          <div class="card-body">
-                              All of the elementary, middle, and high school courses are specifically made for Saudi Arabian private and public schools. However, University general courses are meant for Saudi and non Saudi Universities. 
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-header" id="heading-2">
-                          <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-                              2/ Which curriculum does the university courses follow?     
-                            </button>
-                          </h2>
-                        </div>
-                        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#faq">
-                          <div class="card-body">
-                              As each univeirty has its own syllabus, we purposely made as many lessons as possible in all of our courses. all you got to do is make your own playlist based on your university syllabus. 
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-header" id="heading-3">
-                          <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-                              3/ Are the test preps in Cosqool Arabic based or English.     
-                            </button>
-                          </h2>
-                        </div>
-                        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#faq">
-                          <div class="card-body">
-                              For now we only have the Arabic version for tahsili and qudrat. However, an English version of both test preps are in the making for the future. 
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card">
-                          <div class="card-header" id="heading-4">
-                              <h2 class="mb-0">
-                                  <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                      data-toggle="collapse" data-target="#collapse-4" aria-expanded="false"
-                                      aria-controls="collapse-4">
-                                      4/ How can I change my grade level?
-                                  </button>
-                              </h2>
-                          </div>
-                          <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#faq">
-                              <div class="card-body">
-                                  From the moment of your subscription untill the end of the academic year each subscriber will have one free pass to change his grade level for free and it will be  renewed every year. If the pass has been already used, a small fee will have to be paid to change the grade level. 
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card">
-                          <div class="card-header" id="heading-5">
-                              <h2 class="mb-0">
-                                  <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                      data-toggle="collapse" data-target="#collapse-5" aria-expanded="false"
-                                      aria-controls="collapse-5">
-                                      5/ Can I have more than one grade level in my subscription? 
-                                  </button>
-                              </h2>
-                          </div>
-                          <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#faq">
-                              <div class="card-body">
-                                  No, you can only add one grade level( from grade 1- university general courses) plus either just one of our test preps or both ( tahsili and qudrat test preps)
-                              </div>
-                          </div>
-                      </div>
-
-                      
-                  </div>
-                  <a href="#" class="btn-cos mt-3">show more</a>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="section-title mb-30 wow fadeInLeft">
+              <h2>{{fields.14.content}}</h2>
+            </div>
+            <div class="accordion wow fadeInLeft" id="faq">
+              {% for faq in faqs %}
+              <div class="card">
+                <div class="card-header" id="heading-{{faq.slug}}">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-{{faq.slug}}" aria-expanded="true" aria-controls="collapse-{{faq.slug}}">{{faq.title}}</button>
+                  </h2>
+                </div>
+                <div id="collapse-{{faq.slug}}" class="collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading-{{faq.slug}}" data-parent="#faq">
+                  <div class="card-body">{{faq.description}} <a class="btn btn-link" href="{% url 'frontend:faq-detail' faq.slug %}">{% trans "View more" %}</a></div>
+                </div>
               </div>
-              <div class="col-lg-4 align-self-center mt-50 mb-50">
-                  <div class="section-title title-large text-center mb-30 wow fadeInLeft">
-                      <h2>click.watch.<br>learn.grow</h2>
-                  </div>
-                  <div class="img-faq wow fadeInLeft">
-                      <img src="{%get_static_prefix%}assets/images/new/testimonial/3.svg" alt="">
-                  </div>
-              </div>
-              <div class="col-lg-4">
-                  <div class="section-title mb-30 wow fadeInLeft">
-                      <h2>latest <span>news</span></h2>
-                  </div>
-                  <div class="box-news">
-                      <div class="news-item wow fadeInLeft">
-                          <a href="#" class="title">
-                              Be Ready When Parents Ask These 7 Questions About Data Privacy
-                          </a>
-                          <div class="date">
-                              <i class="fal fa-calendar"></i>January 20, 2023
-                          </div>
-                      </div>
-                      <div class="news-item wow fadeInLeft">
-                          <a href="#" class="title">
-                              Why Misusing 'Groomer' as a Political Smear Is Especially Dangerous
-                          </a>
-                          <div class="date">
-                              <i class="fal fa-calendar"></i>March 15, 2022
-                          </div>
-                      </div>
-                      <div class="news-item wow fadeInLeft">
-                          <a href="#" class="title">
-                              Stopping Cyberattacks Is Top Priority for Ed-Tech Leaders. But Many Underestimate the Risk
-                          </a>
-                          <div class="date">
-                              <i class="fal fa-calendar"></i>January 20, 2022
-                          </div>
-                      </div>
-                      <a href="#" class="btn-cos mt-3">show more</a>
-                  </div>
-              </div>
+              {% endfor %}
+            </div>
+            <a href="#{{fields.15.slug}}" class="btn-cos mt-3">{{fields.15.content}}</a>
           </div>
+          <div class="col-lg-4 align-self-center mt-50 mb-50">
+            <div class="section-title title-large text-center mb-30 wow fadeInLeft">
+              {{fields.16.content}}
+            </div>
+            <div class="img-faq wow fadeInLeft">
+              <img loading="lazy" src="{{fields.17.file}}" alt="{{fields.17.title}}">
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="section-title mb-30 wow fadeInLeft">
+              {{fields.18.content}}
+            </div>
+            <div class="box-news">
+              {% for article in articles %}
+              <div class="news-item wow fadeInLeft">
+                <a href="{% url 'frontend:article-detail' article.slug %}" class="title"> {{article.title}}</a>
+                <div class="date">
+                  <i class="fal fa-calendar"></i>{{article.created_at|date:"F d, Y"}}
+                </div>
+              </div>
+              {% endfor %}
+              
+              <a href="{{fields.19.slug}}" class="btn-cos mt-3">{{fields.19.title}}</a>
+            </div>
+          </div>
+        </div>
       </div>
-  </section>
-
-</div>
-
-
-
-
-
-
-<!--====== Start Testimonial Section ======-->
-<section class="testimonial-area testimonial-area-v1 dark-blue-bg pt-130 pb-80 section-color" id="color-section-yellow">
-  <div id="tsparticles"></div>
-  <!-- <div class="shape-img wow fadeInRight">
-      <span>
-          <img src="{%get_static_prefix%}assets/images/new/testimonial/1.svg" alt="">
-      </span>
-  </div> -->
-  <div class="container">
+    </section>
+  </div>
+  <!--====== Start Testimonial Section ======-->
+  <section class="testimonial-area testimonial-area-v1 dark-blue-bg pt-130 pb-80 section-color" id="color-section-yellow">
+    <div id="tsparticles"></div>
+    <!-- <div class="shape-img wow fadeInRight"><span><img loading="lazy" src="{% static '' %}assets/images/new/testimonial/1.svg" alt=""></span></div> -->
+    <div class="container">
       <div class="row">
-          <div class="col-lg-8">
-              <div class="section-title mb-50 wow fadeInLeft">
-                  <!-- <span class="sub-title st-one">Testimonials</span> -->
-                  <h2>People Who Already Love Us</h2>
-                  <p></p>
-              </div>
+        <div class="col-lg-8">
+          <div class="section-title mb-50 wow fadeInLeft">
+            <!-- <span class="sub-title st-one">Testimonials</span> -->
+            {{fields.20.content}}
+            <p></p>
           </div>
+        </div>
       </div>
       <div class="row align-items-center">
-          <div class="col-lg-5">
-              <div class="img-holder mb-50 wow fadeInLeft img-testimonial">
-                  <img src="{%get_static_prefix%}assets/images/testimonial/img-5.jpg" alt="">
-              </div>
+        <div class="col-lg-5">
+          <div class="img-holder mb-50 wow fadeInLeft img-testimonial">
+            <img loading="lazy" src="{{fields.20.file}}" alt="{{fields.20.title}}">
           </div>
-          <div class="col-lg-7">
-              <div class="testimonial-slider-one mb-50 wow fadeInRight">
-                  <div class="testimonial-item">
-                      <div class="testimonial-content">
-                          <i class="flaticon-quotation"></i>
-                          <h3>I greatly appreciate your videos! Not only did I pass Calculus last year with a 96%,
-                              but I also discovered my love for the subject - something I had never experienced
-                              before truly understanding the mathematical content and the uses of it.</h3>
-                          <div class="author-title">
-                              <h4>Dustin A. McPherson</h4>
-                              <p class="position">Senior Manager</p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="testimonial-item">
-                      <div class="testimonial-content">
-                          <i class="flaticon-quotation"></i>
-                          <h3>I just found your web site. I am 30 years old and I am now taking up learning where
-                              I left off. Thank you so much for all your hard work. </h3>
-                          <div class="author-title">
-                              <h4>Dustin A. McPherson</h4>
-                              <p class="position">Senior Manager</p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="testimonial-item">
-                      <div class="testimonial-content">
-                          <i class="flaticon-quotation"></i>
-                          <h3>Thank you for your ongoing inspiration. I am a primary school teacher in the north
-                              of England and when the conventional education system gets on my nerves, I only need
-                              to whack on a Cosqool and my faith in the future of education is restored! </h3>
-                          <div class="author-title">
-                              <h4>Dustin A. McPherson</h4>
-                              <p class="position">Senior Manager</p>
-                          </div>
-                      </div>
-                  </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="testimonial-slider-one mb-50 wow fadeInRight">
+            {% for field in fields.20.children %}
+            <div class="testimonial-item">
+              <div class="testimonial-content">
+                <i class="flaticon-quotation"></i>
+                <h3>{{field}}</h3>
+                <div class="author-title">
+                  {{field.content}}
+                </div>
               </div>
-              <!-- <div class="img-av-b">
-                  <img src="{%get_static_prefix%}assets/images/new/testimonial/2.svg" alt="">
-              </div> -->
+            </div>
+            {% endfor %}
+            
           </div>
+          <!-- <div class="img-av-b"><img loading="lazy" src="{% static '' %}assets/images/new/testimonial/2.svg" alt=""></div> -->
+        </div>
       </div>
-  </div>
-</section>
-<!--====== End Testimonial Section ======-->
-
-
-
-<!--====== Start CTA Section ======-->
-<section class="cta-section wow fadeInDown section-color" id="color-section-white">
-  <div class="container">
+    </div>
+  </section>
+  <!--====== End Testimonial Section ======-->
+  <!--====== Start CTA Section ======-->
+  <section class="cta-section wow fadeInDown section-color" id="color-section-white">
+    <div class="container">
       <div class="cta-wrapper">
-          <div class="row align-items-center">
-              <div class="col-lg-12">
-                  <div class="text-wrapper">
-                      <div class="section-title text-center">
-                          <h2>click it. get into action</h2>
-                      </div>
-                  </div>
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <div class="text-wrapper">
+              <div class="section-title text-center">
+                <h2>{{fields.24.content}}</h2>
               </div>
-              <div class="col-lg-12">
-                  <div class="button-box wow fadeInLeft">
-                      <a href="#" class="btn-cos with-hand">
-                          Subscribe now
-                      </a>
-                  </div>
-              </div>
+            </div>
           </div>
+          <div class="col-lg-12">
+            <div class="button-box wow fadeInLeft">
+              <a href="{{fields.25.slug}}" class="btn-cos with-hand">{{fields.25}}</a>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
-</section>
-<!--====== End CTA Section ======-->
+    </div>
+  </section>
+  <!--====== End CTA Section ======-->
 {% endblock %}
 
 {% block additional_js %}

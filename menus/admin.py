@@ -1,24 +1,14 @@
 from django.contrib import admin
-from .models import *
-from django.utils.translation import gettext_lazy as _
+from .models import Menu, MenuItem
 
-from core.admin import *
+from core.admin import CoreAdmin, CoreCategoryAdmin
 
-class MenuItemAdminInline(nested_admin.NestedStackedInline, TranslatableStackedInline):
-    model = MenuItem
-    extra = 0
-    sortable_field_name = "position"
 
-    
 @admin.register(Menu)
 class MenuAdmin(CoreAdmin):
-    fieldsets = ((None, {
-        'fields': (('title', 'slug'), )
-    }),)
+    pass
 
-    # inlines = [MenuItemAdminInline]
-    
+
 @admin.register(MenuItem)
 class MenuItemAdmin(CoreCategoryAdmin):
-    pass
-    
+    list_display = ['__str__', 'slug', 'status_tag', 'updated_at', 'action_tag']

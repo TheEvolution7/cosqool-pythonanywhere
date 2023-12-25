@@ -1,0 +1,113 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n frontend_extras%}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="title">
+            <h2>{{object.lesson.section.course|verbose_name}}: {{object.lesson.section.course.title}} > {{object.lesson.section|verbose_name}}: {{object.lesson.section.title}}</h2>
+            <h4>{{object.lesson|verbose_name}}: {{object.lesson.title}}</h4>
+            <hr>
+        </div>
+    </div>
+    <!-- <div class="col-12">
+        <div class="box-video">
+            <iframe width="100%" height="450" src="https://www.youtube.com/embed/Bm1NtTAtBAA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+        </div>
+    </div> -->
+</div>
+<div class="row row-detail">
+    <div class="col-md-4 col-lg-3">
+        <div class="sticky-md-top">
+            <div class="menu-courses">
+                <h4>{{object.lesson.section.course.title}}</h4>  
+                <div class="box-link-c mb-3">
+                    {% for item in object.lesson.lessons.all %}
+                        {% comment %} {% with object.lesson.section.course  as obj %}
+                            {% if item|verbose_name == 'Learn'  %}
+                            <a href="{% url 'dashboards:lessons:learn-detail' item.pk %}" class="summary-item {% if item.pk == object.pk %}active{% endif %}">
+                            {% else %}
+                            <a href="{% url 'dashboards:practice-detail' item.slug %}" class="summary-item {% if item.pk == object.pk %}active{% endif %}">
+                            {% endif %}
+                        {% endwith %} {% endcomment %}
+                        <a href="{% url 'dashboards:lessons:learn-detail' item.pk %}" class="summary-item {% if item.pk == object.pk %}active{% endif %}">
+                            <div class="content">
+                                <div class="icon">
+                                    <img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/6.svg" alt="">
+                                </div>
+                                <div class="desc">
+                                    {{item|verbose_name}}: {{item.title}}
+                                </div>
+                            </div>
+
+                            <div class="number">
+                                {% if item.media %}{{item.media|get_duration_video}}{% endif %}
+                            </div>
+                        </a>
+                    {% empty %}
+                    empty
+                    {% endfor %}
+
+                </div>
+                <div class="btn-group-nav mb-3">
+                    <a href="{% if prev_object.pk %}{% url 'dashboards:lessons:learn-detail' prev_object.pk %}{% else %}javascript:;{% endif %}" class="btn--link"><i class="icofont-long-arrow-left"></i>{% translate "Previous" %}</a>
+                    <a href="{% if next_object.pk %}{% url 'dashboards:lessons:learn-detail' next_object.pk %}{% else %}javascript:;{% endif %}" class="btn--link">{% translate "Next" %}<i class="icofont-long-arrow-right"></i></a>
+                    
+                </div>
+                <div class="btn-group-nav">
+                    {% with object.lesson.section.course as obj %}
+                    <a href="{% url 'dashboards:course-detail' obj.slug %}" class="btn--link __full"><i class="icofont-long-arrow-left"></i>{% translate "Back to course" %}</a>
+                    {% endwith %}
+                </div>
+              
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-lg-9">
+        <div class="courses-detail-content">
+            <h4>{{object.title}}</h4>
+            <div class="content-box">
+                <div class="box-video">
+                    {% if object.media %}
+                    <iframe width="100%" height="450" src="{{object.media.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                    {% else %}
+                    <img src="{% get_static_prefix %}dashboard/assets/images/icon-d/2_1.svg" class="mx-auto d-block img-fluid" style="max-height: 250px;">
+                    {% endif %}
+                    
+                </div>
+                <ul class="nav nav-tabs tab-body-header d-inline-flex mt-4" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#nav-1" role="tab">{% translate "About" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#nav-2" role="tab">{% translate "Transcript" %}</a></li>
+                    {% comment %} <li class="nav-item"><a class="nav-link" download="" href="#" >Download PDF</a></li> {% endcomment %}
+                </ul>
+                
+                <div class="tab-content mt-4">
+                    <div class="tab-pane fade show active" id="nav-1" role="tabpanel">
+                        {% if object.content %}{{object.content|safe}}{% endif %}
+                    </div>
+                    <div class="tab-pane fade" id="nav-2" role="tabpanel">
+                        <div class="order-list">
+                            <ul class="list-group">
+                                {% for transcript in object.learn_transcripts.all %}
+                                <li class="list-group-item d-flex flex-wrap">
+                                    <a href="#" class=" fw-bold">{{forloop.counter}}. {{transcript.title}}</a>
+                                    <div class="ms-auto d-flex align-items-center">
+                                        <span class="text-muted"><i class="icofont-wall-clock "></i> {{transcript.time}}</span>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% comment %} <div class="content-box">
+                <h5>Quiz 1</h5>
+                <p>Level up on the above skills and collect up to 560 Mastery points</p>
+                <a href="#" class="btn--link">Start quiz</a>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</div>
+{% endblock %}

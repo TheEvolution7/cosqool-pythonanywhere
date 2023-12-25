@@ -1,0 +1,83 @@
+{% extends "layout/default.html" %}
+{% load static i18n dashboard %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h1>{{ object.testprep.title }}</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="d-flex flex-column">
+                <div class="learn-wrapper">
+                    <div class="title-course">
+                        <h4>{% translate 'Testprep details' %}:</h4>
+                        <div class="box-link-c">
+                            <div class="summary-item">
+                                <div class="content">
+                                    <div class="desc d-flex flex-row align-items-center">
+                                        <img src="/static/dashboard/assets/images/icon-courses/1.svg" width="25"
+                                             height="25" class="me-1">
+                                        {% translate 'Part' %}
+                                    </div>
+                                </div>
+                                <div class="number">
+                                    {{ object.title }}/{{ object.testprep.get_parts.count }}
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="content">
+                                    <div class="desc d-flex flex-row align-items-center">
+                                        <img src="/static/dashboard/assets/images/icon-courses/1.svg" width="25"
+                                             height="25" class="me-1">
+                                        {% translate 'Subject' %}
+                                    </div>
+                                </div>
+                                <div class="number">
+                                    {{ object.subject|title }}
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="content">
+                                    <div class="desc d-flex flex-row align-items-center">
+                                        <img src="/static/dashboard/assets/images/icon-courses/1.svg" width="25"
+                                             height="25" class="me-1">
+                                        {% translate 'Questions' %}
+                                    </div>
+                                </div>
+                                <div class="number">
+                                    {{ object.testprep.get_total_questions }}
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="content">
+                                    <div class="desc d-flex flex-row align-items-center">
+                                        <img src="/static/dashboard/assets/images/icon-courses/1.svg" width="25"
+                                             height="25" class="me-1">
+                                        {% translate 'Duration' %}
+                                    </div>
+                                </div>
+                                <div class="number">
+                                    <time>{{ object.testprep.get_total_duration_parts|duration }}</time>
+                                </div>
+                            </div>
+                            <div class="summary-item d-flex justify-content-center align-items-center pt-4">
+
+                                <form action="{% url 'dashboards:testprep-part-detail' object.pk %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="submit" class="btn--link _yellow" value="{% translate "Continue exam" %}">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+

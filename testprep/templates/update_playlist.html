@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'dashboards:playlists:video-update-playlist' '1' %}" class="add-to-playlist video_update_playlist_form">
+    {% csrf_token %}
+    <button type="submit" class="btn--link">Add to an existing list &nbsp;&nbsp;<i class="fas fa-plus-circle"></i></button>
+    {{form.playlist}}
+</form>

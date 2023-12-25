@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 @admin.register(Group)
 class GroupAdmin(CoreAdmin, ImportExportModelAdmin, ExportActionModelAdmin):
     
-    list_display = ['str_tag', 'slug', 'content_type', 'status','fields_tag', 'action_tag']
+    list_display = ['str_tag', 'slug', 'status','fields_tag', 'action_tag']
     
     @admin.display(description='fields')
     def fields_tag(self, obj):

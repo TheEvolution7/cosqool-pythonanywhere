@@ -1,0 +1,64 @@
+{% load static i18n %}
+<div class="courses-list-content __2">
+    <div class="accordion" id="list-1">
+        {% for section in object.lesson.section.course.sections %}
+        <div class="card">
+            <div class="card-header" id="course-g-{{section.pk}}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left {% if not forloop.first %}collapsed{% endif %}" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#course-content-g-{{section.pk}}" aria-expanded="false"
+                        aria-controls="course-content-g-{{section.pk}}">
+                        <div class="ct">
+                            <div class="text">
+                                {% translate "Chapter" %} {{forloop.counter}}: {{section.title}}
+                            </div>
+                        </div>
+                        <div class="btn-acco"></div>
+                    </button>
+                </h2>
+            </div>
+
+            <div id="course-content-g-{{section.pk}}" class="collapse {% if forloop.first %}show{% endif %}" aria-labelledby="course-{{section.pk}}"
+                >
+                <div class="card-body">
+                    <ul class="list-course">
+                        {% for item in section.items %}
+                            <li class="d-flex flex-column">
+                                <a class="desc me-2 mb-2">
+                                    <div class="icon-file">
+                                        <img src="{% get_static_prefix %}dashboard/assets/images/icon-menu-new/2.svg">
+                                    </div>
+                                    {{item.title}}
+                                </a>
+                                {% comment %} <div class="d-flex justify-content-start me-2">
+                                    {% for lesson in item.get_lessons %}
+                                        {% if current_video.pk|slugify == lesson.pk|slugify %}
+                                            <a class="btn btn-sm btn-outline-success me-2"><i class="icofont-play me-1"></i><span>Part {{forloop.counter}}</span></a>
+                                        {% else %}
+                                            {% if lesson.get_learnscore_by_user == lesson.score %}
+                                            <a href="{% url 'dashboards:course-detail-video' object.slug lesson.pk %}" class="btn btn-sm btn-outline-warning me-2"><i class="icofont-check me-1"></i><span>Part {{forloop.counter}}</span></a>
+                                            {% else %}
+                                            <a href="{% url 'dashboards:course-detail-video' object.slug lesson.pk %}" class="btn btn-sm btn-outline-primary me-2"><span>Part {{forloop.counter}}</span></a>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div> {% endcomment %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        Empty
+        {% endfor %}
+
+        <div class="box-test-prep">
+            {% for testprep in object.lesson.section.course.testpreps.all %}
+                <a href="{% url 'dashboards:testprep-detail' testprep.pk %}">
+                    {% translate "Test Prep" %}: {{testprep.title|title}}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -3,10 +3,12 @@ from core.models import *
 from ckeditor_uploader.fields import RichTextUploadingField
 from model_utils.managers import InheritanceManager
 from django.utils.safestring import mark_safe
+from django.utils.html import strip_tags
 from django.core.validators import (
     MaxValueValidator,
 )
 from accounts.models import Teacher
+
 
 class Quiz(models.Model):
     title = models.CharField(_("title"), max_length=255)
@@ -19,7 +21,7 @@ class Quiz(models.Model):
 
     url = models.SlugField(
         max_length=60,
-        blank=False,
+        blank=True,
         help_text=_("a user friendly url"),
         verbose_name=_("user friendly url"),
     )
@@ -102,10 +104,17 @@ class Quiz(models.Model):
         ),
     )
 
-    created_at = models.DateTimeField(_('created at'), auto_now_add=True)
-    updated_at = models.DateTimeField(_('updated at'), auto_now=True)
-    created_by = models.ForeignKey(Teacher, on_delete=models.CASCADE, default=1, related_name="quizz_created_by")
-    updated_by = models.ForeignKey(Teacher, on_delete=models.CASCADE, default=1, related_name="quizz_updated_by")
+    created_at = models.DateTimeField(_("created at"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("updated at"), auto_now=True)
+    created_by = models.ForeignKey(
+        Teacher, on_delete=models.CASCADE, default=1, related_name="quizz_created_by"
+    )
+    updated_by = models.ForeignKey(
+        Teacher, on_delete=models.CASCADE, default=1, related_name="quizz_updated_by"
+    )
+
+    def get_questions(self):
+        return self.questions.filter()
 
     def __str__(self):
         return self.title
@@ -114,10 +123,13 @@ class Quiz(models.Model):
         verbose_name = _("Quizz")
         verbose_name_plural = _("Quizzes")
 
+
 class Question(models.Model):
     score = models.IntegerField(default=1)
 
-    quiz = models.ForeignKey(Quiz, on_delete=models.DO_NOTHING)
+    quiz = models.ForeignKey(
+        Quiz, on_delete=models.DO_NOTHING, related_name="questions"
+    )
 
     TYPES = [
         (
@@ -158,7 +170,7 @@ class Question(models.Model):
     )
 
     objects = InheritanceManager()
-    
+
     def answers(self):
         return self.answer_set.filter().all()
 
@@ -171,9 +183,15 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    question = models.ForeignKey(
+        Question, on_delete=models.DO_NOTHING, related_name="answers"
+    )
     content = RichTextUploadingField(_("content"), null=True, blank=True)
     correct = models.BooleanField(_("correct"), default=False)
+
+    image = models.ImageField(
+        upload_to="uploads/%Y/%m/%d", blank=True, null=True, verbose_name=_("Image")
+    )
 
     def __str__(self):
         return f"{mark_safe(self.content)}"

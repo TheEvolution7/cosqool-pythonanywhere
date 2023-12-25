@@ -1,0 +1,13 @@
+{% load i18n testprep %}
+<p class="card-text">{{total}} {% trans "of" %} {{part.max_questions}} {% trans "questions complete" %}</p>
+<div>
+    {% if part_result %}
+        {% if complete %}
+            <h5>{% trans "Complete" %}</h5>
+        {% else %}
+            <a href="{% url "dashboards:testpreps:part-detail" part.pk %}" class="btn--link w-100">{% trans "Continue" %}</a>
+        {% endif %}
+    {% else %}
+        {% comment %} <a href="{% url "dashboards:testpreps:part-detail" part.pk %}" class="btn--link w-100">{% trans "Start" %}</a> {% endcomment %}
+    {% endif %}
+</div>

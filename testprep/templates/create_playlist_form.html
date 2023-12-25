@@ -1,0 +1,24 @@
+{% load static i18n %}
+<button class="btn--link" data-bs-toggle="modal" data-bs-target="#dashboards-playlists-create"><span class="me-3">Creat a new list</span><i class="fas fa-plus-circle"></i></button>
+
+<div class="modal fade" id="dashboards-playlists-create" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="post" action="{% url 'dashboards:playlists:create' %}">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% translate "Add" %}: {{form.instance.title}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{form.as_p}}
+                    <input type="hidden" name="playlist_pk" value="{{ form.instance.pk }}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary" id="password_change_submit">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

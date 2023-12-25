@@ -42,7 +42,7 @@ def get_plan_list(context):
 
 @register.inclusion_tag('courses/course_list.html', takes_context=True)
 def get_course_list(context):
-    grades = Grade.objects.filter().all()
+    grades = Grade.objects.filter(status=True).all()
     half = len(grades) // 2
     half += 1
     context.update({'grade_list': {

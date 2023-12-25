@@ -1,71 +1,97 @@
 {% load i18n static %}
 
-    <div class="container">
-      <div class="row accordion wow fadeInUp" id="list-1">
-        <div class="col-lg-6">
-          {% for grade in grade_list.right %}
-            <div class="card">
-              <div class="card-header" id="grade-{{grade.id}}">
-                <h2 class="mb-0">
-                  <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#grade-content-{{grade.id}}" aria-expanded="true" aria-controls="grade-content-{{grade.id}}">
-                    <div class="ct">
-                      <div class="icon-c">
-                        <img src="{% static '' %}assets/images/icon-school/6.svg" alt="{{grade}}">
-                      </div>
-                      <div class="text"> {{grade.category}}: {{grade}} </div>
-                    </div>
-                    <div class="btn-acco"></div>
-                  </button>
-                </h2>
-              </div>
-              <div id="grade-content-{{grade.id}}" class="collapse" aria-labelledby="grade-1" data-parent="#list-1">
-                <div class="card-body">
-                  <ul class="list-course">
-                    {% for course in grade.get_course_list %}
-                    <li>
-                      <a href="#">{{course}}</a>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
+<div class="container">
+	<div class="row accordion wow fadeInUp" id="list-1">
+		<div class="col-lg-6">
+			{% for grade in grade_list.right %}
+			<div class="card">
+				<div class="card-header" id="grade-{{grade.id}}">
+					<h2 class="mb-0">
+						<button
+							class="btn btn-link btn-block text-left collapsed"
+							type="button"
+							data-toggle="collapse"
+							data-target="#grade-content-{{grade.id}}"
+							aria-expanded="true"
+							aria-controls="grade-content-{{grade.id}}"
+						>
+							<div class="ct">
+								<div class="icon-c">
+									<img
+										src="{% static '' %}assets/images/icon-school/6.svg"
+										alt="{{grade}}"
+									/>
+								</div>
+								<div class="text">{{grade.category}}: {{grade}}</div>
+							</div>
+							<div class="btn-acco"></div>
+						</button>
+					</h2>
+				</div>
+				<div
+					id="grade-content-{{grade.id}}"
+					class="collapse"
+					aria-labelledby="grade-1"
+					data-parent="#list-1"
+				>
+					<div class="card-body">
+						<ul class="list-course">
+							{% for subject in grade.get_subjects %}
+							<li>
+								<a href="#">{{subject}}</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
 
-        <div class="col-lg-6">
-          {% for grade in grade_list.left %}
-            <div class="card">
-              <div class="card-header" id="grade-{{grade.id}}">
-                <h2 class="mb-0">
-                  <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#grade-content-{{grade.id}}" aria-expanded="true" aria-controls="grade-content-{{grade.id}}">
-                    <div class="ct">
-                      <div class="icon-c">
-                        <img src="{% static '' %}assets/images/icon-school/6.svg" alt="{{grade}}">
-                      </div>
-                      <div class="text"> {{grade.category}}: {{grade}} </div>
-                    </div>
-                    <div class="btn-acco"></div>
-                  </button>
-                </h2>
-              </div>
-              <div id="grade-content-{{grade.id}}" class="collapse" aria-labelledby="grade-1" data-parent="#list-1">
-                <div class="card-body">
-                  <ul class="list-course">
-                    {% for course in grade.get_course_list %}
-                    <li>
-                      <a href="#">{{course}}</a>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-
-
-
-        
-      </div>
-    </div>
+		<div class="col-lg-6">
+			{% for grade in grade_list.left %}
+			<div class="card">
+				<div class="card-header" id="grade-{{grade.id}}">
+					<h2 class="mb-0">
+						<button
+							class="btn btn-link btn-block text-left collapsed"
+							type="button"
+							data-toggle="collapse"
+							data-target="#grade-content-{{grade.id}}"
+							aria-expanded="true"
+							aria-controls="grade-content-{{grade.id}}"
+						>
+							<div class="ct">
+								<div class="icon-c">
+									<img
+										src="{% static '' %}assets/images/icon-school/6.svg"
+										alt="{{grade}}"
+									/>
+								</div>
+								<div class="text">{{grade.category}}: {{grade}}</div>
+							</div>
+							<div class="btn-acco"></div>
+						</button>
+					</h2>
+				</div>
+				<div
+					id="grade-content-{{grade.id}}"
+					class="collapse"
+					aria-labelledby="grade-1"
+					data-parent="#list-1"
+				>
+					<div class="card-body">
+						<ul class="list-course">
+							{% for subject in grade.get_subjects %}
+							<li>
+								<a href="#">{{subject}}</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

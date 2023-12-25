@@ -44,7 +44,7 @@ def check_answer(context, question, answer):
     alert = ""
     icon = ""
     checked = ""
-    if str(answer.pk) in get_answer_list:
+    if get_answer_list and str(answer.pk) in get_answer_list:
         checked = "checked"
         icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>'
         if not correct_answer:
@@ -53,7 +53,7 @@ def check_answer(context, question, answer):
     if correct_answer:
         alert = "success"
 
-        if str(correct_answer.pk) in get_answer_list:
+        if get_answer_list and str(correct_answer.pk) in get_answer_list:
             alert = "success"
 
     return {

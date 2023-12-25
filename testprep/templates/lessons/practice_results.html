@@ -1,0 +1,81 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block content %}
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h2>{{object.title}}</h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-lg-3">
+            <div class="sticky-md-top">
+                <div class="menu-courses">
+                    <div class="box-link-c mb-3">
+                        {% for item in lesson_items %}
+                        {% with object.lesson.section.course  as obj %}
+                            {% if item|verbose_name == 'Learn'  %}
+                            <a href="{% url 'dashboards:learn-detail' obj.subject.slug obj.subject.grade.slug object.lesson.section.slug object.slug item.slug %}" class="summary-item {% if item.pk == object.pk %}active{% endif %}">
+                            {% else %}
+                            <a href="{% url 'dashboards:practice-detail' obj.subject.slug obj.subject.grade.slug object.lesson.section.slug object.slug item.slug %}" class="summary-item {% if item.pk == object.pk %}active{% endif %}">
+                            {% endif %}
+                        {% endwith %}
+                                <div class="content">
+                                    <div class="icon">
+                                        <img src="{% get_static_prefix %}dashboard/assets/images/icon-courses/6.svg" alt="">
+                                    </div>
+                                    <div class="desc">
+                                        {{item|verbose_name}}: {{item.title}}
+                                    </div>
+                                </div>
+                            </a>
+                        {% empty %}
+                        empty
+                        {% endfor %}
+
+                    </div>
+                    <div class="btn-group-nav mb-3">
+                        <a href="#" class="btn--link"><i class="icofont-long-arrow-left"></i> Previous</a>
+                        <a href="#" class="btn--link">Next <i class="icofont-long-arrow-right"></i></a>
+                    </div>
+                    <div class="btn-group-nav">
+                        {% with object.lesson.section.course as obj %}
+                        <a href="{% url 'dashboards:course-detail' obj.subject.slug obj.subject.grade.slug obj.slug %}" class="btn--link __full"><i class="icofont-long-arrow-left"></i> Back to course</a>
+                        {% endwith %}
+                    </div>
+                  
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg-9">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="thankyou-page-inner">
+                        <div class="wrapper">
+                            <div class="tick">
+                                <div class="done-tick"></div>
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h2>Thank you For finished the Quiz</h2>
+                            <p>
+                                Your score is 3/4
+                            </p>
+                            <div class="next-prev-btn">
+                                <a href="{% url 'dashboards:index' %}" class="">Back Home</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+{% endblock %}

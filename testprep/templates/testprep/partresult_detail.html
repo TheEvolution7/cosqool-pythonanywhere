@@ -1,0 +1,97 @@
+{% extends "layout/default.html" %}
+{% load static i18n dashboard %}
+
+{% block content %}
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <h1>{{ object.part.testprep.title|title }}</h1>
+                    <h2>Part: {{ object.part.get_order }} - {{ object.part.subject.title|title }}</h2>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="sticky-md-top">
+                    <div class="sidebar-widget-wrapper pr-0">
+                        <div class="sidebar-widget">
+                            <div class="sidebar-widget-content">
+                                <div class="sidebar-entry-course-info p-0">
+                                    <div class="learn-wrapper">
+                                        <div class="chapter-course __2">
+                                            <ul class="chapter-sections">
+                                                <li class="single-chapter-section">
+                                                    <div class="section-header">
+                                                        <div class="section-left text-center">
+                                                            <h5 class="title">Your Score {% get_percent %}%</h5>
+                                                            <p class="section-desc">{% get_total_correct_answer %} of {{ object.part.get_questions.count }} questions are answered
+                                                                correctly</p>
+                                                            <div class="progress w-100 mb-0">
+                                                                <div class="progress-fill" style="width: {% get_percent %}%;"></div>
+                                                                <span class="progress-text">{% get_percent %}%</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="section-question">
+                                                        {% for question in partresult.part.get_questions %}
+                                                            <li class="{% get_result_question object.content question %}">
+                                                                <a href="#" data-name="quest-{{ forloop.counter }}">{{ forloop.counter }}</a>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </li>
+                                                <li class="single-chapter-section">
+
+                                                    <div class="btn-group">
+                                                        <a href="{% url 'dashboards:testprep:testprep-result-detail' object.testprep_result.pk %}"
+                                                           class="btn--link _yellow">{% translate "Back" %}</a>
+                                                    </div>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <div class="learn-wrapper">
+                    <div class="chapter-course">
+                        <ul class="chapter-sections quest-list review-page">
+                            {% for question in questions %}
+                                <li class="single-chapter-section" id="quest-{{ forloop.counter }}">
+                                    <div class="section-header">
+                                        <div class="section-left">
+                                            <p class="section-desc">{% translate "Question" %} {{ forloop.counter }}</p>
+                                            <h5 class="sub-title">{{ question.content|safe }}</h5>
+                                        </div>
+                                    </div>
+                                    <ul class="section-content pb-4">
+                                        {% for answer in question.get_answers %}
+                                            <li class="course-item">
+                                                <div class="section-item-link __radio {% get_result_answer object.content question answer %}">
+                                                    <span class="me-2 align-self-end"><p>{{forloop.counter}}.</p></span>
+                                                    {% get_icon_result_answer object.content question answer %}
+                                                    <span class="align-self-end">{{answer.content|safe}}</span>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

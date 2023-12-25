@@ -1,0 +1,38 @@
+{% load static i18n %}
+<div class="icon-ring has-noti me-3">
+    <a href="javascript:;" data-noti="{{notification__not_read_count}}"><img src="{% get_static_prefix %}dashboard/assets/images/icon-menu-new/11.svg" alt=""></a>
+    
+    <ul class="list-noti">
+        {% for notification in notification_list %}
+            <li>
+                <a href="#" class="noti-item">
+                    <div class="icon">
+                        <img src="{% get_static_prefix %}dashboard/assets/images/icon-menu/6.svg" alt="">
+                    </div>
+                    <div class="content {% if notification.is_read is False %}text-primary{% endif %}">
+                        <div class="title">
+                            {{notification.title}}
+                        </div>
+                        <div class="date-time">
+                            {{notification.created_at|timesince}}
+                        </div>
+                    </div>
+                </a>
+            </li>
+        {% empty %}
+        <li>
+            <span class="noti-item">
+                <div class="icon">
+                    <img src="{% get_static_prefix %}dashboard/assets/images/icon-menu/6.svg" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">
+                        {% translate "Empty notification" %}
+                        <h4></h4>
+                    </div>
+                </div>
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

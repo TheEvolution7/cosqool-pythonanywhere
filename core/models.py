@@ -40,31 +40,27 @@ class CustomQuerySet(TranslatableQuerySet):
 
 import uuid
 
+def upload_to(instance, filename):
+    return f"{instance._meta.verbose_name_plural.lower()}/{filename}"
+
 class BaseModel(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     image = models.ImageField(_('image'),
-                              upload_to='%(class)s/', null=True, blank=True)
-    thumbnail = ImageSpecField(
-        source='image', processors=[ResizeToFill(150, 150)] ,format='WEBP')
-    
-    medium = ImageSpecField(
-        source='image', processors=[ResizeToFill(300, 300)] ,format='WEBP')
-
-    large = ImageSpecField(
-        source='image', processors=[ResizeToFill(1024, 1024)] ,format='WEBP')
+                              upload_to=upload_to, null=True, blank=True)
     
     media = models.FileField(_('media'),
-                             upload_to='%(class)s/', null=True, blank=True)
+                             upload_to=upload_to, null=True, blank=True)
 
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     updated_at = models.DateTimeField(_('updated at'), auto_now=True)
     
+    status = models.BooleanField(default=True)
     
     STATUS_CHOICES = [
         ('published', _('Published')),
         ('archived', _('Archived')),
     ]
-    status = models.BooleanField(default=True)
+    
 
     def save(self, *args, **kwargs):
         if hasattr(self, 'title'):

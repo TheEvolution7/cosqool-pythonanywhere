@@ -16,7 +16,7 @@ def share_on_facebook(content, access_token):
     graph.put_object(parent_object='me', connection_name='feed', message=content)
     
 @admin.register(Article)
-class ArticleAdmin(CoreAdmin):
+class ArticleAdmin(BaseCoreAdmin):
     
     
     @admin.display(description='action')

@@ -35,7 +35,7 @@ CSRF_TRUSTED_ORIGINS = ["https://cosqool.up.railway.app"]
 # Application definition
 
 INSTALLED_APPS = [
-    # "modeltranslation",
+    "modeltranslation",
     "dashboards",
     "auth.apps.AuthConfig",
     # 'contents',
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # 'albums',
     "settings",
     "products",
+    "testpreps",
     "plans",
     # 'billings',
     # 'analytics',
@@ -75,7 +76,7 @@ INSTALLED_APPS = [
     "seo",
     "polymorphic_tree",
     "content",
-    "testpreps",
+    
     "mysite.apps.MyAdminConfig",
     # 'django.contrib.admin',
     "django.contrib.auth",
@@ -104,7 +105,10 @@ INSTALLED_APPS = [
     # 'paypal.standard.ipn',
     # 'bootstrap5',
     "import_export",
+    "django_json_widget",
+    
     "records",
+    "testprep",
 ]
 PAYPAL_IDENTITY_TOKEN = "Tsu6-cO2xYiyU1O60uq19990dqAUpqY55KDiwMUrtEsU5UaWEQozP4fhIYq"
 PAYPAL_TEST = True
@@ -262,7 +266,6 @@ CKEDITOR_CONFIGS = {
         "toolbar": "full",
         # 'width': '100%',
         # 'height': '100%',
-        "mathJaxLib": "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML",
         "extraPlugins": ",".join(
             [
                 "a11yhelp",

@@ -1,0 +1,459 @@
+{% extends "layout/default.html" %}
+{% load static i18n dashboard testprep %}
+{% block css %}
+<style>
+    .bookmark-active {
+        color: #ffca05
+    }
+
+    .chapter-course ul.section-content .course-item {
+        position: relative;
+        font-size: 18px;
+        transition: padding-left linear .15s;
+        background: #fff;
+    }
+</style>
+{% endblock css %}
+
+{% block content %}
+
+{% load tz %}
+
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>{{object.section.testprep|title}}</h4>
+            <h2>{{object.section|title}}</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="sidebar-widget-wrapper pr-0">
+                <div class="sidebar-widget">
+                    <div class="sidebar-widget-content">
+                        <div class="sidebar-entry-course-info p-0">
+                            <div class="learn-wrapper">
+                                <div class="chapter-course __2">
+                                    <div class="list-menu-quiz d-flex bd-highlight">
+                                        <div class="question-list-nav p-2 bd-highlight">
+                                            <div class="nav-btn btn-prev-q prev-question btn-disable"><i class="far fa-chevron-double-left"></i></div>
+                                            <div class="content-question">
+                                                {% trans "Question" %} <span class="current-quiz">{% if previous != 1 %}{{previous.get_previous_in_order.count|add:1}}{% else %}1{% endif %}</span> of <span class="total-quiz">{{part.testprep.get_total_questions}}</span>
+                                            </div>
+                                            <div class="nav-btn btn-next-q next-question"><i class="far fa-chevron-double-right"></i></div>
+                                        </div>
+                                        <div class="question-menu-btn w-auto p-2 bd-highlight">
+                                            <ul>
+                                                <li>
+                                                    <button type="button" class="btn-list" id="btn-show-list">Question List</button>
+                                                </li>
+                                                <li>
+                                                    <button type="submit" class="btn-cal" data-bs-toggle="modal" data-bs-target="#calculator-modal"><img src="{%get_static_prefix%}dashboard/assets/images/course/4.svg" alt=""></button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="question-time ms-auto p-2 bd-highlight">
+                                            <div class="section-time">
+            
+                                                <h5 class="title me-2">{% translate "Time Remaining" %}:</h5>
+                                                <div class="count-box me-2">
+                                                    <div id="clock">{{expiration_time|timezone:'UTC'|date:'Y/m/d H:i:s'}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-question-menu">
+                                        <ul class="chapter-sections">
+                                            <li class="single-chapter-section">
+                                                <div class="section-header">
+                                                    <div class="section-left">
+        
+                                                        <h5 class="title mb-0">Quiz List</h5>
+                                                        <!-- <div class="progress w-100 mb-0">
+                                                            <div class="progress-fill" style="width: 10%;"></div>
+                                                            <span class="progress-text">10%</span>
+                                                            
+                                                        </div> -->
+                                                        <div class="box-filter">
+                                                            <h4>Show:</h4>
+                                                            <ul class="list-filter-bookmark">
+                                                                <li>
+                                                                    <a href="javascript:;" id="all-bookmark" class="active">All</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:;" id="bookmarked">Bookmarked</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:;" id="unbookmarked">Unbookmarked</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="section-question">
+                                                    {% comment %} {% get_questions_by_part %} {% endcomment %}
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                        <a href="javascript:;" class="hide-quiz-list">Hide quiz list <i class="fas fa-chevron-double-up"></i></a>
+                                    </div>
+                                    {% comment %} <div class="">
+                                        <ul class="chapter-sections">
+                                            <li class="single-chapter-section">
+                                                <div class="section-header">
+                                                    <div class="section-left">
+                                                        <h5 class="title mb-0">Questions: </h5>
+                                                    </div>
+                                                </div>
+                                                <ul class="section-question">
+                                                    {% for question in part.questions.all %}
+                                                        <li><a {% if forloop.first %}class="active"{% endif %} data-name="quest-{{forloop.counter}}">{{forloop.counter}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div> {% endcomment %}
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="learn-wrapper">
+                <div class="chapter-course">
+                    <form action="" method="post" id="myForm">
+                        {% csrf_token %}
+
+                        {% for question in random_questions %}
+                        
+                        <ul class="chapter-sections quest-list quest-box {% if forloop.first %}active{% endif %}" id="quest-{{forloop.counter}}" data-quest="{% if previous != 1 %}{{previous.get_questions.count|add:forloop.counter}}{% else %}{{forloop.counter}}{% endif %}">
+                            <li class="single-chapter-section">
+                                <div class="section-header d-flex justify-content-between">
+                                    <div class="section-left me-2">
+                                        <p class="section-desc">{% translate "Question" %} {{forloop.counter}}: </p>
+                                        <h5 class="sub-title">{{question.content|safe}}</h5>
+                                    </div>
+                                    {%bookmark question %}
+                                </div>
+                                <ul class="section-content">
+                                    {% for answer in question.answers %}
+                                        <li class="course-item">
+                                            <div class="section-item-link __radio">
+                                                <input type="radio" name="{{question.pk}}" id="{{question.pk}}-{{answer.pk}}" value="{{answer.pk}}">
+                                                <label for="{{question.pk}}-{{answer.pk}}" class="align-self-end me-2">{{answer.content|safe}}</label>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="single-chapter-section btn-bottom">
+                                <div class="text-center">
+                                    {% if not forloop.first %}
+                                    <button type="button" class="btn--link _blue prev-question">Prev Question</button>
+                                    {% endif %}
+                                    
+                                    {% if forloop.last %}
+                                    <button type="submit" class="btn--link _yellow" id="partSubmitBtn">
+                                        {% translate "Submit Part" %} {{ object.get_order }}
+                                </button>
+                                    {% else %}
+                                    <button type="button" class="btn--link _yellow next-question">{% translate "Next question" %}</button>
+                                    {% endif %}
+                                
+                                </div>
+                            </li>
+                        </ul>
+                        {% empty %}
+                        <ul class="chapter-sections quest-list">
+                            <li class="d-flex justify-content-center align-items-center"><p>{% translate "No Question" %}</p></li>
+                            <li class="single-chapter-section btn-bottom">
+                                <div class="btn-group">
+                                    <button type="submit" class="btn--link _yellow">{% translate "Submit Test" %}</button>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        {% endfor %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h4>{{object}}/{{ object.section.get_parts.count }}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block modal %}
+<div class="modal fade modal-calculator" id="calculator-modal" tabindex="-1" aria-labelledby="calculator-modalTitle" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title  fw-bold" id="addUserLabel">Calculator</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          
+            <div class="modal-body">
+                <div class="calculator-box">
+                    <table class="calculator table">
+                        <thead>			
+                            <tr>
+                                <td colspan=7>
+                                    <div class="output form-group">
+                                        <input type="text" class="ans form-control" readonly name="">
+                                    </div>				
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody class="actions">		
+                            <tr>
+                                <td colspan=3></td>
+                                <td>
+                                    <button class="btn btn-op" data-value='*('>(</button>				
+                                    
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value=')'>)</button>				
+                                    
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='%'>%</button>			
+                                    
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='ce'>CE</button>				
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="btn btn-op" data-value='inv'>Inv</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='sin'>sin</button>			
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='ln'>ln</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='7'>7</button>
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='8'>8</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='9'>9</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='/'>&#x00f7;</button>				
+                                    
+                                </td>
+                            </tr>			
+                            <tr>
+                                <td>
+                                    <button class="btn btn-op" data-value='*3.14'>&pi;</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='cos'>cos</button>			
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='log'>log</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='4'>4</button>
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='5'>5</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='6'>6</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='*'>	&times;</button>
+                                </td>
+                            </tr>
+                
+                            <tr>
+                                <td>
+                                    <button class="btn btn-op" data-value='e'>e</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='tan'>tan</button>			
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='radic'>&radic;</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='3'>3</button>
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='2'>2</button>				
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='1'>1</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='-'>-</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="btn btn-op" data-value='exp'>EXP</button>			
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='x^2'>x&#xb2;</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='**'>x&#94;</button>		
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='.'>.</button>
+                                </td>
+                                <td>
+                                    <button class="btn" data-value='0'>0</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='='>=</button>				
+                                </td>
+                                <td>
+                                    <button class="btn btn-op" data-value='+'>+</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock modal %}
+{% block js %}
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<script src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js" integrity="sha512-lteuRD+aUENrZPTXWFRPTBcDDxIGWe5uu0apPEn+3ZKYDwDaEErIK9rvR0QzUGmUQ55KFE2RqGTVoZsKctGMVw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var getSeconds = new Date().getTime() + parseInt($('#clock').text()* 1000);
+    var clock = $('#clock')
+    
+    var finalDate = moment.tz(clock.html(), "UTC");
+    
+    clock.countdown(finalDate.toDate())
+    .on('update.countdown', function(event) {
+        var format = '';
+        if(event.offset.seconds > 0) {
+            format = '%-S seconds  ' + format;
+        }
+        if(event.offset.minutes > 0) {
+            format = '%-M minute%!M ' + format;
+        }
+        if(event.offset.hours > 0) {
+            format = '%-H hour%!H ' + format;
+        }
+        if(event.offset.totalDays > 0) {
+            format = '%-d day%!d ' + format;
+        }
+        if(event.offset.weeks > 0) {
+            format = '%-w week%!w ' + format;
+        }
+        $(this).html(event.strftime(format));
+    })
+    .on('finish.countdown', function(event) {
+        $(this).html('Expired!');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn--link _yellow',
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Info!',
+            text: 'Not all questions were answered, are you sure you want to submit?',
+            icon: 'info',
+            confirmButtonText: '{{next_url.text}}',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{next_url.url}}";
+            }
+          })
+    });
+
+    $('#myForm').submit(function(event) {
+        event.preventDefault();
+        
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn--link _yellow me-2',
+              cancelButton: 'btn--link me-2'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "Not all questions were answered, are you sure you want to submit?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, submit it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $("#myForm").get(0).submit();
+            }
+          })
+    });
+
+    let $modal = $("#calculator-modal");
+    $modal.draggable({
+        handle: ".modal-header",
+    });
+    $modal.resizable();
+</script>
+
+<script>
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    $(document).ready(function(){
+        $(".btn-bookmark").click(function(){
+            var btn = $(this)
+            $.ajax({
+                url: '{% url "dashboards:bookmark-ajax-bookmark" %}',
+                headers: {'X-CSRFToken': csrftoken},
+                method: "POST",
+                data: {
+                    part: btn.attr('data-part'),
+                    question: btn.attr('data-question'),
+                },
+                success: function(data, textStatus){
+                    console.log(data)
+                    if (data.status == true) {
+                        btn.addClass('bookmark-active');
+                        btn.html('<i class="fas fa-bookmark fs-4"></i>');
+                        $("#question-question-pk-" + data.question).addClass('has-bookmark');
+                    }
+                    else {
+                        btn.removeClass('bookmark-active');
+                        btn.html('<i class="far fa-bookmark fs-4"></i>');
+                        $("#question-question-pk-" + data.question).removeClass('has-bookmark')
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

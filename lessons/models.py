@@ -7,7 +7,6 @@ from sections.models import *
 from accounts.models import *
 from polymorphic.models import PolymorphicModel
 from polymorphic.managers import PolymorphicManager, PolymorphicQuerySet
-from polymorphic.models import PolymorphicModel
 
 
 class Lesson(SectionItem):

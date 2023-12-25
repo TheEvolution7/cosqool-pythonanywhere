@@ -1,0 +1,20 @@
+{% load static i18n dashboard %}
+{#{% for answer in answers %}#}
+{#<li class="course-item">#}
+{#    <div class="section-item-link __radio {% get_answerresult answer %}">#}
+{#        <span class="me-2 align-self-end"><p>{{forloop.counter}}.</p></span>#}
+{#        {% get_icon_answerresults answer %}#}
+{#        <span class="align-self-end">{{answer.content|safe}}</span>#}
+{#    </div>#}
+{#</li>#}
+{#{% endfor %}#}
+
+{% for answer in answers %}
+<li class="course-item">
+    <div class="section-item-link __radio">
+        <span class="me-2 align-self-end"><p>{{forloop.counter}}.</p></span>
+
+        <span class="align-self-end">{{answer.content|safe}}</span>
+    </div>
+</li>
+{% endfor %}

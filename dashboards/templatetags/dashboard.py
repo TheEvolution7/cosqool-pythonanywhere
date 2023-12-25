@@ -1,6 +1,5 @@
 from ..views.playlists import *
-from testpreps.models import PartResult
-# from testpreps.models import Answer as Answer
+from testprep.models import *
 from django.utils.safestring import mark_safe
 from menus.models import *
 from notification.models import *
@@ -8,7 +7,7 @@ from django import template
 
 register = template.Library()
 from django.urls import reverse
-from quizzes.models import Question, Answer
+from quizzes.models import Question, Answer as Answers
 
 @register.inclusion_tag('templatetags/notification.html', takes_context=True)
 def notification(context):
@@ -180,6 +179,10 @@ def duration(td):
 
     return f'{days_str}{hours_str}{minutes_str}{seconds_str}'
 
+@register.filter
+def duration_to_min(timedelta):
+    total_minutes = int(timedelta.total_seconds() / 60)
+    return f'{total_minutes} min'
 
 @register.simple_tag(takes_context=True)
 def get_result_answer(context, part_result_content, question, answer):
@@ -196,17 +199,17 @@ def get_result_answer(context, part_result_content, question, answer):
 
 @register.simple_tag(takes_context=True)
 def get_result_question(context, part_result_content, question):
-    if part_result_content is not None and str(question.pk) in part_result_content:
-        answer = Answer.objects.filter(status=True, question=question.pk, pk__in=part_result_content[str(question.pk)]).first()
-    if (part_result_content):
-        if str(answer.pk) in part_result_content[str(question.pk)] and answer.correct:
-            return 'right-answer'
+    # if part_result_content is not None and str(question.pk) in part_result_content:
+    #     answer = Answers.objects.filter(status=True, question=question.pk, pk__in=part_result_content[str(question.pk)]).first()
+    # if (part_result_content):
+    #     if str(answer.pk) in part_result_content[str(question.pk)] and answer.correct:
+    #         return 'right-answer'
 
-        if str(answer.pk) not in part_result_content[str(question.pk)] and answer.correct:
-            return 'right-answer'
+    #     if str(answer.pk) not in part_result_content[str(question.pk)] and answer.correct:
+    #         return 'right-answer'
 
-        if str(answer.pk) in part_result_content[str(question.pk)] and answer.correct == False:
-            return 'wrong-answer'
+    #     if str(answer.pk) in part_result_content[str(question.pk)] and answer.correct == False:
+    #         return 'wrong-answer'
     return None
 
 

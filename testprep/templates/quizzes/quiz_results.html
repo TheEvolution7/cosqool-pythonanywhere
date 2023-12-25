@@ -1,0 +1,39 @@
+{% extends "layout/default.html" %}
+
+{% load static i18n %}
+{% load frontend_extras widget_tweaks %}
+{% block content %}
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">
+                <h2>{{object.title}}</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="col-12">
+            <section class="thankyou-page thankyou-circle steps-inner" id="thankyou">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <div class="thankyou-page-inner">
+                            <div class="wrapper">
+                                <div class="tick">
+                                    <div class="done-tick"></div>
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <h2>Thank you For finished the Quiz</h2>
+                                <p>
+                                    Your score is 3/4
+                                </p>
+                                <div class="next-prev-btn">
+                                    <button class="next back">Back Home</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

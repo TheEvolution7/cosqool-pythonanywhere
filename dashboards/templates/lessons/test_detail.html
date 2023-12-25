@@ -41,7 +41,7 @@
                                     <div class="question-list-nav p-2 bd-highlight">
                                         <div class="nav-btn btn-prev-q prev-question btn-disable"><i class="far fa-chevron-double-left"></i></div>
                                         <div class="content-question">
-                                            {% trans "Question" %} <span class="current-quiz">1</span> {% trans "of" %} <span class="total-quiz">{{object.quiz.question_set.count}}</span>
+                                            {% trans "Question" %} <span class="current-quiz">1</span> {% trans "of" %} <span class="total-quiz">{{object.quiz.questions.count}}</span>
                                         </div>
                                         <div class="nav-btn btn-next-q next-question"><i class="far fa-chevron-double-right"></i></div>
                                     </div>
@@ -135,7 +135,7 @@
             <div class="chapter-course">
                 <form action="" method="post" id="myForm">
                     {% csrf_token %}
-                    {% for question in object.quiz.question_set.all %}
+                    {% for question in object.quiz.get_questions %}
                     <ul class="chapter-sections quest-list quest-box {% if forloop.first %}active{% endif %}" id="quest-{{forloop.counter}}" data-quest="{{forloop.counter}}">
                         <li class="single-chapter-section">
                             <div class="section-header d-flex justify-content-between">
@@ -143,7 +143,7 @@
                                     <p class="section-desc">{% translate "Question" %} {{forloop.counter}}: </p>
                                     <div class="h5 p-0 m-0">{{question.content|safe}}</div>
                                 </div>
-                                {% comment %} {%bookmark question %} {% endcomment %}
+                                {% comment %} {% bookmark question %} {% endcomment %}
                             </div>
                             <ul class="section-content">
                                 {% for answer in question.answer_set.all %}
