@@ -160,8 +160,7 @@ class Question(models.Model):
         upload_to="uploads/%Y/%m/%d", blank=True, null=True, verbose_name=_("Figure")
     )
 
-    explanation = models.TextField(
-        max_length=2000,
+    explanation = RichTextUploadingField(
         blank=True,
         help_text=_(
             "Explanation to be shown " "after the question has " "been answered."
